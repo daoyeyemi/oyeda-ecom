@@ -1,0 +1,11 @@
+info needed for database
+- name
+- email
+- address
+- order
+- items
+    - picture
+    - name
+    - price
+    - type
+    - description
