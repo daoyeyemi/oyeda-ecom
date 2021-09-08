@@ -1,3 +1,4 @@
 .span {
-    background-image: url("../images/shoes.jpeg");
+    background-image: url("../images/red-shoes.jpg");
+    background-size: cover;
 }
