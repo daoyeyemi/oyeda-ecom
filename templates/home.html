@@ -10,6 +10,74 @@
     <link href="{% static 'css/styles.css' %}" rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/91ac43c8df.js" crossorigin="anonymous"></script>
+    <script>
+        window.addEventListener('scroll', () => {
+            let content = document.querySelector('.slight-description');
+            let contentPosition = content.getBoundingClientRect().top;
+            let screenPosition = window.innerHeight;
+            if (contentPosition < screenPosition) {
+                content.classList.add('active');
+            } else {
+                content.classList.remove('active')
+            }
+        })
+
+        window.addEventListener('scroll', () => {
+            let content1 = document.querySelector('.latest-additions-para');
+            let contentPosition1 = content1.getBoundingClientRect().top;
+            let screenPosition1 = window.innerHeight;
+            if (contentPosition1 < screenPosition1) {
+                content1.classList.add('la-active-para');
+            } else {
+                content1.classList.remove('la-active-para')
+            }
+        })
+
+        window.addEventListener('scroll', () => {
+            let content2 = document.querySelector('.latest-additions');
+            let contentPosition2 = content2.getBoundingClientRect().top;
+            let screenPosition2 = window.innerHeight;
+            if (contentPosition2 < screenPosition2) {
+                content2.classList.add('la-active');
+            } else {
+                content2.classList.remove('la-active')
+            }
+        })
+
+        window.addEventListener('scroll', () => {
+            let content2 = document.querySelector('.latest-additions-visuals');
+            let contentPosition2 = content2.getBoundingClientRect().top;
+            let screenPosition2 = window.innerHeight;
+            if (contentPosition2 < screenPosition2) {
+                content2.classList.add('latest-additions-visuals-active');
+            } else {
+                content2.classList.remove('latest-additions-visuals-active')
+            }
+        })
+
+        window.addEventListener('scroll', () => {
+            let content = document.querySelector('.brands');
+            let contentPosition = content.getBoundingClientRect().top;
+            let screenPosition = window.innerHeight;
+            if (contentPosition < screenPosition) {
+                content.classList.add('active-brands');
+            } else {
+                content.classList.remove('active-brands');
+            }
+        })
+
+        window.addEventListener('scroll', () => {
+            let content = document.querySelector('.brand5');
+            let contentPosition = content.getBoundingClientRect().top;
+            let screenPosition = window.innerHeight;
+            if (contentPosition < screenPosition) {
+                content.classList.add('active-brand5');
+            } else {
+                content.classList.remove('active-brand5');
+            }
+        })
+
+    </script>
 </head>
 <body>
     <nav style='display: flex; justify-content: space-between; background-color: black; height: 50px;'>
@@ -42,13 +110,13 @@
       </div>
 
     <div style="text-align: center; color: white; height: 175px; width: 100%; background-color: black;">
-        <div style="padding: 65px;">oyedaEcom is the perfect destination for all the latest sneaker apparel; located in Carson, CA</div>
+        <div class="slight-description" style="padding: 65px;">oyedaEcom is the perfect destination for all the latest sneaker apparel; located in Carson, CA</div>
     </div>
 
     <div style="text-align: center; color: white; width: 100%; background-color: rgb(194, 189, 189);">
-        <div style="padding-top: 55px;">Latest Additions</div>
-        <p style="padding: 40px; margin-bottom: 0px;">Check out some of our newest shoes, just added to the collection</p>
-        <div style="overflow-x: auto; display: flex; height: 250px; min-width: 100%;">
+        <div class="latest-additions" style="padding-top: 55px;">Latest Additions</div>
+        <p class="latest-additions-para" style="padding: 40px; margin-bottom: 0px;">Check out some of our newest shoes, just added to the collection</p>
+        <div class="latest-additions-visuals" style="overflow-x: auto; display: flex; height: 250px; min-width: 100%;">
             <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
             <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
             <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
@@ -64,6 +132,90 @@
         </div>
     </div>
     
+    <div style="height: 400px; width: 100%; background-color: pink;">
+        <!-- video -->
+    </div>
+
+                <div class="brands" style="display: flex; justify-content: center; height: 200px; width: 100%; margin-bottom: 40px;">
+                    <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
+                    <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
+                    <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
+                </div>
+           
+                <div class="brand5" style="display: flex; justify-content: center; height: 200px; width: 100%; margin-bottom: 40px;">
+                    <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
+                    <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
+                    <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
+                </div>
+   
+            <div style="background-color: rgb(167, 17, 17); display: flex">
+                <div style="margin-top: 30px; margin-left: 30px; padding-top: 10px; width: 50%; text-align: right;">
+                    <div style="margin: 30px 10px 10px 0px; height: 300px; width: 300px; background-color: black;"></div>
+                    <div style="margin: 10px 10px 10px 0px; height: 300px; width: 300px; background-color: black;"></div>
+                    <div style="margin: 10px 10px 10px 0px; height: 300px; width: 300px; background-color: black;"></div>
+                </div>
+                <div style="margin-top: 70px;">
+                    <h3>
+                        Brand
+                    </h3>
+                    <h1>
+                        Shoe name
+                    </h1>
+                    <h4>
+                        Price
+                    </h4>
+                    <button style="margin-bottom: 20px; width: 300px;"class="btn btn-primary">Add to Cart</button>
+                    <div style="height: 500px; width: 500px; background-color: black;"></div>
+                    
+                      </div>
+                      <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                Collapsible Group Item #1
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                Collapsible Group Item #2
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                Collapsible Group Item #3
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>    
+            <!-- </div> -->
+            
+
     <!-- Create a container with items
     Rotate the container 90 degrees counterclockwise so the bottom is to the right
     Rotate the items back to correct-side up -->
