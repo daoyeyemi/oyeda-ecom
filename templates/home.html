@@ -77,6 +77,49 @@
             }
         })
 
+        window.addEventListener('scroll', () => {
+            let content = document.querySelector('.single-product-description');
+            let contentPosition = content.getBoundingClientRect().top;
+            let screenPosition = window.innerHeight;
+            if (contentPosition < screenPosition) {
+                content.classList.add('single-product-description-active');
+            } else {
+                content.classList.remove('single-product-description-active');
+            }
+        })
+
+        window.addEventListener('scroll', () => {
+            let content = document.querySelector('.premiere-item');
+            let contentPosition = content.getBoundingClientRect().top;
+            let screenPosition = window.innerHeight;
+            if (contentPosition < screenPosition) {
+                content.classList.add('premiere-item-active');
+            } else {
+                content.classList.remove('premiere-item-active');
+            }
+        })
+
+        window.addEventListener('scroll', () => {
+            let content = document.querySelector('.premiere-brand');
+            let contentPosition = content.getBoundingClientRect().top;
+            let screenPosition = window.innerHeight;
+            if (contentPosition < screenPosition) {
+                content.classList.add('premiere-brand-active');
+            } else {
+                content.classList.remove('premiere-brand-active');
+            }
+        })
+
+        window.addEventListener('scroll', () => {
+            let content = document.querySelector('.triple-box-item-links');
+            let contentPosition = content.getBoundingClientRect().top;
+            let screenPosition = window.innerHeight;
+            if (contentPosition < screenPosition) {
+                content.classList.add('triple-box-item-links-active');
+            } else {
+                content.classList.remove('triple-box-item-links-active');
+            }
+        })
     </script>
 </head>
 <body>
@@ -149,70 +192,56 @@
                 </div>
    
             <div style="background-color: rgb(167, 17, 17); display: flex">
-                <div style="margin-top: 30px; margin-left: 30px; padding-top: 10px; width: 50%; text-align: right;">
+                <div class="premiere-item" style="margin-top: 30px; margin-left: 30px; padding-top: 10px; width: 50%; text-align: right;">
                     <div style="margin: 30px 10px 10px 0px; height: 300px; width: 300px; background-color: black;"></div>
                     <div style="margin: 10px 10px 10px 0px; height: 300px; width: 300px; background-color: black;"></div>
                     <div style="margin: 10px 10px 10px 0px; height: 300px; width: 300px; background-color: black;"></div>
                 </div>
-                <div style="margin-top: 70px;">
-                    <h3>
-                        Brand
-                    </h3>
-                    <h1>
-                        Shoe name
-                    </h1>
-                    <h4>
-                        Price
-                    </h4>
+                <div class="single-product-description" style="margin-top: 70px;">
+                    <h3>Brand</h3>
+                    <h1>Shoe name</h1>
+                    <h4>Price</h4>
                     <button style="margin-bottom: 20px; width: 300px;"class="btn btn-primary">Add to Cart</button>
-                    <div style="height: 500px; width: 500px; background-color: black;"></div>
+                    <div style="height: 450px; width: 450px; background-color: black;"></div>
+                    <h5>Description</h5>    
+                </div>      
+                   
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="premiere-brand" style="text-align: center;">
+                            <h1 style="margin-top: 30px;">Item Title</h1>
+                            <p style="text-align: center;">Description</p>
+                            <button style="" class="btn btn-warning">Find Out More</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="background-color: black; height: 470px; width: 470px; margin-top: 30px; margin-bottom: 30px;"></div>
+                    </div>
+                <div class="triple-box-item-links" style="display: flex; position: center;">
+                    <div class="col-md-4">
+                        <div style="width: 400px; height: 400px; background-color: black; margin: 15px;">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div style="width: 400px; height: 400px; background-color: black; margin: 15px;">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="">
+                        <div style="width: 400px; height: 400px; background-color: black; margin: 15px;">
+
+                        </div>
+                    </div>
+                </div>
                     
-                      </div>
-                      <div class="panel-group" id="accordion">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                Collapsible Group Item #1
-                              </a>
-                            </h4>
-                          </div>
-                          <div id="collapseOne" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                          </div>
-                        </div>
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                Collapsible Group Item #2
-                              </a>
-                            </h4>
-                          </div>
-                          <div id="collapseTwo" class="panel-collapse collapse">
-                            <div class="panel-body">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                          </div>
-                        </div>
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                Collapsible Group Item #3
-                              </a>
-                            </h4>
-                          </div>
-                          <div id="collapseThree" class="panel-collapse collapse">
-                            <div class="panel-body">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                </div>    
+                </div>
+            </div>    
+            <div class="">
+                <div style></div>
+            </div>
             <!-- </div> -->
             
 

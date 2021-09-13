@@ -63,3 +63,47 @@
     opacity: 1;
     transform: translate(0, 0);
 }
+
+.single-product-description {
+    opacity: 0;
+    transform: scale(0.1);
+    transition: all 1s ease-in-out;
+}
+
+.single-product-description-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.premiere-item {
+    opacity: 0;
+    transform: translate(500px, 0);
+    transition: all 1s ease-in;
+}
+
+.premiere-item-active {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.premiere-brand {
+    opacity: 0;
+    transform: translate(500px, -300px);
+    transition: all 1s ease-in-out;
+}
+
+.premiere-brand-active {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.triple-box-item-links {
+    opacity: 0;
+    transform: translate(-300px, 500px);
+    transition: all 1s ease-in-out;
+}
+
+.triple-box-item-links-active {
+    opacity: 1;
+    transform: translate(0, 0);
+}
