@@ -107,3 +107,48 @@
     opacity: 1;
     transform: translate(0, 0);
 }
+
+.custom-field {
+    position: relative;
+    font-size: 14px;
+    padding-top: 20px;
+    margin-bottom: 5px;
+}
+
+.custom-field input {
+    border: 2px solid #ddd;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: white;
+    padding: 12px;
+    border-radius: 3px;
+    width: 250px;
+    outline: none;
+    font-size: 25px;
+}
+
+.placeholdr {
+    position: absolute;
+    left: 23px;
+    top: calc(50% + 10px);
+    transform: translateY(-50%);
+    color: #aaa;
+    transition:
+        top 0.3s ease,
+        font-size 0.3s ease,
+        color 0.3s ease;
+}
+
+.custom-field input:valid + .placeholdr,
+.custom-field input:focus + .placeholdr {
+    top: 10px;
+    font-size: 10px;
+    color: #222; 
+}
+
+.custom-field input:valid,
+.custom-field input:focus {
+    border: 2px solid navy;
+} 
