@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oyeda E-Commerce</title>    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/91ac43c8df.js" crossorigin="anonymous"></script>
@@ -140,22 +143,66 @@
                 background-color: black;
             }
         }
+
+        nav {
+            display: flex; 
+            justify-content: space-between; 
+            background-color: black; 
+            height: 50px;
+        }
+        
+        .logo {
+            margin-left: 30px; 
+            margin-top: 13px; 
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-link {
+            margin: 5px 7px 5px 7px; 
+            text-decoration: none; 
+            color: white;
+        }
+
+        .icon-links {
+            margin-top: 13px; 
+            float: right; 
+            margin-right: 30px;
+            display: flex;
+        }
+
+        .icon-1 {
+            margin-right: 8px; 
+            color: white; 
+            font-size: 22.5px;
+        }
+
+        .icon-2, .icon-3 {
+            margin-left: 8px; 
+            margin-right: 8px; 
+            color: white; 
+            font-size: 21.5px;
+        }
+
     </style>
 </head>
 <body>
     <nav style='display: flex; justify-content: space-between; background-color: black; height: 50px;'>
-        <div style='margin-left: 30px; margin-top: 10px; color: white;'>
+        <div class="logo">
             oyedaEcom
         </div>
-        <div style='margin-top: 10px'>
-            <a href='#' style='margin: 20px; text-decoration: none; color: white;'>Shop</a>
-            <a href='#' style='margin: 20px; text-decoration: none; color: white;'>Brands</a>
-            <a href='#' style='margin: 20px; text-decoration: none; color: white;'>New Arrivals</a>
+        <div class='nav-links'>
+            <a class='nav-link' href='#'>Shop</a>
+            <a class='nav-link' href='#'>Brands</a>
+            <a class='nav-link' href='#'>New Arrivals</a>
         </div>
-        <div style='margin-top: 13px; float: right; margin-right: 30px;'>
-            <i style='margin-right: 8px; color: white; font-size: 22.5px;' class="fas fa-user-circle"></i>
-            <i style='margin-left: 8px; margin-right: 8px; color: white; font-size: 21.5px;' class="fas fa-search"></i>
-            <i style='margin-left: 8px; margin-right: 8px; color: white; font-size: 21.5px;' class="fas fa-shopping-cart"></i>
+        <div class='icon-links'>
+            <i class="icon-1 fas fa-user-circle"></i>
+            <i class="icon-2 fas fa-search"></i>
+            <i class="icon-3 fas fa-shopping-cart"></i>
         </div>
     </nav>
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
@@ -172,14 +219,14 @@
         </div>
       </div>
 
-    <div style="text-align: center; color: white; height: 175px; width: 100%; background-color: black;">
-        <div class="slight-description" style="padding: 65px;">oyedaEcom is the perfect destination for all the latest sneaker apparel; located in Carson, CA</div>
+    <div style="font-weight: 300; font-size: 20px; text-align: center; color: white; background-color: black;">
+        <div class="slight-description" style="padding: 40px;">oyedaEcom is the perfect destination for all the latest sneaker apparel; located in Carson, CA</div>
     </div>
 
     <div style="text-align: center; color: white; width: 100%; background-color: rgb(194, 189, 189);">
-        <div class="latest-additions" style="padding-top: 55px;">Latest Additions</div>
-        <p class="latest-additions-para" style="padding: 40px; margin-bottom: 0px;">Check out some of our newest shoes, just added to the collection</p>
-        <div class="latest-additions-visuals" style="overflow-x: auto; display: flex; height: 250px; min-width: 100%;">
+        <div class="latest-additions" style="padding-top: 55px; font-size: 30px;">Latest Additions</div>
+        <p class="latest-additions-para" style="font-size: 30px; padding: 40px; margin-bottom: 0px;">Check out some of our newest shoes, just added to the collection</p>
+        <div class="latest-additions-visuals" style="overflow-x: auto; display: flex; height: 250px; min-width: 100%; margin: 35px;">
             <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
             <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
             <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
@@ -224,7 +271,7 @@
                             <div class="single-product-description" style="margin-top: 250px; text-align: center;">
                                 <h3>Brand</h3>
                                 <h1>Shoe name</h1>
-                                <h4>Price</h4>
+                                <h4 style="margin-bottom: 10px;">Price</h4>
                                 <button style="margin-bottom: 20px;"class="btn btn-primary">Add to Cart</button>
                                 <div style="height: 50%; width: 100%; color: black; margin-bottom: 20px;"></div>
                                 <h5 style=" margin-bottom: 30px; padding-bottom: 30px;">Description</h5>    
@@ -260,25 +307,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="col-md-6" style="margin-top: 30px">
-                                <div style="margin-left: 20px;">
-                                    <h1>Title</h1>
-                                    <h2>Brand</h2>
-                                    <h3>Price</h3>
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy 
-                                        text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has 
-                                        survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was 
-                                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop 
-                                        publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                    </p>
-                                    <h4>Quantity</h4>
-                                    <button class="btn btn-primary">-</button>
-                                    <input class="input-group" style="width: 200px;" type="number" value="0" />
-                                    <button class="btn btn-secondary">+</button>
-                                    <button class="btn btn-warning">Add to Cart</button>
-                                </div>                
-                            </div>
+                            <div style="background-color: black; height: 470px; width: 470px; margin-top: 30px; margin-bottom: 30px;"></div>
                         </div>
                         <div class="triple-box-item-links" style="display: flex; position: center;">
                             <div class="col-md-4">
@@ -291,9 +320,9 @@
                                 <div style="width: 400px; height: 400px; background-color: black; margin: 15px;"></div>
                             </div>
                         </div>
-                        <div style="display: flex; justify-content: center; margin: 30px 0px 30px 0px; ">
-                            <p style="color: black; font-size: 50px; margin-right: 30px;">@oyedaEcom</p>
-                            <p style="color: black; font-size: 50px; margin-left: 30px;">#oyedaEcom</p>
+                        <div style="margin: 30px 0px 30px 0px; ">
+                            <p style="color: black; font-size: 50px; text-align: center;">@oyedaEcom #oyedaEcom</p>
+                            <!-- <p style="color: black; font-size: 50px; margin-left: 30px;"></p> -->
                         </div>
                     </div>
             </div>

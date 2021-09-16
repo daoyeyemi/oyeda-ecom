@@ -1,3 +1,7 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .slight-description {
     opacity: 0;
     transform: translate(0, 300px);
