@@ -187,6 +187,27 @@
             font-size: 21.5px;
         }
 
+        .hamburger {
+            font-size: 28px;
+            margin-top: 10px;
+            margin-right: 17px;
+            color: white;
+            display: none;
+        }
+
+        @media only screen and (max-width: 750px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .icon-links {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -198,6 +219,9 @@
             <a class='nav-link' href='#'>Shop</a>
             <a class='nav-link' href='#'>Brands</a>
             <a class='nav-link' href='#'>New Arrivals</a>
+        </div>
+        <div class='hamburger'>
+            <i class="fas fa-bars"></i>
         </div>
         <div class='icon-links'>
             <i class="icon-1 fas fa-user-circle"></i>
