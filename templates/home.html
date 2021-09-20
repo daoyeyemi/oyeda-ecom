@@ -129,6 +129,59 @@
             color: black;
         }
 
+        .brands {
+            display: flex; 
+            justify-content: center; 
+            height: 200px; 
+            width: 90%; 
+            margin-left: 5%; 
+            margin-right: 5%;
+            margin-bottom: 40px;
+        }
+        .active-brands {
+            height: 100px;
+        }
+
+        .brand5 {
+            display: flex; 
+            justify-content: center; 
+            height: 200px; 
+            width: 90%;
+            margin-left: 5%; 
+            margin-right: 5%; 
+            margin-bottom: 40px;
+        }
+
+        .brand-boxes {
+            padding: 10px 0px 10px 0px; 
+            margin: 20px 10px 20px 10px; 
+            height: 200px; 
+            min-width: 200px; 
+            background-color: black;
+        }
+
+        @media screen and (max-width: 681px) {
+            .brand-boxes {
+                height: 150px; 
+                min-width: 150px;
+                margin: 15px 5px 0px 5px;
+                padding: 0px 0px 0px 0px;
+            } 
+            .brands {
+                margin-top: 10px;
+                margin-bottom: -20px;
+                height: 100px;
+            }
+            .brand5 {
+                margin-top: 0px;
+                margin-bottom: 10px;
+                height: 100px;
+            }
+            .active-brands {
+                height: 100px;
+            }
+        }
+
         @media screen and (min-width: 768px) and (max-width: 1024px) {
             .premiere-item {
                 width: 100%;
@@ -143,6 +196,8 @@
                 background-color: black;
             }
         }
+
+        
 
         nav {
             display: flex; 
@@ -210,8 +265,11 @@
         }
 
         html, body {
+            width: 100%;
+            height: auto;
             margin: 0px;
             padding: 0px;
+            overflow-x: hidden;
         }
     </style>
 </head>
@@ -254,14 +312,18 @@
 
     <div style="text-align: center; color: white; width: 100%; background-color: rgb(194, 189, 189);">
         <div class="latest-additions" style="padding-top: 55px; font-size: 30px;">Latest Additions</div>
-        <p class="latest-additions-para" style="font-size: 30px; padding: 40px;">Check out some of our newest shoes, just added to the collection</p>
-        <div class="latest-additions-visuals" style="overflow-x: auto; display: flex; height: 250px; min-width: 100%;">
-            <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
-            <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
-            <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
-            <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
-            <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
-            <div style="padding: 10px 0px 10px 0px; margin: 10px 20px 10px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
+        <p class="latest-additions-para" style="font-size: 30px; padding-top: 40px;">Check out some of our newest shoes, just added to the collection</p>
+        <div class="latest-additions-visuals" style="text-align: center; margin-left: 10%; margin-right: 10%; overflow-x: auto; display: flex; height: 250px; width: 80%;">
+            <div style="padding: 10px 0px 10px 0px; margin: 10px 7px 10px 7px; height: 200px; min-width: 200px; background-color: black;"></div>
+            <div style="padding: 10px 0px 10px 0px; margin: 10px 7px 10px 7px; height: 200px; min-width: 200px; background-color: black;"></div>
+            <div style="padding: 10px 0px 10px 0px; margin: 10px 7px 10px 7px; height: 200px; min-width: 200px; background-color: black;"></div>
+            <div style="padding: 10px 0px 10px 0px; margin: 10px 7px 10px 7px; height: 200px; min-width: 200px; background-color: black;"></div>
+            <div style="padding: 10px 0px 10px 0px; margin: 10px 7px 10px 7px; height: 200px; min-width: 200px; background-color: black;"></div>
+            <div style="padding: 10px 0px 10px 0px; margin: 10px 7px 10px 7px; height: 200px; min-width: 200px; background-color: black;"></div>
+            <div style="padding: 10px 0px 10px 0px; margin: 10px 7px 10px 7px; height: 200px; min-width: 200px; background-color: black;"></div>
+            <div style="padding: 10px 0px 10px 0px; margin: 10px 7px 10px 7px; height: 200px; min-width: 200px; background-color: black;"></div>
+            <div style="padding: 10px 0px 10px 0px; margin: 10px 7px 10px 7px; height: 200px; min-width: 200px; background-color: black;"></div>
+            <div style="padding: 10px 0px 10px 0px; margin: 10px 7px 10px 7px; height: 200px; min-width: 200px; background-color: black;"></div>
         </div>
     </div>
     
@@ -269,40 +331,31 @@
         <!-- video -->
     </div>
 
-            <div class="brands" style="display: flex; justify-content: center; height: 200px; width: 100%; margin-bottom: 40px;">
-                <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
-                <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
-                <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
+        <div class="brands" style="display: flex; justify-content: center; height: 200px; margin-left: 5%; margin-right: 5%; width: 90%;">
+            <div class="brand-boxes"></div>
+            <div class="brand-boxes"></div>
+            <div class="brand-boxes"></div>
+        </div>
+        <div class="brand5" style="display: flex; justify-content: center; height: 200px; margin-left: 5%; margin-right: 5%; width: 90%;">
+            <div class="brand-boxes"></div>
+            <div class="brand-boxes"></div>
+            <div class="brand-boxes"></div>
+        </div>
+        <div style="background-color: rgb(167, 17, 17); display: flex;">
+            <div class="premiere-item" style="display: inline-block; overflow-y: auto; overflow-x: hidden; height: 750px; margin-top: 15px; width: 50%; margin-left: 5%; margin-right: 5%; padding-top: 10px;">
+                <div style="margin: 50px 10px 0px 15%; height: 400px; width: 400px; background-color: white;"></div>
+                <div style="margin: 0px 10px 0px 15%; height: 400px; width: 400px; background-color: black;"></div>
+                <div style="margin: 0px 10px 0px 15%; height: 400px; width: 400px; background-color: blue; margin-bottom: 30px;"></div>
             </div>
-        
-            <div class="brand5" style="display: flex; justify-content: center; height: 200px; margin-left: 10%; margin-right: 10%; width: 80%; margin-bottom: 40px;">
-                <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
-                <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
-                <div style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px; background-color: black;"></div>
-            </div>
-            <div style="background-color: rgb(167, 17, 17);">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="premiere-item" style="display: inline-block; overflow-y: auto; overflow-x: hidden; height: 750px; margin-top: 15px; margin-left: 10%; margin-right: 30px; padding-top: 10px;">
-                                <div style="margin: 50px 10px 0px 0px; height: 400px; width: 400px; background-color: white;"></div>
-                                <div style="margin: 0px 10px 0px 0px; height: 400px; width: 400px; background-color: black;"></div>
-                                <div style="margin: 0px 10px 0px 0px; height: 400px; width: 400px; background-color: blue; margin-bottom: 30px;"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6" style="text-align: center;">
-                            <div class="single-product-description" style="margin-top: 250px; text-align: center;">
-                                <h3>Brand</h3>
-                                <h1>Shoe name</h1>
-                                <h4 style="margin-bottom: 10px;">Price</h4>
-                                <button style="margin-bottom: 20px;"class="btn btn-primary">Add to Cart</button>
-                                <div style="height: 50%; width: 100%; color: black; margin-bottom: 20px;"></div>
-                                <h5 style=" margin-bottom: 30px; padding-bottom: 30px;">Description</h5>    
-                            </div>  
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="single-product-description" style="width: 50%; margin-left: 5%; margin-right: 5%; margin-top: 250px; text-align: center; color: white;">
+                <h3>Brand</h3>
+                <h1>Shoe name</h1>
+                <h4 style="margin-bottom: 10px;">Price</h4>
+                <button style="margin-bottom: 20px;"class="btn btn-primary">Add to Cart</button>
+                <!-- <div style="height: 50%; width: 100%; color: black; margin-bottom: 20px;"></div> -->
+                <h5 style=" margin-bottom: 30px; padding-bottom: 30px;">Description</h5>    
+            </div>  
+        </div>
             
             <!-- <div style="background-color: rgb(167, 17, 17); display: flex; justify-content: center; height: 100%;">
                 <div class="premiere-item" style="display: inline-block; overflow-y: auto; overflow-x: hidden; height: 750px; margin-top: 15px; margin-left: 10%; margin-right: 30px; width: 45%; padding-top: 10px;">
@@ -319,29 +372,24 @@
                     <h5 style=" margin-bottom: 30px; padding-bottom: 30px;">Description</h5>    
                 </div>  
             </div> -->
-            <div style="background-color: yellow;">
+            <div style="background-color: navy;">
                 <div class="container">
                     <div class="row">
-                        <div style="">
-                            <div class="col-md-6">
-                                <div class="premiere-brand" style="text-align: center; padding-top: 150px;">
-                                    <h1 style="margin-top: 30px;">Brand Title</h1>
-                                    <p style="text-align: center;">Description</p>
-                                    <button class="btn btn-warning">Find Out More</button>
-                                </div>
+                        <div style="display: flex;">
+                            <div class="premiere-brand" style="text-align: center; padding-top: 150px; float: left; width: 50%; color: white">
+                                <h1 style="margin-top: 30px;">Brand Title</h1>
+                                <p style="text-align: center;">Description</p>
+                                <button class="btn btn-warning">Find Out More</button>
                             </div>
-                            <div class="col-md-6">
-                                <div style="background-color: black; height: 470px; width: 470px; margin-top: 30px; margin-left: 20px; margin-bottom: 30px; text-align: center;"></div>
-                            </div>
+                            <div style="background-color: black; height: 470px; width: 50%; margin-top: 30px; margin-left: 5%; margin-right: 5%; margin-bottom: 30px; text-align: center; float: right;"></div>
                         </div>
-                        
                         <div class="triple-box-item-links" style="display: flex; width: 100%; justify-content: space-between;">
-                                <div style="width: 350px; height: 350px; background-color: black; margin: 7px;"></div>
-                                <div style="width: 350px; height: 350px; background-color: black; margin: 7px;"></div>
-                                <div style="width: 350px; height: 350px; background-color: black; margin: 7px;"></div>
+                            <div style="width: 350px; height: 350px; background-color: black; margin: 7px;"></div>
+                            <div style="width: 350px; height: 350px; background-color: black; margin: 7px;"></div>
+                            <div style="width: 350px; height: 350px; background-color: black; margin: 7px;"></div>
                         </div>
                         <div style="margin: 30px 0px 30px 0px; ">
-                            <p style="color: black; font-size: 50px; text-align: center;">@oyedaEcom #oyedaEcom</p>
+                            <p style="color: white; font-size: 50px; text-align: center;">@oyedaEcom #oyedaEcom</p>
                             <!-- <p style="color: black; font-size: 50px; margin-left: 30px;"></p> -->
                         </div>
                     </div>
@@ -392,13 +440,8 @@
                     Yoooooooo
                 </p>
             </div>
-            
 
-
-            
-                
             <!-- </div> -->
-            
 
     <!-- Create a container with items
     Rotate the container 90 degrees counterclockwise so the bottom is to the right
