@@ -125,6 +125,10 @@
         })
     </script>
     <style>
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+
         .testing {
             color: black;
         }
@@ -458,6 +462,12 @@
     </style>
 </head>
 <body>
+
+    {% for shoe in shoes %}
+        <div>
+            {{ shoe.name }} {{ shoe.price }} {{ shoe.slug }}
+        </div>
+    {% endfor %}
     <nav style='display: flex; justify-content: space-between; background-color: black; height: 50px;'>
         <div class="logo" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800; font-size: x-large; margin-top: 6px;">
             oyedaEcom
