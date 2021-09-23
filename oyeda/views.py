@@ -7,3 +7,10 @@ def home(request):
     }
 
     return render(request, 'home.html', context)
+
+def products(request):
+    context = {
+        'shoes' : Shoe.objects.all()
+    }
+
+    return render(request, 'products.html', context)
