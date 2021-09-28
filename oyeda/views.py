@@ -5,8 +5,6 @@ from django.views.generic import DetailView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUser
 
-# from .forms import SignupForm
-
 def home(request):
     context = {
         'shoes' : Shoe.objects.all()
