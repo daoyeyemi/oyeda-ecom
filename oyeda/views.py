@@ -14,6 +14,12 @@ def products(request):
     }
     return render(request, 'products.html', context)
 
+def login(request):
+    return render(request, 'login.html')
+
+def signup(request):
+    return render(request, 'signup.html')
+
 class ShoeDetailView(DetailView):
     model = Shoe
     template_name = 'individual-product.html'
