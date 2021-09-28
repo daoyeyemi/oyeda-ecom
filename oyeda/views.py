@@ -1,9 +1,11 @@
+from oyeda.forms import CreateUser
 from django.shortcuts import render, redirect
 from .models import Shoe
 from django.views.generic import DetailView
 from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUser
 
-from .forms import SignupForm
+# from .forms import SignupForm
 
 def home(request):
     context = {
@@ -24,10 +26,10 @@ def login(request):
     return render(request, 'login.html', context)
 
 def signup(request):
-    form = SignupForm()
+    form = CreateUser()
 
     if request.method == 'POST':
-        form = SignupForm(request.POST)
+        form = CreateUser(request.POST)
         # forms are primarily used to validate data so the is.valid() function returns 
         # boolean stating whether or not value is true
         if form.is_valid(): 
