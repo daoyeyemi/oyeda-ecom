@@ -175,7 +175,12 @@
         </div>
     </nav>
     <h1 style="text-align: center; padding: 10px; margin: 20px 0px 20px 0px;">create account</h1>
-    <div style="display: flex; justify-content: center;">
+    <form method='POST' action=''>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="create-user">
+    </form>
+    <!-- <div style="display: flex; justify-content: center;">
         <div class="login-inputs" style="text-align: center; width: 450px;">
             <div class="email-login-input" style="text-align: center;">
                 <label class="custom-field">
@@ -192,13 +197,25 @@
             <div class="email-login-input" style="text-align: center;">
                 <label class="custom-field">
                     <input style="width: 450px;" type="text" required />
+                    <span class="email-login">username</span>
+                </label>
+            </div>
+            <div class="email-login-input" style="text-align: center;">
+                <label class="custom-field">
+                    <input style="width: 450px;" type="text" required />
                     <span class="email-login">email</span>
                 </label>
             </div>
             <div class="password-login-input" style="text-align: center;">
                 <label class="custom-field">
                     <input style="width: 450px;" type="text" required />
-                    <span class="email-login">password</span>
+                    <span class="email-login">enter password</span>
+                </label>
+            </div>
+            <div class="password-login-input" style="text-align: center;">
+                <label class="custom-field">
+                    <input style="width: 450px;" type="text" required />
+                    <span class="email-login">verify password</span>
                 </label>
             </div>
             <div style="text-align: center;">
@@ -208,7 +225,7 @@
                 <a href="#"><p style="text-align: left;">already have an account? sign in here</a></p>
             </div>
         </div>
-    </div>
+    </div> -->
     <div style="margin: 120px 20px 20px 20px; text-align: center;">
         <h2>join us</h2>
         <p style="margin: 25px 15px 20px 15px">
