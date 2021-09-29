@@ -32,11 +32,8 @@ def signup(request):
             form.save()
             # take saved information from form and withdraw 
             user = form.cleaned_data.get('username')
-            
             print(user)
-            
             messages.success(request, 'User profile for ' + user + ' was successfully created')
-            
             return redirect('oyeda:login')
     
     context = {
@@ -48,23 +45,25 @@ def signup(request):
 def loginPage(request):
 
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         
         # authenticate() check credentials it gets and returns 
         # object that matches the credentials if credentials are valid
         # if they're not valid, it should return None
         user = authenticate(request, username=username, password=password)
-
+        
+        print(user)
+        
         if user is not None:
             # login takes in request and user object
             # saves the user ID in the session, using django's
             # session framework
             login(request, user)
-            redirect('oyeda:login')
+            
+            return redirect('oyeda:home')
 
     context = {
-
     }
 
     return render(request, 'login.html', context)
