@@ -177,7 +177,7 @@
     <h1 style="text-align: center; padding: 10px; margin: 20px 0px 20px 0px;">login</h1>
 
     <div style="display: flex; justify-content: center;">
-        <form>
+        <form method="POST" action="">
             <div class="login-inputs" style="text-align: center; width: 450px;">
                 <div class="email-login-input" style="text-align: center;">
                     <label class="custom-field">
@@ -200,6 +200,11 @@
             </div>
         </form>
     </div>
+
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+
     <div style="margin: 120px 20px 20px 20px; text-align: center;">
         <h2>join us</h2>
         <p style="margin: 25px 15px 20px 15px">

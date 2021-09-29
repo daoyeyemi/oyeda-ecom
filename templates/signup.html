@@ -216,16 +216,17 @@
                         <span class="email-login">verify password</span>
                     </label>
                 </div>
-                <div style="text-align: center;" class="mt-3">
+                <div style="text-align: center;" class="mt-3 mb-3">
                     <input type="submit" name="create-user">
                 </div>
             </form>
-            
+            {{ form.error_messages.password_mismatch }}
             <div style="margin-top: 20px; height: 50px; width: 450px; text-align: center;">
                 <p style="text-align: left;">already have an account?<a href='{% url "oyeda:login" %}'> sign in here</a></p>
             </div>
         </div>
     </div>
+
     <div style="margin: 120px 20px 20px 20px; text-align: center;">
         <h2>join us</h2>
         <p style="margin: 25px 15px 20px 15px">
