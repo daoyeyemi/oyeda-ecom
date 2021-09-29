@@ -5,12 +5,35 @@ from django.views.generic import DetailView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUser
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth import authenticate, login, logout, get_user_model 
+
+# request is an object django uses to send metadata throughout the project
 
 def home(request):
+    
+    current_user = request.user
+
+    print(current_user)
+
+    username = current_user.first_name
+    
+    print(username)
+
+    # User = get_user_model()
+
+    # users = User.objects.all()
+        
+    # select_name = users.get(username=username)
+
+    # print(select.first_name)
+    # print(users)
+
+
     context = {
-        'shoes' : Shoe.objects.all()
+        'shoes' : Shoe.objects.all(),
+        'username' : username
     }
+
     return render(request, 'home.html', context)
 
 def products(request):
@@ -18,7 +41,8 @@ def products(request):
         'shoes' : Shoe.objects.all()
     }
     return render(request, 'products.html', context)
-
+# @login_required basically requires user to be logged in to access page; decorator would disallow
+# me from using the following function or being on the sign up page if I wasn't logged in
 def signup(request):
     form = CreateUser()
 
@@ -33,7 +57,7 @@ def signup(request):
             # take saved information from form and withdraw 
             user = form.cleaned_data.get('username')
             print(user)
-            messages.success(request, 'User profile for ' + user + ' was successfully created')
+            messages.success(request, 'user profile for ' + user + ' was successfully created')
             return redirect('oyeda:login')
     
     context = {
@@ -42,7 +66,12 @@ def signup(request):
     
     return render(request, 'signup.html', context)
 
-def loginPage(request):
+def user_logout(request):
+    # when logout is called session data is deleted and 
+    logout(request)
+    return redirect('oyeda:login')
+
+def login_page(request):
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -52,18 +81,21 @@ def loginPage(request):
         # object that matches the credentials if credentials are valid
         # if they're not valid, it should return None
         user = authenticate(request, username=username, password=password)
-        
-        print(user)
-        
+            
         if user is not None:
             # login takes in request and user object
             # saves the user ID in the session, using django's
             # session framework
             login(request, user)
-            
             return redirect('oyeda:home')
 
+        else:
+            # error added to object and displayed if called upon 
+            # in template 
+            messages.error(request, 'Wrong username or password entered.')
+
     context = {
+
     }
 
     return render(request, 'login.html', context)
@@ -72,4 +104,3 @@ def loginPage(request):
 class ShoeDetailView(DetailView):
     model = Shoe
     template_name = 'individual-product.html'
-
