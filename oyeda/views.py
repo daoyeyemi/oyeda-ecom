@@ -36,13 +36,21 @@ def home(request):
 
     return render(request, 'home.html', context)
 
+def checkout(request):
+    return render(request, 'checkout.html')
+
+def order_summary(request):
+    return render(request, 'order-summary.html')
+
 def products(request):
     context = {
         'shoes' : Shoe.objects.all()
     }
     return render(request, 'products.html', context)
+
 # @login_required basically requires user to be logged in to access page; decorator would disallow
-# me from using the following function or being on the sign up page if I wasn't logged in
+# me from using the following function or being on the home page if I wasn't logged in
+
 def signup(request):
     form = CreateUser()
 
@@ -69,6 +77,7 @@ def signup(request):
 def user_logout(request):
     # when logout is called session data is deleted and 
     logout(request)
+    print(request.user)
     return redirect('oyeda:login')
 
 def login_page(request):
