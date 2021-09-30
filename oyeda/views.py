@@ -28,6 +28,13 @@ def home(request):
     # print(select.first_name)
     # print(users)
 
+    yooooo = get_user_model()
+
+    yuhhh = yooooo.objects.all()
+
+    hmmmmm = yuhhh.get(username=current_user.username)
+
+    print(hmmmmm)
 
     context = {
         'shoes' : Shoe.objects.all(),
