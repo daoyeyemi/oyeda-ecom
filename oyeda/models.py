@@ -25,7 +25,7 @@ class OrderedItem(models.Model):
     ordered = models.BooleanField(default=False)
     
     def __str__(self):
-        return f"Item: {self.item.name} - Quantity: {self.quantity}  {self.user}"
+        return f"Item: {self.item.name} - Quantity: {self.quantity}"
 
 class OrderList(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)

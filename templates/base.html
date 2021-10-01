@@ -123,6 +123,12 @@
                 content.classList.remove('triple-box-item-links-active');
             }
         })
+
+        function show() {
+            // .toggle basically means to switch between adding 
+            // and removing a class to div
+            document.getElementById('sidebar').classList.toggle('active')
+        }
     </script>
     <style>
         * {
@@ -536,13 +542,52 @@
             padding: 8px;
         }
 
-
         html, body {
             width: 100%;
             height: auto;
             margin: 0px;
             padding: 0px;
             overflow-x: hidden;
+        }
+
+        #sidebar {
+            position: absolute;
+            width: 300px;
+            height: 100%;
+            background: #000;
+            right: -300px;
+            transition: 0.4S;
+            z-index: 100;
+        }
+
+        #sidebar.active {
+            right: 0;
+            position: fixed;
+        }
+
+        #sidebar ul li {
+            list-style: none;
+            color: #fff;
+            font-size: 20px;
+            padding: 20px 24px;
+        }
+
+        #sidebar .toggle-btn {
+            position: absolute;
+            top: 30px;
+            right: 330px;
+        }
+
+        .toggle-btn span {
+            width: 45px;
+            height: 4px;
+            background: #fff;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .carousell {
+            z-index: 5;
         }
     </style>
 </head>
@@ -557,7 +602,20 @@
                 <a class='nav-link' href='#'>New Arrivals</a>
             </div>
             <div class='hamburger'>
-                <i class="fas fa-bars"></i>
+                <i onclick="show()" class="fas fa-bars"></i>
+            </div>
+            <div id="sidebar">
+                <ul>
+                    <li onclick="show()">X</li>
+                    <li>Shop</li>
+                    <li>Brands</li>
+                    <li>New Arrivals</li>
+                    <li>Login</li>
+                    <li>Search</li>
+                    <li>Cart</li>
+                </ul>
+            </div>
+
             </div>
             <div class='icon-links'>
                 <i class="icon-1 fas fa-user-circle"></i>
