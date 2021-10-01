@@ -552,7 +552,7 @@
 
         #sidebar {
             position: absolute;
-            width: 300px;
+            width: 275px;
             height: 100%;
             background: #000;
             right: -300px;
@@ -589,12 +589,21 @@
         .carousell {
             z-index: 5;
         }
+
+        .x:hover {
+            color: red;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
     </style>
 </head>
     <body>
         <nav style='display: flex; justify-content: space-between; background-color: black; height: 50px;'>
-            <div class="logo" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800; font-size: x-large; margin-top: 6px;">
-                oyedaEcom
+            <div class="logo" style="font-weight: 800; font-size: x-large; margin-top: 6px;">
+                <a href="#" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">oyedaEcom</a>
             </div>
             <div class='nav-links'>
                 <a class='nav-link' href='#'>Shop</a>
@@ -606,21 +615,19 @@
             </div>
             <div id="sidebar">
                 <ul>
-                    <li onclick="show()">X</li>
-                    <li>Shop</li>
-                    <li>Brands</li>
-                    <li>New Arrivals</li>
-                    <li>Login</li>
-                    <li>Search</li>
-                    <li>Cart</li>
+                    <li onclick="show()"><i class="fa fa-times x" aria-hidden="true"></i></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Brands</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Cart</a></li>
                 </ul>
             </div>
-
-            </div>
             <div class='icon-links'>
-                <i class="icon-1 fas fa-user-circle"></i>
-                <i class="icon-2 fas fa-search"></i>
-                <i class="icon-3 fas fa-shopping-cart"></i>
+                <a href="#"><i class="icon-1 fas fa-user-circle"></i></a>
+                <a href="#"><i class="icon-2 fas fa-search"></i></a>
+                <a href="#"><i class="icon-3 fas fa-shopping-cart"></i></a>
             </div>
         </nav>
 

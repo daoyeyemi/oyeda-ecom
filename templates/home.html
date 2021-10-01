@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if user is not None %}
+        <div style="background-color: navy ; color: white; padding: 5px;">
+            <p style="margin-top: 15px; display: flex; justify-content: center;" >Hi {{ username }} !</p>
+        </div>
+    {% endif %}
     <div id="carouselExampleSlidesOnly" class="carousel slide carousell" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -14,11 +19,7 @@
             </div>
         </div>
     </div>
-
     <div style="font-weight: 300; font-size: 20px; text-align: center; color: white; background-color: black;">
-        {% if user is not None %}
-            <p>Hi {{ username }}</p>
-        {% endif %}
         <div class="slight-description" style="padding: 40px;">oyedaEcom is the perfect destination for all the latest sneaker apparel; located in Carson, CA</div>
     </div>
 
