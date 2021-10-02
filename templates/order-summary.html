@@ -3,13 +3,16 @@
 {% block content %}
     <h1 style="text-align: center; padding: 15px; margin: 15px; font-size: 50px;">Order Summary</h1>
     <table>
-        <tr>
-            <th>#</th>
-            <th>Shoe Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total Item Price</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Shoe Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total Item Price</th>
+            </tr>
+        </thead>
+    {% for order_item in order.items.all %}
         <tr>
             <td>1</td>
             <td>Nike</td>
@@ -17,14 +20,9 @@
             <td>5</td>
             <td>$99.95</td>
         </tr>
-        <tr>
-            <td>2</td>
-            <td>Adidas</td>
-            <td>$15.99</td>
-            <td>2</td>
-            <td>$31.98</td>
-        </tr>
+    {% endfor %}
     </table>
+
 {% endblock %}
 
 

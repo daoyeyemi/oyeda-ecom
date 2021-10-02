@@ -19,7 +19,7 @@ class Shoe(models.Model):
         })
 
 class OrderedItem(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    # user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     item = models.ForeignKey(Shoe, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     ordered = models.BooleanField(default=False)
@@ -30,6 +30,8 @@ class OrderedItem(models.Model):
 class OrderList(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderedItem)
+    ordered = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
+

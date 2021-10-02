@@ -1,39 +1,29 @@
 from oyeda.forms import CreateUser
 from django.shortcuts import render, redirect
-from .models import Shoe
-from django.views.generic import DetailView
+from .models import Shoe, OrderList
+from django.views.generic import DetailView, View
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUser
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout, get_user_model 
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 # request is an object django uses to send metadata throughout the project
 
-def home(request):
-    
+def home(request):    
     current_user = request.user
-
     print(current_user)
-
-    username = current_user.first_name
-    
+    username = current_user.first_name    
     print(username)
-
     # User = get_user_model()
-
-    # users = User.objects.all()
-        
+    # users = User.objects.all()        
     # select_name = users.get(username=username)
-
     # print(select.first_name)
     # print(users)
-
     yooooo = get_user_model()
-
     yuhhh = yooooo.objects.all()
-
     hmmmmm = yuhhh.get(username=current_user.username)
-
     print(hmmmmm)
 
     context = {
@@ -120,3 +110,31 @@ def login_page(request):
 class ShoeDetailView(DetailView):
     model = Shoe
     template_name = 'individual-product.html'
+
+# LoginRequiredMixin is the class equivalent of @login_required for functions
+# class inherits      
+class OrderSummary(View, LoginRequiredMixin):
+    # custom get function usually used when using a class-based view 
+    # (assuming just a matter of good django ettiquete?)
+    # -------
+    # self represents the instance of the class
+    # using self basically gives access to all the methods and attributes 
+    # important to know that this is the default when you're calling a method 
+    # within a class 
+    def get(self, request):
+        # try-except clause calls statement between try and except clause
+        # if exception occurs and it matches the exception, then the except 
+        # clause is executed
+        try:
+            order = OrderList.objects.get(user=request.user, ordered=False)
+            context = {
+                'order' : order
+            }
+            return render(request, 'order-summary.html', context)
+
+        except ObjectDoesNotExist:
+        # ObjectDoesNotExist for all exceptions to get(); used often w try 
+        # and except
+            # messages.warning(request, '')
+            print("Nope...")
+            return redirect('/')
