@@ -429,6 +429,10 @@
             font-size: 22.5px;
         }
 
+        .icon-1:hover, .icon-2:hover, .icon-3:hover {
+            color: red;
+        }
+
         .icon-2, .icon-3 {
             margin-left: 8px; 
             margin-right: 8px; 
@@ -442,6 +446,10 @@
             margin-right: 17px;
             color: white;
             display: none;
+        }
+
+        .hamburger:hover {
+            color: red;
         }
 
         @media only screen and (max-width: 750px) {
@@ -619,13 +627,22 @@
                     <li><a href="#">Shop</a></li>
                     <li><a href="#">Brands</a></li>
                     <li><a href="#">New Arrivals</a></li>
+                {% if username is not None %}
+                    <!-- <li><button onclick="{{ views.user_logout }}">Logout</button></li> -->
+                    <li><a href="{% url 'oyeda:user_logout' %}">Logout</a></li>
+                {% else %}
                     <li><a href="#">Login</a></li>
+                {% endif %}
                     <li><a href="#">Search</a></li>
                     <li><a href="#">Cart</a></li>
                 </ul>
             </div>
             <div class='icon-links'>
+            {% if user is not None %}
+                <a href="#"><i class="icon-1 fas fa-sign-out-alt"></i></a>
+            {% else %}
                 <a href="#"><i class="icon-1 fas fa-user-circle"></i></a>
+            {% endif %}
                 <a href="#"><i class="icon-2 fas fa-search"></i></a>
                 <a href="#"><i class="icon-3 fas fa-shopping-cart"></i></a>
             </div>

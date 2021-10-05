@@ -26,12 +26,42 @@ def home(request):
     hmmmmm = yuhhh.get(username=current_user.username)
     print(hmmmmm)
 
+    # def user_logout(request):
+    #     # when logout is called session data is deleted and 
+    #     logout(request)
+    #     print(request.user)
+    #     return redirect('oyeda:login')
+
     context = {
         'shoes' : Shoe.objects.all(),
-        'username' : username
+        'username' : username,
+        # 'logout' : user_logout
     }
 
     return render(request, 'home.html', context)
+
+def user_logout(request):
+    # when logout is called session data is deleted and 
+    logout(request)
+    print(request.user)
+    print('Hell yeahhhhhhh')
+    # return redirect('oyeda:login')
+    return render(request, 'home.html')
+
+# def yoooo(request):
+    
+#     def user_logout(request):
+#         # when logout is called session data is deleted and 
+#         logout(request)
+#         print(request.user)
+#         print('Hell yeahhhhhhh')
+#         return redirect('oyeda:login')
+
+#     context = {
+#         'logout': user_logout()
+#     }
+
+#     render(request, 'base.html', context)
 
 def checkout(request):
     return render(request, 'checkout.html')
@@ -71,14 +101,8 @@ def signup(request):
     
     return render(request, 'signup.html', context)
 
-def user_logout(request):
-    # when logout is called session data is deleted and 
-    logout(request)
-    print(request.user)
-    return redirect('oyeda:login')
 
 def login_page(request):
-
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -135,6 +159,6 @@ class OrderSummary(View, LoginRequiredMixin):
         except ObjectDoesNotExist:
         # ObjectDoesNotExist for all exceptions to get(); used often w try 
         # and except
-            # messages.warning(request, '')
+            # messages.warning(request, 'No orders in the works at the moment.')
             print("Nope...")
             return redirect('/')
