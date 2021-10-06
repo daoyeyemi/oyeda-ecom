@@ -10,12 +10,12 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 # request is an object django uses to send metadata throughout the project
-
+# request.user.first_name
 def home(request):    
     current_user = request.user
     print(current_user)
-    username = current_user.first_name    
-    print(username)
+    # username = current_user.first_name    
+    # print(username)
     # User = get_user_model()
     # users = User.objects.all()        
     # select_name = users.get(username=username)
@@ -23,8 +23,8 @@ def home(request):
     # print(users)
     yooooo = get_user_model()
     yuhhh = yooooo.objects.all()
-    hmmmmm = yuhhh.get(username=current_user.username)
-    print(hmmmmm)
+    # hmmmmm = yuhhh.get(username=current_user.username)
+    # print(hmmmmm)
 
     # def user_logout(request):
     #     # when logout is called session data is deleted and 
@@ -34,7 +34,7 @@ def home(request):
 
     context = {
         'shoes' : Shoe.objects.all(),
-        'username' : username,
+        # 'username' : username,
         # 'logout' : user_logout
     }
 

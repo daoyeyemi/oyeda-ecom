@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% if username is not None %}
+    {% if request.user.is_authenticated %}
         <div style="background-color: navy ; color: white; padding: 5px;">
-            <p style="margin-top: 15px; display: flex; justify-content: center;" >Hi {{ username }} !</p>
+            <p style="margin-top: 15px; display: flex; justify-content: center;" >Hi {{ request.user.first_name }} !</p>
         </div>
     {% endif %}
     <div id="carouselExampleSlidesOnly" class="carousel slide carousell" data-bs-ride="carousel">
