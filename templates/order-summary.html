@@ -14,7 +14,7 @@
         </thead>
     {% for order-item in order.items.all %}
         <tr>
-            <td>1</td>
+            <td>{{ forloop.counter }}</td>
             <td>Nike</td>
             <td>$19.99</td>
             <td>5</td>

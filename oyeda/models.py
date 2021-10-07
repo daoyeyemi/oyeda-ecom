@@ -18,6 +18,11 @@ class Shoe(models.Model):
             'slug': self.slug
         })
 
+    def get_add_to_cart_url(self):
+        return reverse('oyeda:add-to-cart', kwargs={
+            'slug': self.slug
+        })
+
 class OrderedItem(models.Model):
     # user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     item = models.ForeignKey(Shoe, on_delete=models.CASCADE)
@@ -34,4 +39,3 @@ class OrderList(models.Model):
 
     def __str__(self):
         return self.user.username
-

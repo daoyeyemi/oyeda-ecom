@@ -26,12 +26,6 @@ def home(request):
     # hmmmmm = yuhhh.get(username=current_user.username)
     # print(hmmmmm)
 
-    # def user_logout(request):
-    #     # when logout is called session data is deleted and 
-    #     logout(request)
-    #     print(request.user)
-    #     return redirect('oyeda:login')
-
     context = {
         'shoes' : Shoe.objects.all(),
         # 'username' : username,
@@ -48,20 +42,7 @@ def user_logout(request):
     # return redirect('oyeda:login')
     return render(request, 'home.html')
 
-# def yoooo(request):
-    
-#     def user_logout(request):
-#         # when logout is called session data is deleted and 
-#         logout(request)
-#         print(request.user)
-#         print('Hell yeahhhhhhh')
-#         return redirect('oyeda:login')
 
-#     context = {
-#         'logout': user_logout()
-#     }
-
-#     render(request, 'base.html', context)
 
 def checkout(request):
     return render(request, 'checkout.html')
@@ -162,3 +143,10 @@ class OrderSummary(View, LoginRequiredMixin):
             # messages.warning(request, 'No orders in the works at the moment.')
             print("Nope...")
             return redirect('/')
+
+# def remove_from_cart(request):
+
+def add_to_cart(request, slug):
+    shoe_to_add = Shoe.objects.get(slug=slug)
+    print(shoe_to_add)
+    return redirect('oyeda:order-summary')
