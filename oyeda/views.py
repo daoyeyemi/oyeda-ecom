@@ -1,5 +1,5 @@
 from oyeda.forms import CreateUser
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shoe, OrderList
 from django.views.generic import DetailView, View
 from django.contrib.auth.forms import UserCreationForm
@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 # request is an object django uses to send metadata throughout the project
 # request.user.first_name
+
 def home(request):    
     current_user = request.user
     print(current_user)
@@ -130,8 +131,9 @@ class OrderSummary(View, LoginRequiredMixin):
         # try-except clause calls statement between try and except clause
         # if exception occurs and it matches the exception, then the except 
         # clause is executed
+        # cannot use get() when multiple objects match the criteria, must instead use filter
         try:
-            order = OrderList.objects.get(user=request.user, ordered=False)
+            order = OrderList.objects.filter(user=request.user, ordered=False)
             context = {
                 'order' : order
             }
@@ -145,8 +147,35 @@ class OrderSummary(View, LoginRequiredMixin):
             return redirect('/')
 
 # def remove_from_cart(request):
+    # shoe_to_remove = 
 
+# get_object_or_404()
+# get_or_create()
+# all we're really doing is changing the quantity of an item in the order
 def add_to_cart(request, slug):
-    shoe_to_add = Shoe.objects.get(slug=slug)
-    print(shoe_to_add)
-    return redirect('oyeda:order-summary')
+    try:
+        order = OrderList.objects.get(user=request.user, ordered=False)
+        
+    #     print(order)
+    #     print(order.ordered)
+    #     print(order.user)
+        return redirect('oyeda:order-summary')
+
+    except OrderList.DoesNotExist:
+        new_order = OrderList.objects.create(user=request.user, quantity=1, ordered=False)
+        new_order.save()
+        return redirect('oyeda:order-summary') 
+    # retrieve object that has slug that is equal to the slug
+    # getting data in the Shoe model and getting the slug that fits
+    # shoe = get_object_or_404(Shoe, slug=slug)
+    # shoe_to_add = Shoe.objects.filter(slug=slug)
+    # manipulate quantity ++ of orderlist
+    # print(shoe_to_add[0])
+    # print(shoe_to_add[0].name)
+    # print(shoe_to_add[0].price)
+    # print(shoe_to_add[0].brand)
+    # .add() should only be used when dealing with many-to-many relationships
+    except OrderList.MultipleObjectsReturned:
+        order = OrderList.objects.filter(user=request.user, ordered=False)
+
+        return redirect('oyeda:order-summary')

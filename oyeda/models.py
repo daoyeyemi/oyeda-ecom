@@ -18,7 +18,7 @@ class Shoe(models.Model):
             'slug': self.slug
         })
 
-    def get_add_to_cart_url(self):
+    def get_add_to_cart_slug(self):
         return reverse('oyeda:add-to-cart', kwargs={
             'slug': self.slug
         })
