@@ -156,9 +156,7 @@ def add_to_cart(request, slug):
     try:
         order = OrderList.objects.get(user=request.user, ordered=False)
         
-    #     print(order)
-    #     print(order.ordered)
-    #     print(order.user)
+   
         return redirect('oyeda:order-summary')
 
     except OrderList.DoesNotExist:
@@ -169,11 +167,6 @@ def add_to_cart(request, slug):
     # getting data in the Shoe model and getting the slug that fits
     # shoe = get_object_or_404(Shoe, slug=slug)
     # shoe_to_add = Shoe.objects.filter(slug=slug)
-    # manipulate quantity ++ of orderlist
-    # print(shoe_to_add[0])
-    # print(shoe_to_add[0].name)
-    # print(shoe_to_add[0].price)
-    # print(shoe_to_add[0].brand)
     # .add() should only be used when dealing with many-to-many relationships
     except OrderList.MultipleObjectsReturned:
         order = OrderList.objects.filter(user=request.user, ordered=False)
