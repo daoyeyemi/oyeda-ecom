@@ -1,6 +1,6 @@
 from oyeda.forms import CreateUser
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Shoe, OrderList
+from .models import Shoe, OrderList, OrderedItem
 from django.views.generic import DetailView, View
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUser
@@ -155,20 +155,43 @@ class OrderSummary(View, LoginRequiredMixin):
 def add_to_cart(request, slug):
     try:
         order = OrderList.objects.get(user=request.user, ordered=False)
+        item = Shoe.objects.get(slug=slug)
+        order_item = OrderedItem.objects.get(item=item)
+        if order_item:
+            print('hell yeahhh')
+            print(order_item.quantity)
+            order_item.quantity += 1
+            print(order_item.quantity)
+            order_item.save()
+    # except OrderedItem.MultipleObjectsReturned:
+    #     # if item is in ordereditem simply increment quantity by 1
+    #     item_quantity = order_item.quantity
+
+        
+        print('Double')
+        # if not add item to order
+    except OrderList.DoesNotExist:
+        new_order = OrderList.objects.create(user=request.user)
+        shoe_to_add = Shoe.objects.get(slug=slug)
+        new_order.add(shoe_to_add)
+        print(new_order)
+    return render(request, 'order-summary.html')
+    # try:
+    #     order = OrderList.objects.get(user=request.user, ordered=False)
         
    
-        return redirect('oyeda:order-summary')
+    #     return redirect('oyeda:order-summary')
 
-    except OrderList.DoesNotExist:
-        new_order = OrderList.objects.create(user=request.user, quantity=1, ordered=False)
-        new_order.save()
-        return redirect('oyeda:order-summary') 
-    # retrieve object that has slug that is equal to the slug
-    # getting data in the Shoe model and getting the slug that fits
-    # shoe = get_object_or_404(Shoe, slug=slug)
-    # shoe_to_add = Shoe.objects.filter(slug=slug)
-    # .add() should only be used when dealing with many-to-many relationships
-    except OrderList.MultipleObjectsReturned:
-        order = OrderList.objects.filter(user=request.user, ordered=False)
+    # except OrderList.DoesNotExist:
+    #     new_order = OrderList.objects.create(user=request.user, quantity=1, ordered=False)
+    #     new_order.save()
+    #     return redirect('oyeda:order-summary') 
+    # # retrieve object that has slug that is equal to the slug
+    # # getting data in the Shoe model and getting the slug that fits
+    # # shoe = get_object_or_404(Shoe, slug=slug)
+    # # shoe_to_add = Shoe.objects.filter(slug=slug)
+    # # .add() should only be used when dealing with many-to-many relationships
+    # except OrderList.MultipleObjectsReturned:
+    #     order = OrderList.objects.filter(user=request.user, ordered=False)
 
-        return redirect('oyeda:order-summary')
+    #     return redirect('oyeda:order-summary')
