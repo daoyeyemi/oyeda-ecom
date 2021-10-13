@@ -154,28 +154,32 @@ class OrderSummary(View, LoginRequiredMixin):
 # all we're really doing is changing the quantity of an item in the order
 def add_to_cart(request, slug):
     try:
-        order = OrderList.objects.get(user=request.user, ordered=False)
         item = Shoe.objects.get(slug=slug)
+        order_list = OrderList.objects.get(user=request.user, ordered=False)
         order_item = OrderedItem.objects.get(item=item)
-        if order_item:
-            print('hell yeahhh')
-            print(order_item.quantity)
-            order_item.quantity += 1
-            print(order_item.quantity)
-            order_item.save()
-    # except OrderedItem.MultipleObjectsReturned:
-    #     # if item is in ordereditem simply increment quantity by 1
-    #     item_quantity = order_item.quantity
-
-        
-        print('Double')
-        # if not add item to order
+        print(order_list.items)
+        print(order_item)
+    # for many-to-many relationships add() accepts model instances or field values
+        print(order_item.quantity)
+        order_item.quantity += 1
+        print(order_item.quantity)
+        order_item.save()
+        return redirect("oyeda:order-summary")
+    except OrderedItem.DoesNotExist:
+        print("Item hasn't been ordered yet.")
+        new_order_item = OrderedItem.objects.create(item=item)
+        print(new_order_item)
+        order_list.item.add(new_order_item)
+        return redirect("oyeda:order-summary")
     except OrderList.DoesNotExist:
+        print("No order list for you sir / ma'am")
         new_order = OrderList.objects.create(user=request.user)
-        shoe_to_add = Shoe.objects.get(slug=slug)
-        new_order.add(shoe_to_add)
         print(new_order)
-    return render(request, 'order-summary.html')
+        new_order.items.add(order_item)
+        print(new_order)
+
+        return redirect("oyeda:order-summary")
+        # return render(request, 'order-summary.html')    
     # try:
     #     order = OrderList.objects.get(user=request.user, ordered=False)
         
