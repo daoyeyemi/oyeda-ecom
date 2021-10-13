@@ -169,12 +169,13 @@ def add_to_cart(request, slug):
         print("Item hasn't been ordered yet.")
         new_order_item = OrderedItem.objects.create(item=item)
         print(new_order_item)
-        order_list.item.add(new_order_item)
+        order_list.items.add(new_order_item)
         return redirect("oyeda:order-summary")
     except OrderList.DoesNotExist:
         print("No order list for you sir / ma'am")
         new_order = OrderList.objects.create(user=request.user)
         print(new_order)
+        order_item = OrderedItem.objects.create(item=item)
         new_order.items.add(order_item)
         print(new_order)
 
