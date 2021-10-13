@@ -148,35 +148,28 @@ class OrderSummary(LoginRequiredMixin, View):
             print("Nope...")
             return redirect('/')
 
-def add_to_cart(request, slug):
+def remove_from_cart(request, slug):
     try:
         item = Shoe.objects.get(slug=slug)
         order_list = OrderList.objects.get(user=request.user, ordered=False)
         order_item = OrderedItem.objects.get(item=item)
         print(order_list.items)
         print(order_item)
-    # for many-to-many relationships add() accepts model instances or field values
         print(order_item.quantity)
-        order_item.quantity += 1
-        print(order_item.quantity)
-        order_item.save()
+        if order_item.quantity <= 1:
+            order_list.items.remove(order_item)
+            order_item.delete()
+        else:
+            order_item.quantity -= 1
+            print(order_item.quantity)
+            order_item.save()
         return redirect("oyeda:order-summary")
     except OrderedItem.DoesNotExist:
-        print("Item hasn't been ordered yet.")
-        new_order_item = OrderedItem.objects.create(item=item)
-        print(new_order_item)
-        order_list.items.add(new_order_item)
+        print("Item hasn't even been ordered yet.")
         return redirect("oyeda:order-summary")
     except OrderList.DoesNotExist:
-        print("No order list for you sir / ma'am")
-        new_order = OrderList.objects.create(user=request.user)
-        print(new_order)
-        order_item = OrderedItem.objects.create(item=item)
-        new_order.items.add(order_item)
-        print(new_order)
-
+        print("No order list for you currently brother")
         return redirect("oyeda:order-summary")
-
 # get_object_or_404()
 # get_or_create()
 # all we're really doing is changing the quantity of an item in the order
@@ -206,7 +199,6 @@ def add_to_cart(request, slug):
         order_item = OrderedItem.objects.create(item=item)
         new_order.items.add(order_item)
         print(new_order)
-
         return redirect("oyeda:order-summary")
         # return render(request, 'order-summary.html')    
     # try:

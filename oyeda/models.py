@@ -23,9 +23,14 @@ class Shoe(models.Model):
             'slug': self.slug
         })
 
+    def get_remove_from_cart_slug(self):
+        return reverse('oyeda:remove-from-cart', kwargs={
+            'slug': self.slug
+        })
+
 class OrderedItem(models.Model):
     # user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    item = models.ForeignKey(Shoe, on_delete=models.CASCADE)
+    item = models.ForeignKey(Shoe, on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField(default=1)
     ordered = models.BooleanField(default=False)
     
@@ -34,7 +39,7 @@ class OrderedItem(models.Model):
 
 class OrderList(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    items = models.ManyToManyField(OrderedItem)
+    items = models.ManyToManyField(OrderedItem, null=True)
     ordered = models.BooleanField(default=False)
 
     def __str__(self):
