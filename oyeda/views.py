@@ -135,10 +135,11 @@ class OrderSummary(LoginRequiredMixin, View):
         # clause is executed
         # cannot use get() when multiple objects match the criteria, must instead use filter
         try:
-            order = OrderList.objects.filter(user=request.user, ordered=False)
+            order = OrderList.objects.get(user=request.user, ordered=False)
             context = {
                 'order' : order
             }
+            print(order.items.all())
             return render(request, 'order-summary.html', context)
 
         except ObjectDoesNotExist:

@@ -12,13 +12,13 @@
                 <th>Total Item Price</th>
             </tr>
         </thead>
-    {% for order-item in order %}
+    {% for order in order.items.all %}
         <tr>
             <td>{{ forloop.counter }}</td>
-            <td>Nike</td>
-            <td>$19.99</td>
-            <td>5</td>
-            <td>$99.95</td>
+            <td>{{ order.item.name }}</td>
+            <td>{{ order.item.price }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.item.slug }}</td>
         </tr>
     {% endfor %}
     </table>

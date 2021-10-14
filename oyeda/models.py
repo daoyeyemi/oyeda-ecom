@@ -30,6 +30,8 @@ class Shoe(models.Model):
 
 class OrderedItem(models.Model):
     # user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    # setting null attribute to True basically sets empty values as NULL in database
+    # null must e set to true
     item = models.ForeignKey(Shoe, on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField(default=1)
     ordered = models.BooleanField(default=False)
