@@ -149,6 +149,13 @@ class OrderSummary(LoginRequiredMixin, View):
             print("Nope...")
             return redirect('/')
 
+def remove_entire_item_from_cart(request, slug):
+    item = Shoe.objects.get(slug=slug)
+    order_list = OrderList.objects.get(user=request.user, ordered=False)
+    order_item = OrderedItem.objects.get(item=item)
+    order_list.items.remove(order_item)
+    order_item.delete()
+    return redirect("oyeda:order-summary")
 def remove_from_cart(request, slug):
     try:
         item = Shoe.objects.get(slug=slug)
@@ -174,6 +181,7 @@ def remove_from_cart(request, slug):
 # get_object_or_404()
 # get_or_create()
 # all we're really doing is changing the quantity of an item in the order
+
 def add_to_cart(request, slug):
     try:
         item = Shoe.objects.get(slug=slug)

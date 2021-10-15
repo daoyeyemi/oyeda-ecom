@@ -52,5 +52,11 @@ class OrderList(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def get_total_price(self):
+        total = 0
+        for item in self.items.all():
+            total += item.generate_total_price_for_item()
+        return total
         
     
