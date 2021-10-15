@@ -17,8 +17,16 @@
             <td>{{ forloop.counter }}</td>
             <td>{{ order.item.name }}</td>
             <td>{{ order.item.price }}</td>
-            <td>{{ order.quantity }}</td>
+            <td>
+                <div style="display: flex">
+                    <a href="#" class="btn btn-danger">+</a>
+                        <div style="width: 60px; padding: 10px 0px 10px 0px; text-align: center;">{{ order.quantity }}</div> 
+                    <a href="#" class="btn btn-secondary">-</a>
+                </div>
+            </td>
             <td>{{ order.item.slug }}</td>
+            
+            
         </tr>
     {% endfor %}
     </table>
