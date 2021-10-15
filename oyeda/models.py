@@ -38,6 +38,12 @@ class OrderedItem(models.Model):
     
     def __str__(self):
         return f"Item: {self.item.name} - Quantity: {self.quantity}"
+    
+    def generate_total_price_for_item(self):
+        quantity = self.quantity
+        price = self.item.price
+        item_price = quantity * price
+        return item_price
 
 class OrderList(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
@@ -46,3 +52,5 @@ class OrderList(models.Model):
 
     def __str__(self):
         return self.user.username
+        
+    
