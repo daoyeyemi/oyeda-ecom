@@ -42,6 +42,11 @@
     <div style="font-size: 25px; font-weight: bolder; width: 80%; margin: 20px 10% 20px 10%; text-align: right;">
         Order Total : $ {{ order.get_total_price|floatformat:2 }}
     </div>
+    <div style="font-weight: bolder; width: 80%; margin: 20px 10% 20px 10%;">
+        <a style="float: left;" class="btn btn-primary" href="{% url 'oyeda:products' %}">Continue shopping</a>
+        <a style="float: right;" class="btn btn-danger" href="{% url 'oyeda:checkout' %}">Go to Checkout</a>
+    </div>
+    
 {% endblock %}
 
 

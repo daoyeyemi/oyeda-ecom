@@ -156,6 +156,7 @@ def remove_entire_item_from_cart(request, slug):
     order_list.items.remove(order_item)
     order_item.delete()
     return redirect("oyeda:order-summary")
+
 def remove_from_cart(request, slug):
     try:
         item = Shoe.objects.get(slug=slug)
