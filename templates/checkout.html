@@ -1,39 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 style="text-align: center; margin-top: 20px;">Checkout</h1>
-    <form style="text-align: left; width: 400px; margin-left: auto; margin-right: auto;">
+    <h1 style="text-align: center; margin-top: 20px;">Checkout Form</h1>
+    <form method="POST" style="text-align: left; width: 400px; margin-left: auto; margin-right: auto;">
+        {% csrf_token %}
         <div>
             <label style="margin: 10px 0px 10px 0px;">Address 1</label>
             <div>
-                <input class="checkout-input" style="height: 40px; width: 100%; padding-left: 7px;" type="text" placeholder="Input address 1 here..."></input>
+                <input class="checkout-input" style="height: 40px; width: 100%; padding-left: 7px;" type="text" placeholder="1234 Main Street" />
             </div>
         </div>
         <div>
             <label style="margin: 10px 0px 10px 0px;">Address 2 (optional)</label>
             <div>
-                <input class="checkout-input" style="height: 40px; width: 100%; padding-left: 7px;" type="text" placeholder="Input address 2 here..."></input>
+                <input class="checkout-input" style="height: 40px; width: 100%; padding-left: 7px;" type="text" placeholder="Apartment or suite number" />
             </div>
         </div>
         <div>
+            <label style="margin: 10px 0px 10px 0px;">City</label>
+            <div>
+                <input class="checkout-input" style="height: 40px; width: 200px; padding-left: 7px;" type="text" placeholder="City name" />
+            </div>
+        <div>
             <label style="margin: 10px 0px 10px 0px;">Country</label>
             <div>
-                <select style="height: 40px; padding-left: 7px; width: 125px;">
-                    <option>AAAAA</option>
+                <select style="height: 40px; padding-left: 7px; width: 175px;">
+                    <option selected>AAAAA</option>
                     <option>SSSSS</option>
                     <option>DDDDD</option>
                 </select>
             </div>
-            
         </div>
         <div>
             <label style="margin: 10px 0px 10px 0px;">ZIP</label>
             <div>
-                <input class="checkout-input" style="height: 40px; width: 200px; padding-left: 7px;" placeholder="Input ZIP code here..." type="text"></input>
+                <input class="checkout-input" style="height: 40px; width: 125px; padding-left: 7px;" placeholder="ZIP code" type="text" />
             </div>
         </div>
-        <input style="margin: 20px 0px 20px 0px; width: 100%; height: 40px;" value="Continue to checkout" class="btn btn-warning"  />
-
+        <div>
+            <label style="margin: 10px 0px 10px 0px;">Payment Option</label>
+            {% for value, name in payment_choices %}
+                <div>
+                    <input type="radio" name='payment_option' value="{{ value }}" />
+                    <label style="margin-left: 7px;">{{ name }}</label>
+                </div>
+            {% endfor %}
+        </div>
+        <input style="margin: 20px 0px 20px 0px; width: 100%; height: 40px;" type="submit" value="Continue to checkout" class="btn btn-warning"  />
     </form>  
 
 

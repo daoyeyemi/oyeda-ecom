@@ -3,14 +3,27 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shoe, OrderList, OrderedItem
 from django.views.generic import DetailView, View
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUser
+from .forms import CreateUser, CheckoutForm, PAYMENT_CHOICES
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout, get_user_model 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+
 # request is an object django uses to send metadata throughout the project
 # request.user.first_name
+class CheckoutView(View):
+    # gets data 
+    def get(self, request):
+        payment_choices = [('S', 'Stripe'), ('P', 'PayPal')]
+        form = CheckoutForm()
+
+        context = {
+            'form' : form,
+            'payment_choices' : payment_choices
+        }
+
+        return render(request, 'checkout.html', context)
 
 def home(request):    
     current_user = request.user
@@ -42,8 +55,6 @@ def user_logout(request):
     print('Hell yeahhhhhhh')
     # return redirect('oyeda:login')
     return render(request, 'home.html')
-
-
 
 def checkout(request):
     return render(request, 'checkout.html')
@@ -230,3 +241,4 @@ def add_to_cart(request, slug):
     #     order = OrderList.objects.filter(user=request.user, ordered=False)
 
     #     return redirect('oyeda:order-summary')
+
