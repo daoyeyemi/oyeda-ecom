@@ -1,7 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-# from django_countries import CountryField
+from django_countries.fields import CountryField
+from django_countries.widgets import CountrySelectWidget
 
 PAYMENT_CHOICES = (
         ('S', 'Stripe'),
@@ -18,7 +19,10 @@ class CheckoutForm(forms.Form):
     street_address_2 = forms.CharField(required=False)
     city = forms.CharField()
     zip = forms.IntegerField()
-    # country = CountryField(blank_label='(Select country)')
+    country = CountryField(blank_label='(Select country)').formfield(
+        widget=CountrySelectWidget(attrs={
+            'class' : 'country-select'
+        }))
     payment_option = forms.ChoiceField(widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
 
 
