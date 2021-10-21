@@ -20,9 +20,7 @@ class CheckoutForm(forms.Form):
     city = forms.CharField()
     zip = forms.IntegerField()
     country = CountryField(blank_label='(Select country)').formfield(
-        widget=CountrySelectWidget(attrs={
-            'class' : 'country-select'
-        }))
+        widget=CountrySelectWidget(attrs={ 'class' : 'country-select' }))
     payment_option = forms.ChoiceField(widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
 
 
