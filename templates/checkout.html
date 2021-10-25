@@ -2,30 +2,32 @@
 
 {% block content %}
     <h1 style="text-align: center; margin-top: 20px;">Checkout Form</h1>
-    <form method="POST" style="text-align: left; width: 400px; margin-left: auto; margin-right: auto;">
+    
+    <form method="POST" action="{% url 'oyeda:checkout' %}" style="text-align: left; width: 450px; margin-left: auto; margin-right: auto;">
         {% csrf_token %}
+        <h4 style="margin-top: 20px;">Shipping Address</h4>
         <div>
             <label style="margin: 10px 0px 10px 0px;">Address 1</label>
             <div>
-                <input class="checkout-input" style="height: 40px; width: 100%; padding-left: 7px;" type="text" placeholder="1234 Main Street" required/>
+                <input class="checkout-input" style="height: 40px; width: 100%; padding-left: 7px;" type="text" name="shipping-address1" placeholder="1234 Main Street" required/>
             </div>
         </div>
         <div>
             <label style="margin: 10px 0px 10px 0px;">Address 2 (optional)</label>
             <div>
-                <input class="checkout-input" style="height: 40px; width: 100%; padding-left: 7px;" type="text" placeholder="Apartment or suite number" required/>
+                <input class="checkout-input" style="height: 40px; width: 100%; padding-left: 7px;" type="text" name="shipping-address2" placeholder="Apartment or suite number" />
             </div>
         </div>
         <div>
             <label style="margin: 10px 0px 10px 0px;">City</label>
             <div>
-                <input class="checkout-input" style="height: 40px; width: 200px; padding-left: 7px;" type="text" placeholder="City name" required/>
+                <input class="checkout-input" style="height: 40px; width: 200px; padding-left: 7px;" type="text" name="shipping-city" placeholder="City name" required/>
             </div>
         <div>
             <label style="margin: 10px 0px 10px 0px;">Country</label>
             <div>
                 <!-- <select style="height: 40px; padding-left: 7px; width: 175px;"> -->
-                    {{ form.country }}
+                    {{ form.shipping_country }}
                 <!-- </select> -->
                 
                     <!-- <option selected>AAAAA</option>
@@ -36,23 +38,59 @@
         <div>
             <label style="margin: 10px 0px 10px 0px;">ZIP</label>
             <div>
-                <input class="checkout-input" style="height: 40px; width: 125px; padding-left: 7px;" placeholder="ZIP code" type="text" required/>
+                <input class="checkout-input" style="height: 40px; width: 125px; padding-left: 7px;" placeholder="ZIP code" name="shipping-zip" type="text" required/>
+            </div>
+        </div>
+        <br>
+        <h4 style="margin-top: 20px;">Billing Address</h4>
+        <div>
+            <label style="margin: 10px 0px 10px 0px;">Address 1</label>
+            <div>
+                <input class="checkout-input" style="height: 40px; width: 100%; padding-left: 7px;" type="text" name="billing-address1" placeholder="1234 Main Street" required/>
+            </div>
+        </div>
+        <div>
+            <label style="margin: 10px 0px 10px 0px;">Address 2 (optional)</label>
+            <div>
+                <input class="checkout-input" style="height: 40px; width: 100%; padding-left: 7px;" type="text" name="billing-address2" placeholder="Apartment or suite number" />
+            </div>
+        </div>
+        <div>
+            <label style="margin: 10px 0px 10px 0px;">City</label>
+            <div>
+                <input class="checkout-input" style="height: 40px; width: 200px; padding-left: 7px;" type="text" name="billing-city" placeholder="City name" required/>
+            </div>
+        <div>
+        <div>
+            <label style="margin: 10px 0px 10px 0px;">Country</label>
+            <div>
+                <!-- <select style="height: 40px; padding-left: 7px; width: 175px;"> -->
+                    {{ form.billing_country }}
+                <!-- </select> -->
+                
+                    <!-- <option selected>AAAAA</option>
+                    <option>SSSSS</option>
+                    <option>DDDDD</option> -->
+            </div>
+        </div>
+        <div>
+            <label style="margin: 10px 0px 10px 0px;">ZIP</label>
+            <div>
+                <input class="checkout-input" style="height: 40px; width: 125px; padding-left: 7px;" placeholder="ZIP code" name="billing-zip" type="text" required/>
             </div>
         </div>
         <div>
             <label style="margin: 10px 0px 10px 0px;">Payment Option</label>
             {% for value, name in payment_choices %}
                 <div>
-                    <input type="radio" name='payment_option' value="{{ value }}" />
+                    <input name='payment_option' value="{{ value }}" type="radio" required>
                     <label style="margin-left: 7px;">{{ name }}</label>
                 </div>
             {% endfor %}
         </div>
         <input style="margin: 20px 0px 20px 0px; width: 100%; height: 40px;" type="submit" value="Continue to checkout" class="btn btn-warning"  />
     </form>  
-
-
-
+    
 {% endblock %}
 
 {% block footer %}

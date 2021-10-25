@@ -15,10 +15,16 @@ class CreateUser(UserCreationForm):
         fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
 class CheckoutForm(forms.Form):
-    street_address = forms.CharField(required=True)
-    street_address_2 = forms.CharField(required=False)
-    city = forms.CharField(required=True)
-    zip = forms.IntegerField(required=True)
-    country = CountryField(blank_label='(Select country)').formfield(
+    shipping_street_address = forms.CharField(required=True)
+    shipping_street_address_2 = forms.CharField(required=False)
+    shipping_city = forms.CharField(required=True)
+    shipping_zip = forms.IntegerField(required=True)
+    shipping_country = CountryField(blank_label='(Select country)').formfield(
+        widget=CountrySelectWidget(attrs={ 'class' : 'country-select' }))
+    billing_street_address = forms.CharField(required=True)
+    billing_street_address_2 = forms.CharField(required=False)
+    billing_city = forms.CharField(required=True)
+    billing_zip = forms.IntegerField(required=True)
+    billing_country = CountryField(blank_label='(Select country)').formfield(
         widget=CountrySelectWidget(attrs={ 'class' : 'country-select' }))
     payment_option = forms.ChoiceField(widget=forms.RadioSelect, choices=PAYMENT_CHOICES)

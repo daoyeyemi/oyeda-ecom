@@ -24,6 +24,43 @@ class CheckoutView(View):
         }
 
         return render(request, 'checkout.html', context)
+    
+    def post(self, request):
+
+        if request.method == 'POST':
+            shipping_address1 = request.POST.get('shipping-address1')
+            shipping_address2 = request.POST.get('shipping-address2')
+            shipping_city = request.POST.get('shipping-city')
+            shipping_zip = request.POST.get('shipping-zip')
+            billing_address1 = request.POST.get('billing-address1')
+            billing_address2 = request.POST.get('billing-address2')
+            billing_city = request.POST.get('billing-city')
+            billing_zip = request.POST.get('billing-zip')
+            
+            print(shipping_address1)
+            print(shipping_address2)
+            print(shipping_city)
+            print(shipping_zip)
+
+            form = CheckoutForm(request.POST)
+            
+            try:
+                if form.is_valid():
+                    
+                    shipping_country = form.cleaned_data.get('shipping_country')
+                    billing_country = form.cleaned_data.get('billing_country')
+                    print(shipping_country)
+                    print(billing_country)
+                    form.save()
+
+            except ObjectDoesNotExist:
+                return redirect("oyeda:order-summary")
+        
+        context = {
+
+        }
+        
+        return render(request, 'checkout.html', context)
 
 def home(request):    
     current_user = request.user
@@ -55,9 +92,6 @@ def user_logout(request):
     print('Hell yeahhhhhhh')
     # return redirect('oyeda:login')
     return render(request, 'home.html')
-
-def checkout(request):
-    return render(request, 'checkout.html')
 
 def order_summary(request):
     return render(request, 'order-summary.html')
