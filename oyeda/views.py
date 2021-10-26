@@ -12,15 +12,14 @@ from django.contrib.auth.decorators import login_required
 
 # request is an object django uses to send metadata throughout the project
 # request.user.first_name
+
 class CheckoutView(View):
     # gets data 
     def get(self, request):
-        payment_choices = [('S', 'Stripe'), ('P', 'PayPal')]
         form = CheckoutForm()
 
         context = {
             'form' : form,
-            'payment_choices' : payment_choices
         }
 
         return render(request, 'checkout.html', context)
@@ -36,23 +35,24 @@ class CheckoutView(View):
             billing_address2 = request.POST.get('billing-address2')
             billing_city = request.POST.get('billing-city')
             billing_zip = request.POST.get('billing-zip')
+            payment_method = request.POST.get('payment-option')
             
-            print(shipping_address1)
-            print(shipping_address2)
-            print(shipping_city)
-            print(shipping_zip)
+            print(payment_method)
+            # print(shipping_address1)
+            # print(shipping_address2)
+            # print(shipping_city)
+            # print(shipping_zip)
 
             form = CheckoutForm(request.POST)
             
             try:
                 if form.is_valid():
-                    
                     shipping_country = form.cleaned_data.get('shipping_country')
                     billing_country = form.cleaned_data.get('billing_country')
-                    print(shipping_country)
-                    print(billing_country)
+                    
+                    # print(shipping_country)
+                    # print(billing_country)
                     form.save()
-
             except ObjectDoesNotExist:
                 return redirect("oyeda:order-summary")
         
@@ -61,6 +61,11 @@ class CheckoutView(View):
         }
         
         return render(request, 'checkout.html', context)
+
+class PaymentView(View):
+    def get(self, request):
+
+        return render(request, 'payment.html')
 
 def home(request):    
     current_user = request.user

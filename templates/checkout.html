@@ -3,7 +3,7 @@
 {% block content %}
     <h1 style="text-align: center; margin-top: 20px;">Checkout Form</h1>
     
-    <form method="POST" action="{% url 'oyeda:checkout' %}" style="text-align: left; width: 450px; margin-left: auto; margin-right: auto;">
+    <form method="POST" action="" style="text-align: left; width: 450px; margin-left: auto; margin-right: auto;">
         {% csrf_token %}
         <h4 style="margin-top: 20px;">Shipping Address</h4>
         <div>
@@ -81,12 +81,20 @@
         </div>
         <div>
             <label style="margin: 10px 0px 10px 0px;">Payment Option</label>
-            {% for value, name in payment_choices %}
+            <!-- {% for value, name in form.fields.payment_option.choices %}
                 <div>
                     <input name='payment_option' value="{{ value }}" type="radio" required>
                     <label style="margin-left: 7px;">{{ name }}</label>
                 </div>
-            {% endfor %}
+            {% endfor %} -->
+            <div>
+                <input type="radio" name="payment-option" value="Stripe">
+                <label style="margin-left: 7px;">Stripe</label>
+            </div>
+            <div>
+                <input type="radio" name="payment-option" value="PayPal">
+                <label style="margin-left: 7px;">PayPal</label>
+            </div>  
         </div>
         <input style="margin: 20px 0px 20px 0px; width: 100%; height: 40px;" type="submit" value="Continue to checkout" class="btn btn-warning"  />
     </form>  
