@@ -1,6 +1,12 @@
 from django.db import models
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
+from django_countries.fields import CountryField
+
+address_choices = (
+    ('B', 'Billing'),
+    ('S', 'Shipping')
+)
 
 class Shoe(models.Model):
     name = models.CharField(max_length=100)
@@ -45,11 +51,36 @@ class OrderedItem(models.Model):
         item_price = quantity * price
         return item_price
 
+class ShippingAddress(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    street_address = models.CharField(max_length=100)
+    apartment_address = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    country = CountryField()
+    zip = models.IntegerField()
+    # address_type = models.CharField(max_length=1, choices=address_choices)
+
+    def __str__(self):
+        return self.user.username
+
+class BillingAddress(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    street_address = models.CharField(max_length=100)
+    apartment_address = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    country = CountryField()
+    zip = models.IntegerField()
+    # address_type = models.CharField(max_length=1, choices=address_choices)
+
+    def __str__(self):
+        return self.user.username
+
 class OrderList(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderedItem, null=True)
     ordered = models.BooleanField(default=False)
-
+    shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE, null=True)
+    billing_address = models.ForeignKey(BillingAddress, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.user.username
 
@@ -59,4 +90,10 @@ class OrderList(models.Model):
             total += item.generate_total_price_for_item()
         return total
         
-    
+class Payment(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    amount = models.FloatField()
+    # timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username

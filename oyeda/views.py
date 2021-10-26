@@ -37,6 +37,14 @@ class CheckoutView(View):
             billing_zip = request.POST.get('billing-zip')
             payment_method = request.POST.get('payment-option')
             
+            if payment_method == 'Stripe':
+                print('Stripe it is')
+                return redirect('oyeda:payment', payment_method='Stripe')
+            elif payment_method == 'Payment':
+                print("PayPal it is my G")
+                return redirect('oyeda:payment', payment_method='PayPal')
+            else:
+                print('Invalid payment option selected')
             print(payment_method)
             # print(shipping_address1)
             # print(shipping_address2)
@@ -64,6 +72,10 @@ class CheckoutView(View):
 
 class PaymentView(View):
     def get(self, request):
+        
+        return render(request, 'payment.html')
+
+    def post(self,request):
 
         return render(request, 'payment.html')
 
