@@ -61,7 +61,7 @@ class ShippingAddress(models.Model):
     # address_type = models.CharField(max_length=1, choices=address_choices)
 
     def __str__(self):
-        return self.user.username
+        return f"{self.user.username} - Street Address: {self.street_address}"
 
 class BillingAddress(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
@@ -73,7 +73,7 @@ class BillingAddress(models.Model):
     # address_type = models.CharField(max_length=1, choices=address_choices)
 
     def __str__(self):
-        return self.user.username
+        return f"{self.user.username} - Street Address: {self.street_address}"
 
 class OrderList(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
@@ -81,6 +81,7 @@ class OrderList(models.Model):
     ordered = models.BooleanField(default=False)
     shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE, null=True)
     billing_address = models.ForeignKey(BillingAddress, on_delete=models.CASCADE, null=True)
+    
     def __str__(self):
         return self.user.username
 

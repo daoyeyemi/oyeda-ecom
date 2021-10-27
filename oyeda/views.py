@@ -9,6 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout, get_user_model 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from . models import BillingAddress, ShippingAddress, OrderList
 
 # request is an object django uses to send metadata throughout the project
 # request.user.first_name
@@ -16,59 +17,90 @@ from django.contrib.auth.decorators import login_required
 class CheckoutView(View):
     # gets data 
     def get(self, request):
-        form = CheckoutForm()
+        try:
+            order = OrderList.objects.get(user=request.user, ordered=False)
 
-        context = {
-            'form' : form,
-        }
+            form = CheckoutForm()
 
-        return render(request, 'checkout.html', context)
+            context = {
+                'form' : form,
+                'order' : order,
+            }
+            return render(request, 'checkout.html', context)
+        except ObjectDoesNotExist:
+            return redirect('oyeda:checkout')
     
     def post(self, request):
-
-        if request.method == 'POST':
-            shipping_address1 = request.POST.get('shipping-address1')
-            shipping_address2 = request.POST.get('shipping-address2')
-            shipping_city = request.POST.get('shipping-city')
-            shipping_zip = request.POST.get('shipping-zip')
-            billing_address1 = request.POST.get('billing-address1')
-            billing_address2 = request.POST.get('billing-address2')
-            billing_city = request.POST.get('billing-city')
-            billing_zip = request.POST.get('billing-zip')
-            payment_method = request.POST.get('payment-option')
-            
-            if payment_method == 'Stripe':
-                print('Stripe it is')
-                return redirect('oyeda:payment', payment_method='Stripe')
-            elif payment_method == 'Payment':
-                print("PayPal it is my G")
-                return redirect('oyeda:payment', payment_method='PayPal')
-            else:
-                print('Invalid payment option selected')
-            print(payment_method)
-            # print(shipping_address1)
-            # print(shipping_address2)
-            # print(shipping_city)
-            # print(shipping_zip)
-
-            form = CheckoutForm(request.POST)
-            
-            try:
-                if form.is_valid():
-                    shipping_country = form.cleaned_data.get('shipping_country')
-                    billing_country = form.cleaned_data.get('billing_country')
-                    
-                    # print(shipping_country)
-                    # print(billing_country)
-                    form.save()
-            except ObjectDoesNotExist:
-                return redirect("oyeda:order-summary")
         
-        context = {
-
-        }
+        form = CheckoutForm(request.POST)
         
-        return render(request, 'checkout.html', context)
+        try:
+            order = OrderList.objects.get(user=request.user, ordered=False)
+    
+            if form.is_valid():
+                shipping_address1 = form.cleaned_data.get('shipping_street_address')
+                shipping_address2 = form.cleaned_data.get('shipping_street_address_2')
+                shipping_city = form.cleaned_data.get('shipping_city')
+                shipping_country = form.cleaned_data.get('shipping_country')
+                shipping_zip = form.cleaned_data.get('shipping_zip')                
+                
+                billing_address1 = form.cleaned_data.get('billing_street_address')
+                billing_address2 = form.cleaned_data.get('billing_street_address_2')
+                billing_city = form.cleaned_data.get('billing_city')
+                billing_country = form.cleaned_data.get('billing_country')
+                billing_zip = form.cleaned_data.get('billing_zip')
+                
+                payment_method = form.cleaned_data.get('payment_option')
+                
+                print(shipping_address1)
+                print(shipping_city)
+                print(shipping_country)
+                print(shipping_zip)
+
+                print(billing_address1)
+                print(billing_city)
+                print(billing_country)
+                print(billing_zip)
+
+                shipping_address = ShippingAddress(
+                    user = request.user,
+                    street_address = shipping_address1, 
+                    apartment_address = shipping_address2, 
+                    city = shipping_city, 
+                    country = shipping_country,
+                    zip = shipping_zip
+                )
+                
+                shipping_address.save()
+                
+                billing_address = BillingAddress(
+                    user = request.user,
+                    street_address = billing_address1, 
+                    apartment_address = billing_address2, 
+                    city = billing_city, 
+                    country = billing_country,
+                    zip = billing_zip
+                )
+                
+                billing_address.save()
+
+                order.shipping_address = shipping_address
+                order.billing_address = billing_address
+
+                order.save() 
+                if payment_method == 'S':
+                    print('Stripe it is')
+                    return redirect('oyeda:payment')
+                elif payment_method == 'P':
+                    print("PayPal it is my G")
+                    return redirect('oyeda:payment')
+                else:
+                    print('Invalid payment option selected')
+                    return redirect('oyeda:home')
+        except ObjectDoesNotExist:
+            return redirect("oyeda:order-summary")
+        
+        return render(request, 'checkout.html')
 
 class PaymentView(View):
     def get(self, request):
