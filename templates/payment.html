@@ -2,10 +2,31 @@
 
 {% block content %}
 
-<h1 style="text-align: center; margin-top: 20px;"></h1>
+    <h1 style="text-align: center; margin-top: 20px;">Payment</h1>
+    
+    
+        {% csrf_token %}
+    <div>            
+        <form method="POST" style="width: 450px; margin-top: 20px; margin-left: auto; margin-right: auto;">
+            <label style="text-align: left;">Credit or debit card</label>
+            <div>
+                <div style="margin: 15px 0px 15px 0px;">
+                    <input style="height: 40px; width: 100%; padding-left: 7px;" placeholder="Card number" name="" />
+                </div>
+                <div style="margin: 15px 0px 15px 0px; display: inline;">
+                    <input style="height: 40px; width: 203px; margin-right: 40px; padding-left: 7px;" placeholder="MM/YY" name="" />
+                </div>
+                <div style="margin: 15px 0px 15px 0px; display: inline;">
+                    <input style="height: 40px; width: 203px; padding-left: 7px;" placeholder="CVC" name="" />
+                </div>
+            </div>
+            
+        </form>
+    </div>
+
 
 {% endblock %}
 
 {% block footer %}
 
-{% endblock%}
+{% endblock %}
