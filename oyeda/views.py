@@ -105,9 +105,17 @@ class CheckoutView(View):
 class PaymentView(View):
     def get(self, request):
         
-        return render(request, 'payment.html')
+        order = OrderList.objects.get(user=request.user, ordered=False)
+        
+        context = {
+            'order' : order
+        }
+
+        return render(request, 'payment.html', context)
 
     def post(self,request):
+        
+        order = OrderList.objects.get(user=request.user, ordered=False)
 
         return render(request, 'payment.html')
 

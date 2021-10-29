@@ -52,7 +52,7 @@
 <script src="https://js.stripe.com/v3/"></script>
 <!-- nonce attribute allows specific elements to be altered and adjusted -->
 <script nonce="">
-    let stripe = Stripe('{{}}');
+    let stripe = Stripe('{{STRIPE_PUBLIC_KEY}}');
 
     let elements = stripe.elements();
 
