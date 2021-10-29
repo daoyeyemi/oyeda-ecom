@@ -2,28 +2,119 @@
 
 {% block content %}
 
-    <h1 style="text-align: center; margin-top: 20px;">Payment</h1>
-    
-    
-        {% csrf_token %}
-    <div>            
-        <form method="POST" style="width: 450px; margin-top: 20px; margin-left: auto; margin-right: auto;">
+    <!-- <h1 style="text-align: center; margin-top: 20px;">Payment</h1> -->
+<main>
+    <div class="container wow fadeIn">
+        <h2 class="my-5 h2 text-center">Payment</h2>
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card" style="border: none; text-align: center;">
+                    <div style="border: none; text-align: center;">
+                        <form action="." method="post" class="stripe-form" id="stripe-form" style="width: 450px; margin-left: auto; margin-right: auto;">
+                            {% csrf_token %}
+                            <div class="stripe-form-row" id="creditCard">
+                                <label for="card-element" id="stripeBtnLabel">
+                                    Credit or debit card
+                                </label>
+                                <div id="card-element" class="StripeElement StripeElement--empty"><div class="__PrivateStripeElement" style="margin: 0px !important; padding: 0px !important; border: none !important; display: block !important; background: transparent !important; position: relative !important; opacity: 1 !important;"><iframe frameborder="0" allowtransparency="true" scrolling="no" name="__privateStripeFrame5" allowpaymentrequest="true" src="https://js.stripe.com/v3/elements-inner-card-19066928f2ed1ba3ffada645e45f5b50.html#style[base][color]=%2332325d&amp;style[base][fontFamily]=%22Helvetica+Neue%22%2C+Helvetica%2C+sans-serif&amp;style[base][fontSmoothing]=antialiased&amp;style[base][fontSize]=16px&amp;style[base][::placeholder][color]=%23aab7c4&amp;style[invalid][color]=%23fa755a&amp;style[invalid][iconColor]=%23fa755a&amp;componentName=card&amp;wait=false&amp;rtl=false&amp;keyMode=test&amp;origin=https%3A%2F%2Fstripe.com&amp;referrer=https%3A%2F%2Fstripe.com%2Fdocs%2Fstripe-js&amp;controllerId=__privateStripeController1" title="Secure payment input frame" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; height: 19.2px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: 0px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
+                            </div>
+                            <div class="stripe-form-row">
+                                <button id="stripeButton" style="width: 100%; margin-top: 20px;" class="btn btn-warning">Submit Payment</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="card-errors" role="alert"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+        <!-- <form method="POST" style="width: 450px; margin-top: 20px; margin-left: auto; margin-right: auto;">
             <label style="text-align: left;">Credit or debit card</label>
             <div>
                 <div style="margin: 15px 0px 15px 0px;">
-                    <input style="height: 40px; width: 100%; padding-left: 7px;" placeholder="Card number" name="" />
+                    <input style="height: 40px; width: 100%; padding-left: 7px;" placeholder="Card number" name="" required />
                 </div>
                 <div style="margin: 15px 0px 15px 0px; display: inline;">
-                    <input style="height: 40px; width: 203px; margin-right: 40px; padding-left: 7px;" placeholder="MM/YY" name="" />
+                    <input style="height: 40px; width: 203px; margin-right: 40px; padding-left: 7px;" placeholder="MM/YY" name="" required />
                 </div>
                 <div style="margin: 15px 0px 15px 0px; display: inline;">
-                    <input style="height: 40px; width: 203px; padding-left: 7px;" placeholder="CVC" name="" />
+                    <input style="height: 40px; width: 203px; padding-left: 7px;" placeholder="CVV" name="" required />
                 </div>
+                <input style="width: 100%; height: 50px; margin: 15px 0px 15px 0px;" type="submit" class="btn btn-danger" value="Submit Payment"/>
             </div>
-            
-        </form>
-    </div>
+        </form> -->
 
+{% endblock %}
+
+{% block extra_scripts %}
+
+<script src="https://js.stripe.com/v3/"></script>
+<!-- nonce attribute allows specific elements to be altered and adjusted -->
+<script nonce="">
+    let stripe = Stripe('{{}}');
+
+    let elements = stripe.elements();
+
+    let style = {
+        base: {
+            color: '#32325d',
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+                color: '#aab7c4'
+            }
+        },
+        invalid: {
+            color: '#fa755a',
+            iconColor: '#fa755a'
+        }
+    };
+
+    let card = elements.create('card', { style: style })
+
+    card.mount('#card-element')
+
+    let form = document.getElementById('stripe-form')
+
+    // if error arises, error message shows on screen
+    card.addEventListener('change', function(event) {
+        let displayError = document.getElementById('card-errors')
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = ''
+        }
+    })
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault()
+
+        stripe.createToken(card).then(function(result) {
+            if (result.error) {
+                // adding text to dom element saying that there was an error
+                let errorEl = document.getElementById('card-errors')
+                errorEl.textContent = result.error.message
+            } else {
+                stripeTokenHandler(result.token)
+            }
+        })
+    })
+    // creates hidden input element and passes in token.id
+    // and then adds to form to submit info
+    function stripeTokenHandler(token) {
+        var form = document.getElementById('stripe-form')
+        var input =  document.createElement('input')
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'stripeToken');
+        input.setAttribute('value', 'token.id');
+        form.appendChild(input);
+
+        form.submit()
+    }
+
+</script>
 
 {% endblock %}
 
