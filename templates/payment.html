@@ -34,7 +34,9 @@
     <h3 style="display: flex; justify-content: space-between;margin: 30px auto 30px auto; width: 100%; text-align: center;">
         <span style="float: left;">Your cart</span>
         <span style="float: right;">
-        <div style="height: 40px; width: 40px; background-color: rgb(6, 13, 100); padding-top: 10px; border-radius: 50%; color: white; font-size: 15px; font-weight: 800;">3</div>
+        <div style="height: 40px; width: 40px; background-color: rgb(6, 13, 100); padding-top: 10px; border-radius: 50%; color: white; font-size: 15px; font-weight: 800;">
+            {{ order.get_total_items_in_cart }}
+        </div>
         </span>
     </h3>
     <!-- for -->
@@ -42,12 +44,12 @@
     <div style="display: flex; justify-content: space-between;">
         <h6>{{ order_item.quantity }} x {{ order_item.item.name }} </h6>
         <h6>{{ order_item.item.brand }}</h6>
-        <h6>${{ order_item.item.price }}</h6>
+        <h6>${{ order_item.generate_total_price_for_item }}</h6>
     </div>
     {% endfor %}
     <hr>
     <br>
-    <h2 style="float: right; font-weight: 900;">Total: $360</h2>
+    <h2 style="float: right; font-weight: 900;">Total: ${{ order.get_total_price }}</h2>
 </div>
 
 

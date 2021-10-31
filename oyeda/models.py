@@ -90,6 +90,12 @@ class OrderList(models.Model):
         for item in self.items.all():
             total += item.generate_total_price_for_item()
         return total
+
+    def get_total_items_in_cart(self):
+        total_items = 0
+        for item in self.items.all():
+            total_items += item.quantity
+        return total_items
         
 class Payment(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
