@@ -77,8 +77,13 @@
 <script src="https://js.stripe.com/v3/"></script>
 <!-- nonce attribute allows specific elements to be altered and adjusted -->
 <script nonce="">
-    let stripe = Stripe('{{STRIPE_PUBLIC_KEY}}');
-
+    // gives access to Stripe object, so basically gives you access to 
+    // what Stripe has to offer
+    // not necessarily good prctice but okay since this is just a mock site :D
+    // gives us access to Stripe API
+    let stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+    // elements is customizable user interface responsible for collecting
+    // payment info
     let elements = stripe.elements();
 
     let style = {
@@ -99,10 +104,12 @@
 
     let card = elements.create('card', { style: style })
 
+    // putting card that we initiated with stripe into following div
     card.mount('#card-element')
 
     let form = document.getElementById('stripe-form')
 
+    // awaits change in input element
     // if error arises, error message shows on screen
     card.addEventListener('change', function(event) {
         let displayError = document.getElementById('card-errors')
@@ -113,6 +120,7 @@
         }
     })
 
+// creates token for the card when submit is triggered
     form.addEventListener('submit', function(event) {
         event.preventDefault()
 
@@ -128,6 +136,7 @@
     })
     // creates hidden input element and passes in token.id
     // and then adds to form to submit info
+    // everything else is handled in the view
     function stripeTokenHandler(token) {
         var form = document.getElementById('stripe-form')
         var input =  document.createElement('input')

@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from . models import BillingAddress, ShippingAddress, OrderList
-
+import stripe
 # request is an object django uses to send metadata throughout the project
 # request.user.first_name
 
@@ -106,14 +106,21 @@ class PaymentView(View):
     def get(self, request):
         order = OrderList.objects.get(user=request.user, ordered=False)
         
-        context = {
-            'order' : order
-        }
+        if order.billing_address:
+            context = {
+                'order' : order
+            }
         
         return render(request, 'payment.html', context)
 
     def post(self,request):
         order = OrderList.objects.get(user=request.user, ordered=False)
+
+        stripe.Charge.create(
+            amount=amount,
+            currency="usd",
+            source=token
+        )
 
         return render(request, 'payment.html')
 
