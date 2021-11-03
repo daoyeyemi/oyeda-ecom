@@ -75,12 +75,22 @@ class BillingAddress(models.Model):
     def __str__(self):
         return f"{self.user.username} - Street Address: {self.street_address}"
 
+class Payment(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    amount = models.FloatField()
+    stripe_charge_id = models.CharField(max_length=100, default=True)
+    # timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
+
 class OrderList(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderedItem, null=True)
     ordered = models.BooleanField(default=False)
     shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE, null=True)
     billing_address = models.ForeignKey(BillingAddress, on_delete=models.CASCADE, null=True)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE, null=True)
     
     def __str__(self):
         return self.user.username
@@ -97,14 +107,6 @@ class OrderList(models.Model):
             total_items += item.quantity
         return total_items
         
-class Payment(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    amount = models.FloatField()
-    stripe_charge_id = models.CharField(max_length=100, default=True)
-    # timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.user.username
 
 class UserProfile(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
