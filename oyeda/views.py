@@ -1,5 +1,7 @@
 from oyeda.forms import CreateUser
 from django.shortcuts import render, redirect, get_object_or_404
+
+from oyedaecom.settings import STRIPE_PRIVATE_KEY
 from .models import Payment, Shoe, OrderList, OrderedItem
 from django.views.generic import DetailView, View
 from django.contrib.auth.forms import UserCreationForm
@@ -11,8 +13,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from . models import BillingAddress, ShippingAddress, OrderList
 import stripe
+from django.conf import settings
+
 # request is an object django uses to send metadata throughout the project
 # request.user.first_name
+stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
 class CheckoutView(View):
     # gets data 
@@ -24,7 +29,7 @@ class CheckoutView(View):
 
             context = {
                 'form' : form,
-                'order' : order,
+                'order' : order
             }
             return render(request, 'checkout.html', context)
         except ObjectDoesNotExist:
@@ -108,104 +113,116 @@ class PaymentView(View):
         
         if order.billing_address:
             context = {
-                'order' : order
+                'order' : order,
+                'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
             }        
             print('get function works')
             return render(request, 'payment.html', context)
         else:
-            print('No billing address inputted yet')
+            print('No billing address input yet')
             return redirect('oyeda:checkout')        
 
     def post(self, request):
         order = OrderList.objects.get(user=request.user, ordered=False)
 
         form = PaymentForm(request.POST)
-    
+    # alright so apparently while using stripe, you need to use both public and secret keys
+    # public one is for creating token, secret one is for charging the token or helping create
+    # the charge object
         if form.is_valid():
             token = form.cleaned_data.get('stripeToken')
-            
             print(token)
-            
-            amount = order.get_total_price()
-
+            amount = int(order.get_total_price())
             print(amount)
+            print(stripe.api_key)
+
+            try:
+                # problem is here
+                charge = stripe.Charge.create(
+                    amount=amount,
+                    currency="usd",
+                    source=token
+                )
+
+                print(charge)
+
+                # create payment
+                payment = Payment()
+                payment.stripe_charge_id = charge['id']
+                payment.user = request.user
+                payment.amount = amount
+                payment.save()
+
+                print(payment)
+                print(payment.stripe_charge_id)
+                print(payment.user)
+                print(payment.amount)
+
+                # change ordered status of all items in order to True
+                order_items = order.items.all()
+                print(order_items)
+                for order_item in order_items:
+                    order_item.ordered = True
+                    print(order_item.ordered)
+                    order_item.save()
+
+                # assign payment to order
+                order.payment = payment
+                order.ordered = True
+                order.save()
+
+                print('Order was successful')
+                return redirect('oyeda:home')
+            
+            except stripe.error.CardError as e:
+                    body = e.json_body
+                    err = body.get('error', {})
+                    print('error')
+                    # messages.warning(self.request, f"{err.get('message')}")
+                    return redirect("/")
+
+            except stripe.error.RateLimitError as e:
+                # Too many requests made to the API too quickly
+                # messages.warning(self.request, "Rate limit error")
+                print('error1')
+                return redirect("/")
+
+            except stripe.error.InvalidRequestError as e:
+                # Invalid parameters were supplied to Stripe's API
+                print('error2')
+                # messages.warning(self.request, "Invalid parameters")
+                return redirect("/")
+
+            except stripe.error.AuthenticationError as e:
+                # Authentication with Stripe's API failed
+                # (maybe you changed API keys recently)
+                # messages.warning(self.request, "Not authenticated")
+                print('error3')
+                return redirect("oyeda:payment")
+
+            except stripe.error.APIConnectionError as e:
+                # Network communication with Stripe failed
+                # messages.warning(self.request, "Network error")
+                print('error4')
+                return redirect("/")
+
+            except stripe.error.StripeError as e:
+                # Display a very generic error to the user, and maybe send
+                # yourself an email
+                # messages.warning(self.request, "Something went wrong. You were not charged. Please try again.")
+                print('error5')
+                return redirect("/")
+
+            except Exception as e:
+                # send an email to ourselves
+                # messages.warning(self.request, "A serious error occurred. We have been notifed.")
+                print('error6')
+                return redirect("oyeda:payment")
+
         else:
             print("That ain't it G")
     
-        try:
-            charge = stripe.Charge.create(
-                amount=amount,
-                currency="usd",
-                source=token
-            )
-            print(charge)
-
-            # create payment
-            payment = Payment()
-            payment.stripe_charge_id = charge['id']
-            payment.user = request.user
-            payment.amount = order.get_total_price()
-            payment.save()
-            
-            # change ordered status of all items in order to True
-            order_items = order.items.all()
-            for order_item in order_items:
-                order_item.ordered = True
-                order_items.save()
-
-            # assign payment to order
-            order.payment = payment
-            order.ordered = True
-            order.save()
-
-            print('Order was successful')
-            return redirect('oyeda:home')
         
-        except stripe.error.CardError as e:
-                body = e.json_body
-                err = body.get('error', {})
-                print('error')
-                # messages.warning(self.request, f"{err.get('message')}")
-                return redirect("/")
-
-        except stripe.error.RateLimitError as e:
-            # Too many requests made to the API too quickly
-            # messages.warning(self.request, "Rate limit error")
-            print('error1')
-            return redirect("/")
-
-        except stripe.error.InvalidRequestError as e:
-            # Invalid parameters were supplied to Stripe's API
-            print('error2')
-            # messages.warning(self.request, "Invalid parameters")
-            return redirect("/")
-
-        except stripe.error.AuthenticationError as e:
-            # Authentication with Stripe's API failed
-            # (maybe you changed API keys recently)
-            # messages.warning(self.request, "Not authenticated")
-            print('error3')
-            return redirect("/")
-
-        except stripe.error.APIConnectionError as e:
-            # Network communication with Stripe failed
-            # messages.warning(self.request, "Network error")
-            print('error4')
-            return redirect("/")
-
-        except stripe.error.StripeError as e:
-            # Display a very generic error to the user, and maybe send
-            # yourself an email
-            # messages.warning(self.request, "Something went wrong. You were not charged. Please try again.")
-            print('error5')
-            return redirect("/")
-
-        except Exception as e:
-            # send an email to ourselves
-            # messages.warning(self.request, "A serious error occurred. We have been notifed.")
-            print('error6')
-            return redirect("oyeda:payment")
-
 
 def home(request):    
     current_user = request.user

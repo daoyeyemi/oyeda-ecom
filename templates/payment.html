@@ -86,7 +86,7 @@
     // what Stripe has to offer
     // not necessarily good prctice but okay since this is just a mock site :D
     // gives us access to Stripe API
-    let stripe = Stripe('pk_test_51JrWhrB3ggw7DQIAmursCZ0mFDqG33vFbt7aCkMolXxjzQ3ws5DNkGKP4fdMVnQCv9UeIdKt6p2nVdPcXWO4hVUU002LVLYvJo');
+    let stripe = Stripe('{{ stripe_public_key }}');
     // elements is customizable user interface responsible for collecting
     // payment info
     let elements = stripe.elements();

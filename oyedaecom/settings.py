@@ -92,6 +92,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+STRIPE_PUBLIC_KEY = 'pk_test_51JrWhrB3ggw7DQIAmursCZ0mFDqG33vFbt7aCkMolXxjzQ3ws5DNkGKP4fdMVnQCv9UeIdKt6p2nVdPcXWO4hVUU002LVLYvJo'
+STRIPE_PRIVATE_KEY = 'sk_test_51JrWhrB3ggw7DQIA06ytDW0pfXOfUlkinG3SHvLHw3yZ5rc1Ic4RYubiuzZYmAu2Wxkb57mNdE4Na01sWVOoQ7x100NSPCBpqF'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
