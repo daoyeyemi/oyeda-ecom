@@ -255,8 +255,21 @@ def user_logout(request):
     # return redirect('oyeda:login')
     return render(request, 'home.html')
 
-def order_summary(request):
-    return render(request, 'order-summary.html')
+class SearchView(View):
+    def get(self, request):
+        return render(request, 'search.html')
+    
+    def post(self, request):
+        if request.method == 'POST':
+            all_shoes = Shoe.objects.all()
+            searched_shoes = request.POST['searchForm']
+            shoes = all_shoes.filter(name__contains=searched_shoes)
+            print(shoes)
+            print(request.POST['searchForm'])
+            context = {
+                'shoes' : shoes
+            }
+        return render(request, 'search.html', context)
 
 def products(request):
     context = {
