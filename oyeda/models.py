@@ -8,13 +8,41 @@ address_choices = (
     ('S', 'Shipping')
 )
 
+brand_choices = (
+    ('Nike', 'Nike'),
+    ('Adidas', 'Adidas'),
+    ('Puma', 'Puma'),
+    ('New Balance', "New Balance"),
+    ('Vans', 'Vans'),
+    ('Converse', 'Converse')
+)
+
+button_choices = (
+    ('primary', 'primary'),
+    ('light', 'light'),
+    ('danger', 'danger'),
+    ('warning', 'warning'),
+    ('light', 'light'),
+    ('success', 'success')
+)
+
+class Brand(models.Model):
+    btn_type = models.CharField(choices=button_choices, max_length=20)
+    name = models.CharField(choices=brand_choices, max_length=20)
+    slug = models.SlugField()
+
+    def __str__(self):
+        return self.name
+        
 class Shoe(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
     description = models.TextField()
-    brand = models.CharField(max_length=50)
+    # brand = models.CharField(max_length=50)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     image = models.ImageField()
     slug = models.SlugField()
+    new_arrival = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -22,6 +50,11 @@ class Shoe(models.Model):
     def get_absolute_url(self):
         return reverse('oyeda:individual-product', kwargs={
             'slug': self.slug
+        })
+    
+    def get_brand_slug(self):
+        return reverse('oyeda:brand-selection', kwargs={
+            'brand' : self.brand
         })
 
     def get_add_to_cart_slug(self):

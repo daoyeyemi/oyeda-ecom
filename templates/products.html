@@ -4,7 +4,14 @@
     <div class="" style="background-color: red; height: 300px; width: 100%; margin-bottom: 40px; color: white; text-align: center;">
         <p style="padding-top: 120px;">S h o e s</p>
     </div>
-
+    <div>
+        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>Nike</btn>
+        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>Adidas</btn>
+        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>Puma</btn>
+        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>New Balance</btn>
+        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>Vans</btn>
+        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>Converse</btn>
+    </div>
     <div style="display: flex; justify-content: center; margin: 0px 3.125% 0px 3.125%">
         {% for shoe in shoes %}
             <div style="width: 300px; height: 300px; text-align: center; margin: 0px 1% 0px 1%;">   
@@ -12,7 +19,7 @@
             <div style="width: 300px; margin-bottom: 2px;">
                 <a href='{{ shoe.get_absolute_url }}'><p style="color: red; margin: 10px 2px 2px 2px;">{{ shoe.name }}</p></a>
                 <p style="margin: 2px;">{{ shoe.brand }}</p>
-                <p style="margin: 2px;">{{ shoe.price }}</p>
+                <p style="margin: 2px;">${{ shoe.price|floatformat:2  }}</p>
             </div>
             </div>
         {% endfor %}

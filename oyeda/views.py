@@ -107,6 +107,13 @@ class CheckoutView(View):
         
         return render(request, 'checkout.html')
 
+class BrandView(View):
+    def get(self, request):
+        context = {
+
+        }
+        return render(request, 'brand.html', context)
+
 class PaymentView(View):
     def get(self, request):
         order = OrderList.objects.get(user=request.user, ordered=False)
