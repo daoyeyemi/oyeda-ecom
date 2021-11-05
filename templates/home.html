@@ -3,7 +3,7 @@
 {% block content %}
     {% if request.user.is_authenticated %}
         <div style="background-color: navy ; color: white; padding: 5px;">
-            <p style="margin-top: 15px; display: flex; justify-content: center;" >Hi {{ request.user.first_name }} !</p>
+            <h1 style="margin: 15px 0px 15px 0px; display: flex; justify-content: center;" >Hi {{ request.user.first_name }}!</h1>
         </div>
     {% endif %}
     <div id="carouselExampleSlidesOnly" class="carousel slide carousell" data-bs-ride="carousel">

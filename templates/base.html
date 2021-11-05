@@ -400,12 +400,6 @@
             height: 50px;
         }
         
-        .logo {
-            margin-left: 30px; 
-            margin-top: 13px; 
-            color: white;
-        }
-        
         .nav-links {
             display: flex;
         }
@@ -414,6 +408,12 @@
             margin: 5px 7px 5px 7px; 
             text-decoration: none; 
             color: white;
+            transition: color 0.5s ease-in-out;
+        }
+
+        .nav-link:hover {
+            color: blue;
+            transition: color 0.5s ease-in-out;
         }
 
         .icon-links {
@@ -427,10 +427,7 @@
             margin-right: 8px; 
             color: white; 
             font-size: 22.5px;
-        }
-
-        .icon-1:hover, .icon-2:hover, .icon-3:hover {
-            color: red;
+            transition: color 0.5s ease-in-out;
         }
 
         .icon-2, .icon-3 {
@@ -438,6 +435,12 @@
             margin-right: 8px; 
             color: white; 
             font-size: 21.5px;
+            transition: color 0.5s ease-in-out;
+        }
+
+        .icon-1:hover, .icon-2:hover, .icon-3:hover {
+            color: red;
+            transition: color 0.5s ease-in-out;
         }
 
         .hamburger {
@@ -446,10 +449,12 @@
             margin-right: 17px;
             color: white;
             display: none;
+            transition: color 0.5s ease-in-out;
         }
 
         .hamburger:hover {
             color: red;
+            transition: color 0.5s ease-in-out;
         }
 
         @media only screen and (max-width: 750px) {
@@ -598,8 +603,14 @@
             z-index: 5;
         }
 
+        .x {
+            color: white;
+            transition: color 0.5s ease-in-out;
+        }
+
         .x:hover {
             color: red;
+            transition: color 0.5s ease-in-out;
         }
 
         a {
@@ -703,17 +714,40 @@
     .current-card-form {
         display: none;
     }
+
+    .logo {
+        color: white;
+        text-decoration: none;
+        margin-left: 15px; 
+        margin-top: 13px; 
+        transition: color 0.5s ease-in-out;
+    }
+
+    .logo:hover {
+        color: rgb(9, 9, 151);
+        transition: color 0.5s ease-in-out;
+    }
+
+    .sidebar-tag-type-1 {
+        color: white;
+        transition: color 0.5s ease-in-out;
+    }
+
+    .sidebar-tag-type-1:hover {
+        color: blue;
+        transition: color 0.5s ease-in-out;
+    }
     </style>
 </head>
     <body>
         <nav style='display: flex; justify-content: space-between; background-color: black; height: 50px;'>
             <div class="logo" style="font-weight: 800; font-size: x-large; margin-top: 6px;">
-                <a href="#" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">oyedaEcom</a>
+                <a href="{% url 'oyeda:home' %}" class="logo" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">oyedaEcom</a>
             </div>
             <div class='nav-links'>
-                <a class='nav-link' href='#'>Shop</a>
-                <a class='nav-link' href='#'>Brands</a>
-                <a class='nav-link' href='#'>New Arrivals</a>
+                <a href="{% url 'oyeda:products' %}" class='nav-link'>Shop</a>
+                <a href="{% url 'oyeda:home' %}" class='nav-link'>Brands</a>
+                <a href="{% url 'oyeda:home' %}" class='nav-link'>New Arrivals</a>
             </div>
             <div class='hamburger'>
                 <i onclick="show()" class="fas fa-bars"></i>
@@ -721,17 +755,17 @@
             <div id="sidebar">
                 <ul>
                     <li onclick="show()"><i class="fa fa-times x" aria-hidden="true"></i></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Brands</a></li>
-                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="{% url 'oyeda:products' %}" class="sidebar-tag-type-1">Shop</a></li>
+                    <li><a href="{% url 'oyeda:home' %}" class="sidebar-tag-type-1">Brands</a></li>
+                    <li><a href="{% url 'oyeda:home' %}" class="sidebar-tag-type-1">New Arrivals</a></li>
                 {% if request.user.is_authenticated %}
                     <!-- <li><button onclick="{{ views.user_logout }}">Logout</button></li> -->
-                    <li><a href="{% url 'oyeda:user_logout' %}">Logout</a></li>
+                    <li><a href="{% url 'oyeda:user_logout' %}" class="sidebar-tag-type-1">Logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'oyeda:login' %}">Login</a></li>
+                    <li><a href="{% url 'oyeda:login' %}" class="sidebar-tag-type-1">Login</a></li>
                 {% endif %}
-                    <li><a href="#">Search</a></li>
-                    <li><a href="#">Cart</a></li>
+                    <li><a href="{% url 'oyeda:search' %}" class="sidebar-tag-type-1">Search</a></li>
+                    <li><a href="{% url 'oyeda:order-summary' %}" class="sidebar-tag-type-1">Cart</a></li>
                 </ul>
             </div>
             <div class='icon-links'>
@@ -740,8 +774,8 @@
             {% else %}
                 <a href="{% url 'oyeda:login' %}"><i class="icon-1 fas fa-user-circle"></i></a>
             {% endif %}
-                <a href="#"><i class="icon-2 fas fa-search"></i></a>
-                <a href="#"><i class="icon-3 fas fa-shopping-cart"></i></a>
+                <a href="{% url 'oyeda:search' %}"><i class="icon-2 fas fa-search"></i></a>
+                <a href="{% url 'oyeda:products' %}"><i class="icon-3 fas fa-shopping-cart"></i></a>
             </div>
         </nav>
 
