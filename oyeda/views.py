@@ -11,7 +11,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout, get_user_model 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from . models import BillingAddress, ShippingAddress, OrderList
+from . models import BillingAddress, ShippingAddress, OrderList, Brand
 import stripe
 from django.conf import settings
 
@@ -106,13 +106,6 @@ class CheckoutView(View):
             return redirect("oyeda:order-summary")
         
         return render(request, 'checkout.html')
-
-class BrandView(View):
-    def get(self, request):
-        context = {
-
-        }
-        return render(request, 'brand.html', context)
 
 class PaymentView(View):
     def get(self, request):
@@ -280,7 +273,8 @@ class SearchView(View):
 
 def products(request):
     context = {
-        'shoes' : Shoe.objects.all()
+        'shoes' : Shoe.objects.all(),
+        'brands' : Brand.objects.all()
     }
     return render(request, 'products.html', context)
 
@@ -339,7 +333,10 @@ def login_page(request):
 
     return render(request, 'login.html', context)
 
-
+class BrandView(DetailView):
+    model = Brand
+    template_name = 'brand.html'
+        
 class ShoeDetailView(DetailView):
     model = Shoe
     template_name = 'individual-product.html'
@@ -457,4 +454,3 @@ def add_to_cart(request, slug):
     #     order = OrderList.objects.filter(user=request.user, ordered=False)
 
     #     return redirect('oyeda:order-summary')
-

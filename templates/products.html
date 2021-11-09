@@ -4,13 +4,10 @@
     <div class="" style="background-color: red; height: 300px; width: 100%; margin-bottom: 40px; color: white; text-align: center;">
         <p style="padding-top: 120px;">S h o e s</p>
     </div>
-    <div>
-        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>Nike</btn>
-        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>Adidas</btn>
-        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>Puma</btn>
-        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>New Balance</btn>
-        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>Vans</btn>
-        <btn href='{ url "oyeda:brand-selection"}' class='btn btn-danger'>Converse</btn>
+    <div style="display: flex; justify-content: space-between; margin: 20px;">
+        {% for brand in brands %}
+            <a href='{{ brand.get_brand_url }}' class='btn btn-{{ brand.btn_type }} padding-top: 30px;'>{{ brand.name }}</a>
+        {% endfor %}
     </div>
     <div style="display: flex; justify-content: center; margin: 0px 3.125% 0px 3.125%">
         {% for shoe in shoes %}
