@@ -222,8 +222,6 @@ class PaymentView(View):
         else:
             print("That ain't it G")
     
-        
-
 def home(request):    
     current_user = request.user
     print(current_user)
@@ -336,7 +334,15 @@ def login_page(request):
 class BrandView(DetailView):
     model = Brand
     template_name = 'brand.html'
-        
+
+    def get_context_data(self, **kwargs):
+        context = super(BrandView, self).get_context_data(**kwargs)
+        slug = self.kwargs['slug']
+        print(slug)
+        context['shoes'] = Shoe.objects.all().filter(brand_slug=slug)
+        return context
+
+
 class ShoeDetailView(DetailView):
     model = Shoe
     template_name = 'individual-product.html'

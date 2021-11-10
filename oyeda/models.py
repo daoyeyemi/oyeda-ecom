@@ -26,6 +26,15 @@ button_choices = (
     ('success', 'success')
 )
 
+brand_slug_choices = (
+    ('nike', 'nike'),
+    ('adidas', 'adidas'),
+    ('puma', 'puma'),
+    ('new-balance', 'new-balance'),
+    ('vans', 'vans'),
+    ('converse', 'converse')
+)
+
 class Brand(models.Model):
     btn_type = models.CharField(choices=button_choices, max_length=20)
     name = models.CharField(choices=brand_choices, max_length=20)
@@ -39,7 +48,6 @@ class Brand(models.Model):
             'slug' : self.slug
         })
 
-
 class Shoe(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
@@ -48,6 +56,7 @@ class Shoe(models.Model):
     image = models.ImageField()
     slug = models.SlugField()
     new_arrival = models.BooleanField(default=False)
+    brand_slug = models.CharField(choices=brand_slug_choices, default='nike', max_length=20)
 
     def __str__(self):
         return self.name

@@ -2,6 +2,25 @@
 
 {% block content %}
 
-    <h1>{{ object.name }}</h1>
+    <h1 style="margin: 30px; text-align: center;">{{ object.name }}</h1>
 
+    <div style="width: 450px; margin-left: auto; margin-right: auto;">
+        <div style="display: flex; justify-content: center; margin: 0px 3.125% 0px 3.125%">
+            {% for shoe in shoes %}
+                <div style="width: 300px; text-align: center; margin: 20px 1% 20px 1%;">   
+                    <div style="background-color: black; height: 300px; width: 300px;"></div>
+                    <div style="width: 300px; margin-bottom: 2px;">
+                        <a href='{{ shoe.get_absolute_url }}'><p style="color: red; margin: 10px 2px 2px 2px;">{{ shoe.name }}</p></a>
+                        <p style="margin: 2px;">{{ shoe.brand }}</p>
+                        <p style="margin: 2px;">${{ shoe.price|floatformat:2  }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+
+{% endblock %}
+
+{% block footer %}
 {% endblock %}
