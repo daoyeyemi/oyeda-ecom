@@ -342,6 +342,14 @@ class BrandView(DetailView):
         context['shoes'] = Shoe.objects.all().filter(brand_slug=slug)
         return context
 
+def new_arrivals(request):
+    new_shoes = Shoe.objects.all().filter(new_arrival=True)
+    print(new_shoes)
+    context = {
+        'new_shoes' : new_shoes
+    }
+
+    return render(request, 'new_arrivals.html', context)
 
 class ShoeDetailView(DetailView):
     model = Shoe

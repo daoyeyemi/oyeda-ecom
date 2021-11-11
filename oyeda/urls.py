@@ -6,6 +6,7 @@ app_name = 'oyeda'
 urlpatterns = [
     path('', views.home, name='home'),
     path('products/', views.products, name='products'),
+    path('products/new_arrivals/', views.new_arrivals, name='new_arrivals'),
     path('brands/<slug>/', views.BrandView.as_view(), name='brand-selection'),
     path('products/<slug>/', views.ShoeDetailView.as_view(), name='individual-product'),
     path('signup/', views.signup, name='signup'),

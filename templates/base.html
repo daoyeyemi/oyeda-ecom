@@ -746,7 +746,7 @@
             </div>
             <div class='nav-links'>
                 <a href="{% url 'oyeda:products' %}" class='nav-link'>Shop</a>
-                <a href="{% url 'oyeda:home' %}" class='nav-link'>Brands</a>
+                <a href="{% url 'oyeda:products' %}" class='nav-link'>Brands</a>
                 <a href="{% url 'oyeda:home' %}" class='nav-link'>New Arrivals</a>
             </div>
             <div class='hamburger'>
@@ -756,7 +756,7 @@
                 <ul>
                     <li onclick="show()"><i class="fa fa-times x" aria-hidden="true"></i></li>
                     <li><a href="{% url 'oyeda:products' %}" class="sidebar-tag-type-1">Shop</a></li>
-                    <li><a href="{% url 'oyeda:home' %}" class="sidebar-tag-type-1">Brands</a></li>
+                    <li><a href="{% url 'oyeda:products' %}" class="sidebar-tag-type-1">Brands</a></li>
                     <li><a href="{% url 'oyeda:home' %}" class="sidebar-tag-type-1">New Arrivals</a></li>
                 {% if request.user.is_authenticated %}
                     <!-- <li><button onclick="{{ views.user_logout }}">Logout</button></li> -->
