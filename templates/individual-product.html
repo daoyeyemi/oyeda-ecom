@@ -4,24 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6" style="margin-top: 30px">
-                <div class="" style="background-color: black; height: 500px; width: 100%;">
+                <div class="" style="background-color: black; height: 475px; width: 475px;">
 
                 </div>
-                <div style="display: flex;">
-                    <div style="background-color: black; width: 150px; height: 150px; margin: 10px 10px 10px 0px;">
-
-                    </div>
-                    <div style="background-color: black; width: 150px; height: 150px; margin: 10px;">
-                        
-                    </div>
-                    <div style="background-color: black; width: 150px; height: 150px; margin: 10px;">
-                        
-                    </div>
-                </div> 
             </div>
             <div class="col-md-6" style="margin-top: 30px; margin-bottom: 30px;">
                 <div style="margin-left: 20px;">
-                    <h1>{{ object.title }}</h1>
+                    <h1>{{ object.name }}</h1>
                     <h2>{{ object.brand }}</h2>
                     <h3>${{ object.price|floatformat:2  }}</h3>
                     <p>{{ object.description }}</p>

@@ -23,7 +23,9 @@ button_choices = (
     ('danger', 'danger'),
     ('warning', 'warning'),
     ('light', 'light'),
-    ('success', 'success')
+    ('success', 'success'),
+    ('info', 'info'),
+    ('dark', 'dark')
 )
 
 brand_slug_choices = (

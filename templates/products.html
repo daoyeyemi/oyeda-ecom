@@ -2,24 +2,36 @@
 
 {% block content %}
     <div class="" style="background-color: red; height: 300px; width: 100%; margin-bottom: 40px; color: white; text-align: center;">
-        <p style="padding-top: 120px;">S h o e s</p>
+        <h1 style="padding-top: 120px;">S h o e s</h1>
     </div>
-    <div style="display: flex; justify-content: space-between; margin: 20px;">
-        {% for brand in brands %}
-            <a href='{{ brand.get_brand_url }}' class='btn btn-{{ brand.btn_type }} padding-top: 30px;'>{{ brand.name }}</a>
-        {% endfor %}
+
+    <div class="row">
+        <div style="width: 550px; margin: auto; text-align: center;">
+            {% for brand in brands %}
+                <!-- <div style='margin: 10px 25px 10px 25px; display: inline-block;'>     -->
+                    <a href='{{ brand.get_brand_url }}' class='btn btn-{{ brand.btn_type }}' style='padding: 10px; min-width: 200px; margin: 10px 15px 10px 15px;'>{{ brand.name }}</a>
+                <!-- </div> -->
+            {% endfor %}
+        </div>  
     </div>
-    <div style="display: flex; justify-content: center; margin: 0px 3.125% 0px 3.125%">
-        {% for shoe in shoes %}
-            <div style="width: 300px; height: 300px; text-align: center; margin: 0px 1% 0px 1%;">   
-            <div style="background-color: black; height: 300px; width: 300px;"></div>
-            <div style="width: 300px; margin-bottom: 2px;">
-                <a href='{{ shoe.get_absolute_url }}'><p style="color: red; margin: 10px 2px 2px 2px;">{{ shoe.name }}</p></a>
-                <p style="margin: 2px;">{{ shoe.brand }}</p>
-                <p style="margin: 2px;">${{ shoe.price|floatformat:2  }}</p>
-            </div>
-            </div>
-        {% endfor %}
+      
+        
+    <!-- <div style="display: flex; justify-content: center; margin: 0px 3.125% 0px 3.125%"> -->
+        <div class="row">
+            {% for shoe in shoes %}
+                <div class="col-md-4" style="margin: 20px auto 20px auto; text-align: center;">
+                    <div class="product-outline" style="width: 250px; height: 250px; text-align: center; margin: 30px auto 30px auto;">   
+                        <div class="product-image" style="background-color: black; height: 250px; width: 100%;"></div>
+                        <div style="width: 250px; margin-bottom: 2px;">
+                            <a href='{{ shoe.get_absolute_url }}'><p style="color: red; margin: 10px 2px 2px 2px;">{{ shoe.name }}</p></a>
+                            <p style="margin: 2px;">{{ shoe.brand }}</p>
+                            <p style="margin: 2px;">${{ shoe.price|floatformat:2  }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
     </div>
 {% endblock %}
 
