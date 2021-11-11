@@ -17,20 +17,24 @@
       
         
     <!-- <div style="display: flex; justify-content: center; margin: 0px 3.125% 0px 3.125%"> -->
-        <div class="row">
-            {% for shoe in shoes %}
-                <div class="col-md-4" style="margin: 20px auto 20px auto; text-align: center;">
-                    <div class="product-outline" style="width: 250px; height: 300px; text-align: center; margin: 30px auto 30px auto;">   
-                        <div class="product-image" style="background-color: black; height: 250px; width: 100%;"></div>
-                        <div style="width: 250px; margin-bottom: 2px;">
-                            <a href='{{ shoe.get_absolute_url }}'><p style="color: red; margin: 10px 2px 2px 2px;">{{ shoe.name }}</p></a>
-                            <p style="margin: 2px;">{{ shoe.brand }}</p>
-                            <p style="margin: 2px;">${{ shoe.price|floatformat:2 }}</p>
-                        </div>
-                    </div>
+    <div class="row">
+        {% for shoe in shoes %}
+            <div class="col-md-4" style="margin: 20px auto 20px auto; text-align: center;">
+                <div class="product-outline" style="width: 250px; height: 300px; text-align: center; margin: 30px auto 30px auto;">   
+                    
+                    <div class="product-image" style="background-color: black; height: 250px; width: 100%;"></div>
+                    <div style="width: 250px; margin-bottom: 2px;">
+                        <a href='{{ shoe.get_absolute_url }}'><p style="color: red; margin: 10px 2px 2px 2px;">{{ shoe.name }}</p></a>
+                        <p style="margin: 2px;">{{ shoe.brand }}</p>
+                        <p style="margin: 2px;">${{ shoe.price|floatformat:2 }}</p>
+                        {% if shoe.new_arrival %}
+                            <div style="color: navy">new</div>
+                        {% endif %}
                 </div>
-            {% endfor %}
-        </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
         
     </div>
 {% endblock %}

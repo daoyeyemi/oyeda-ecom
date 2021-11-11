@@ -3,6 +3,9 @@
 {% block content %}
 
     <h1 style="text-align: center; margin: 50px;">Search</h1>
+    
+    <h2 style="margin: 30px auto 30px auto; text-align: center;">Search product names below</h2>
+
     <div style="display: flex; justify-content: center;">
         <form method="POST">
             {% csrf_token %}
@@ -14,20 +17,21 @@
               </div>
         </form>
     </div>
-<div style="margin: 50px;">
-    {% if shoes %}
-        <p>Click on items to go to the product's individual view page.</p>
-        {% for shoe in shoes %}
-            <div style="display: flex; justify-content: center;">
-                <a style="color: red;" href="{% url 'oyeda:individual-product' shoe.slug %}">{{ shoe.name }}</a>
-            </div>
-        {% endfor %}
-    {% else %}
-            <div style="display: flex; justify-content: center;">
-                <p>No products were found.</p>
-            </div>
-    {% endif %}
-</div>
+
+    <div style="margin: 50px;">
+        {% if shoes %}
+            <p style="text-align: center;">Click on items to go to the product's individual view page.</p>
+            {% for shoe in shoes %}
+                <div style="display: flex; justify-content: center;">
+                    <a style="color: red;" href="{% url 'oyeda:individual-product' shoe.slug %}">{{ shoe.name }}</a>
+                </div>
+            {% endfor %}
+        {% else %}
+                <div style="display: flex; justify-content: center;">
+                    <p>No products found.</p>
+                </div>
+        {% endif %}
+    </div>
     
     
     

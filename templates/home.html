@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     {% if request.user.is_authenticated %}
@@ -45,28 +46,28 @@
     </div>
 
     <div class="brands" style="display: flex; justify-content: center; height: 200px; margin-left: 5%; margin-right: 5%; width: 90%;">
-        <div class="brand-boxes"></div>
-        <div class="brand-boxes"></div>
-        <div class="brand-boxes"></div>
+        <img src="{% static 'images/nike-logo.jpeg' %}" style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px;" alt="Nike" />
+        <img src="{% static 'images/adidas-logo.jpeg' %}" style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px;" alt="Nike" />
+        <img src="{% static 'images/new-balance-logo.png' %}" style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px;" alt="Nike" />
     </div>
     <div class="brand5" style="display: flex; justify-content: center; height: 200px; margin-left: 5%; margin-right: 5%; width: 90%;">
-        <div class="brand-boxes"></div>
-        <div class="brand-boxes"></div>
-        <div class="brand-boxes"></div>
+        <img src="{% static 'images/puma-logo.jpeg' %}" style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px;" alt="Nike" />
+        <img src="{% static 'images/vans-logo.jpeg' %}" style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px;" alt="Nike" />
+        <img src="{% static 'images/converse-logo.png' %}" style="padding: 10px 0px 10px 0px; margin: 20px 10px 20px 10px; height: 200px; min-width: 200px;" alt="Nike" />
     </div>
     <div class="premiere-item-block">
         <div class="premiere-item">
-            <div class="premiere-item-1"></div>
-            <div class="premiere-item-2"></div>
-            <div class="premiere-item-3"></div>
+            <img class="premiere-item-1" src="{% static 'images/new-balance-premiere-item-1.png' %}" />
+            <img class="premiere-item-2" src="{% static 'images/new-balance-premiere-item-2.png' %}" />
+            <img class="premiere-item-3" src="{% static 'images/new-balance-premiere-item-2.png' %}" />
         </div>
         <div class="single-product-description">
-            <h3>Brand</h3>
-            <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800;">Shoe name</h1>
-            <h4 style="margin-bottom: 10px;">Price</h4>
+            <h3>New Balance</h3>
+            <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800;">574 Classic</h1>
+            <h4 style="margin-bottom: 10px;">$69.99</h4>
             <button style="margin-bottom: 20px;" class="btn btn-primary">Add to Cart</button>
             <!-- <div style="height: 50%; width: 100%; color: black; margin-bottom: 20px;"></div> -->
-            <h5 style="margin-bottom: 0px; padding-bottom: 20px;">Description</h5>    
+            <h5 style="margin-bottom: 0px; padding-bottom: 20px;">Now known as the 574 Classic, that’s exactly what it is: one of the most classic pieces of footwear to ever hit the pavement. The beloved sneaker is available in a wide variety of color options from the iconic grey and navy colorways to more trendy color combinations.</h5>    
         </div>  
     </div>
         
@@ -90,16 +91,16 @@
             <div class="row">
                 <div class="premiere-block">
                     <div class="premiere-brand">
-                        <h1 style="margin-top: 30px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800;">Brand Title</h1>
-                        <p style="text-align: center;">Description</p>
+                        <h1 style="margin-top: 30px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800;">Puma</h1>
+                        <p style="text-align: center;">PUMA is one of the world’s leading sports brands, designing, developing, selling and marketing footwear, apparel and accessories. For 70 years, PUMA has relentlessly pushed sport and culture forward by creating fast products for the world’s fastest athletes. PUMA offers performance and sport-inspired lifestyle products in categories such as Football, Running and Training, Basketball, Golf, and Motorsports.</p>
                         <button class="btn btn-warning">Find Out More</button>
                     </div>
-                    <div class='premiere-brand-image'></div>
+                    <img class='premiere-brand-image' src="{% static 'images/big-sean-puma-brand.jpeg' %}" />
                 </div>
                 <div class="triple-box-item-links">
-                    <div class="triple-box-item-1"></div>
-                    <div class="triple-box-item-2"></div>
-                    <div class="triple-box-item-3"></div>
+                    <img src="{% static 'images/shoe-model-1.jpeg' %}" class="triple-box-item-1" />
+                    <img src="{% static 'images/shoe-model-2.jpeg' %}" class="triple-box-item-2" />
+                    <img src="{% static 'images/shoe-model-3.jpeg' %}" class="triple-box-item-3" />
                 </div>
                 <div style="margin: 30px 0px 30px 0px; ">
                     <p style="color: white; font-size: 50px; text-align: center;">@oyedaEcom #oyedaEcom</p>
