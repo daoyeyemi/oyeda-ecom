@@ -45,29 +45,34 @@
         <!-- video -->
     </div>
 
-    <div class="brands-1">
+    <div class="brands">
         <img class="brand-box-items" src="{% static 'images/nike-logo.jpeg' %}" alt="Nike" />
         <img class="brand-box-items" src="{% static 'images/adidas-logo.jpeg' %}" alt="Adidas" />
         <img class="brand-box-items" src="{% static 'images/new-balance-logo.png' %}" alt="New Balance" />
     </div>
-    <div class="brands-2">
+    <div class="brand5">
         <img class="brand-box-items" src="{% static 'images/puma-logo.jpeg' %}" alt="Puma" />
         <img class="brand-box-items" src="{% static 'images/vans-logo.jpeg' %}" alt="Vans" />
         <img class="brand-box-items" src="{% static 'images/converse-logo.png' %}" alt="Converse" />
     </div>
     <div class="premiere-item-block">
         <div class="premiere-item">
-            <img class="premiere-item-1" src="{% static 'images/new-balance-premiere-item-1.png' %}" />
-            <img class="premiere-item-2" src="{% static 'images/nb-premiere-blue.png' %}" />
+            <!-- <img class="premiere-item-1" src="{% static 'images/new-balance-premiere-item-1.png' %}" />
+            <img class="premiere-item-2" src="{% static 'images/nb-premiere-blue.png' %}" /> -->
             <img class="premiere-item-3" src="{% static 'images/nb-premiere-red.png' %}" />
         </div>
-        <div class="single-product-description">
-            <h3>New Balance</h3>
+        <div class="single-product-description" style="float: right;">
+            <h2>New Balance</h2>
             <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800;">574 Classic</h1>
-            <h4 style="margin-bottom: 10px;">$69.99</h4>
+            <h3 style="margin-bottom: 10px;">$69.99</h3>            
+            <h5 style="margin: 0px 25px 0px 25px;">
+                Now known as the 574 Classic, that’s exactly what it is: one of the most 
+                classic pieces of footwear to ever hit the pavement. The beloved sneaker 
+                is available in a wide variety of color options from the iconic grey and 
+                navy colorways to more trendy color combinations.
+            </h5>    
             <button style="margin-bottom: 20px;" class="btn btn-primary">Add to Cart</button>
             <!-- <div style="height: 50%; width: 100%; color: black; margin-bottom: 20px;"></div> -->
-            <h5 style="margin-bottom: 0px; padding-bottom: 20px;">Now known as the 574 Classic, that’s exactly what it is: one of the most classic pieces of footwear to ever hit the pavement. The beloved sneaker is available in a wide variety of color options from the iconic grey and navy colorways to more trendy color combinations.</h5>    
         </div>  
     </div>
         
@@ -87,50 +92,55 @@
             </div>  
         </div> -->
     <div style="background-color: navy;">
-        <div class="container">
-            <div class="row">
-                <div class="premiere-block">
-                    <div class="premiere-brand">
-                        <h1 style="margin-top: 30px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800;">Puma</h1>
-                        <p style="text-align: center;">PUMA is one of the world’s leading sports brands, designing, developing, selling and marketing footwear, apparel and accessories. For 70 years, PUMA has relentlessly pushed sport and culture forward by creating fast products for the world’s fastest athletes. PUMA offers performance and sport-ins: white lifestyle products in categories such as Football, Running and Training, Basketball, Golf, and Motorsports.</p>
-                        <button class="btn btn-warning">Check out products</button>
-                    </div>
-                    <img class='premiere-brand-image' src="{% static 'images/izzy-puma.jpeg' %}" />
-                </div>
-                <div class="triple-box-item-links">
-                    <div class="new-arrivals-div">
-                      <div class="triple-box-item-1">
-                        <div style="color: white; font-weight: 900;" class='new-arrivals-overlay'>New Arrivals</div>
-                      </div>
-                      <!-- <img src="{% static 'images/shoe-model-1.jpeg' %}" class="triple-box-item-1" /> -->
-                    </div>
-                    <div class="brands-div">
-                        <div class="triple-box-item-2">
-                            <div style="color: white; font-weight: 900;" class='brands-overlay'>Brands</div>
-                        </div>
-                        <!-- <img src="{% static 'images/shoe-model-2.jpeg' %}" class="triple-box-item-2" /> -->
-                    </div>
-                    <div class="shop-div">
-                        <div class="triple-box-item-3">
-                            <div style="color: white; font-weight: 900;" class='shop-overlay'>Shop</div>
-                        </div>
-                        <!-- <img src="{% static 'images/shoe-model-3.jpeg' %}" class="triple-box-item-3" /> -->
-                    </div>
-                </div>
-                <div class='website-tags' style="margin: 30px 0px 30px 0px;">
-                    <p style="color: white; font-size: 50px; text-align: center;">@oyedaEcom #oyedaEcom</p>
-                    <!-- <p style="color: black; font-size: 50px; margin-left: 30px;"></p> -->
-                </div>
+        <div class="premiere-block">
+            <div class="premiere-brand">
+                <h1 style="margin-top: 10px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 800;">Puma</h1>
+                <h5 style="text-align: center; margin-bottom: 20px;">
+                    Puma is one of the world’s leading sports brands, designing, developing, 
+                    selling and marketing footwear, apparel and accessories. For 70 years, Puma 
+                    has relentlessly pushed sport and culture forward by creating fast products 
+                    for the world’s fastest athletes. Puma offers performance and sport-ins: 
+                    white lifestyle products in categories such as football, running, 
+                    basketball, golf, and motorsports.
+                </h5>
+                <button class="btn btn-warning">Check out products</button>
+            </div>
+            <img class='premiere-brand-image' src="{% static 'images/izzy-puma.jpeg' %}" />
         </div>
     </div>
+    <div>
+        <div class="triple-box-item-links">
+            <div class="new-arrivals-div">
+                <div class="triple-box-item-1">
+                <div style="color: white; font-weight: 900;" class='new-arrivals-overlay'>New Arrivals</div>
+                </div>
+                <!-- <img src="{% static 'images/shoe-model-1.jpeg' %}" class="triple-box-item-1" /> -->
+            </div>
+            <div class="brands-div">
+                <div class="triple-box-item-2">
+                    <div style="color: white; font-weight: 900;" class='brands-overlay'>Brands</div>
+                </div>
+                <!-- <img src="{% static 'images/shoe-model-2.jpeg' %}" class="triple-box-item-2" /> -->
+            </div>
+            <div class="shop-div">
+                <div class="triple-box-item-3">
+                    <div style="color: white; font-weight: 900;" class='shop-overlay'>Shop</div>
+                </div>
+                <!-- <img src="{% static 'images/shoe-model-3.jpeg' %}" class="triple-box-item-3" /> -->
+            </div>
+        </div>
+        <div class='website-tags'>
+            <p style="background-color: black; color: white; font-weight: 900; width: 100%; font-size: 50px; padding: 30px; text-align: center;">@oyedaEcom #oyedaEcom</p>
+            <!-- <p style="color: black; font-size: 50px; margin-left: 30px;"></p> -->
+        </div>
     </div>
         
     <div class="soc-med-pics-set">
-        <img src="{% static 'images/jordan-flight-club-91.png' %}" class="soc-med-pics" />
-        <img src="{% static 'images/jordan-flight-club-91.png' %}" class="soc-med-pics" />
-        <img src="{% static 'images/nike-air-force-1-shadow.png' %}" class="soc-med-pics" />
-        <img src="{% static 'images/nike-kyrie-7.png' %}" class="soc-med-pics" />
-        <img src="{% static 'images/originals-nmd-r1.png' %}" class="soc-med-pics" />
+        <img src="{% static 'images/calvin-klein-holdup.jpeg' %}" class="soc-med-pics" />
+        <img src="{% static 'images/model-type.jpeg' %}" class="soc-med-pics" />
+        <img src="{% static 'images/cute-girl.jpg' %}" class="soc-med-pics" />
+        <img src="{% static 'images/lupe.jpg' %}" class="soc-med-pics" />
+        <img src="{% static 'images/hella-shoes.jpg' %}" class="soc-med-pics" />
     </div>
 {% endblock %}
             <!-- </div> -->
