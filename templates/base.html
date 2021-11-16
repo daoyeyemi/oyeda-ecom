@@ -271,8 +271,10 @@
 
         .premiere-item-3 {
             margin: 10px 10px 10px 15%; 
+            /* change */
             height: 470px; 
             width: 470px; 
+            /* change */
             background-color: white; 
             border-radius: 7%;
             padding: 10px;
@@ -414,13 +416,15 @@
         }
 
         .single-product-description {
-                width: 40%;
-                display: inline-block;
-                padding: 40px 20px 0px 20px;
-                margin: 35px 60px 35px 60px; 
-                text-align: center; 
-                color: white;
-            }
+            width: 40%;
+            /* change */
+            display: inline-block;
+            /* change */
+            padding: 40px 20px 0px 20px;
+            margin: 35px 60px 35px 60px; 
+            text-align: center; 
+            color: white;
+        }
 
         /* @media screen and (max-width: 899px) {
             .single-product-description {
@@ -472,11 +476,50 @@
             }
         }
 
+        @media only screen and (max-width: 1067px) {
+            .single-product-description {
+                display: block;
+                text-align: center;
+                float: none;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+        }
+
+        @media only screen and (max-width: 1067px) {
+            img.premiere-item-3 {
+                margin: 10px;
+            }
+            
+            .premiere-item-block {
+                text-align: center;
+            }
+        }
+
         @media only screen and (max-width: 660px) {
             img.premiere-brand-image {
                 float: none;
                 width: 450px;
                 height: 300px;   
+            }
+
+            .premiere-item {
+                display: block;
+                margin-left: 25%;
+                margin-right: 25%;
+                width: 50%;
+            }
+
+            .premiere-item-3 {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            img.premiere-item-3 {
+                margin-left: auto;
+                margin-right: auto;
             }
         }
 
