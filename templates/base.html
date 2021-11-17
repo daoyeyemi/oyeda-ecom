@@ -152,30 +152,29 @@
         .brands {
             display: flex; 
             justify-content: center; 
-            height: 200px; 
-            width: 90%; 
-            margin: 20px 5% 20px 5%;
-        }
-        .active-brands {
-            height: 200px;
+            margin-left: 22.5%;
+            margin-right: 22.5%;
+            width: 55%;
         }
 
         .brand5 {
             display: flex; 
             justify-content: center; 
-            height: 200px; 
-            width: 90%;
-            margin: 20px 5% 45px 5%; 
+            margin-left: 22.5%;
+            margin-right: 22.5%;
+            width: 55%;
         }
         
         img.brand-box-items {
-            /* padding: 10px 0px 10px 0px;  */
-            margin: 15px 10px 15px 10px; 
-            height: 200px; 
-            min-width: 200px;
+            content: "";
+            margin: 1.66%; 
+            width: 30%;
             border-radius: 7%;
-            padding: 1px;
-            border: 2px solid gray;  
+        }
+
+        img.brand-box-items::after {
+            display: block;
+            padding-bottom: 100%;
         }
 
         .premiere-block {
@@ -193,18 +192,18 @@
         }
 
         img.premiere-brand-image {
-            height: 400px; 
-            width: 600px; 
+            height: 472px; 
+            width: 630px; 
             margin-top: 70px; 
             margin-left: 5%; 
             margin-right: 5%; 
-            margin-bottom: 30px; 
+            margin-bottom: 70px; 
             text-align: center; 
             float: right;
             border-radius: 5%;
             border: 1px solid white;
         }
-        
+        /* 630 x 472 */
         .brand-boxes {
             padding: 10px 0px 10px 0px; 
             margin: 20px 10px 20px 10px; 
@@ -218,33 +217,6 @@
             display: block;
             width: 100%;
             overflow: auto;
-        }
-        /* @media screen and (max-width: 1067px) {
-            .premiere-item-block {
-                display: block;
-            }
-            
-        } */
-        @media screen and (max-width: 681px) {
-            .brand-boxes {
-                height: 150px; 
-                min-width: 150px;
-                margin: 15px 5px 0px 5px;
-                padding: 0px 0px 0px 0px;
-            } 
-            .brands {
-                margin-top: 10px;
-                margin-bottom: -20px;
-                height: 100px;
-            }
-            .brand5 {
-                margin-top: 0px;
-                margin-bottom: 10px;
-                height: 100px;
-            }
-            .active-brands {
-                height: 100px;
-            }
         }
 
         .triple-box-item-links {
@@ -279,10 +251,6 @@
             display: block;
             margin: 1.66%;
             border-radius: 5%;
-            border: 1.5px solid black;
-            background-color: white;
-            background-image: url("static/images/newarrivals.png");
-            background-size: 400px 400px;
         }
 
         img.triple-box-item-1::after {
@@ -295,10 +263,6 @@
             width: 30%; 
             margin: 1.66%;
             border-radius: 5%;
-            border: 1.5px solid black;
-            background-color: white;
-            background-image: url("static/images/shop-2.jpg");
-            background-size: 400px 400px;
         }
         
         img.triple-box-item-2::after {
@@ -312,10 +276,6 @@
             width: 30%; 
             margin: 1.66%;
             border-radius: 5%;
-            border: 1.5px solid black;
-            /* background-color: white; */
-            /* background-image: url("static/images/brands-2.jpg"); */
-            /* background-size: 400px 400px; */
         }
 
         img.triple-box-item-3::after {
@@ -435,6 +395,36 @@
             }
         }
 
+        @media only screen and (max-width: 707px) {
+            .brands {
+                display: flex; 
+                justify-content: center;
+                margin-left: 0%;
+                margin-right: 0%; 
+                width: 100%;
+            }
+
+            .brand5 {
+                display: flex; 
+                justify-content: center;
+                margin-left: 0%;
+                margin-right: 0%;
+                width: 100%; 
+            }
+            
+            img.brand-box-items {
+                content: "";
+                margin: 1.66%; 
+                width: 30%;
+                border-radius: 7%;
+            }
+
+            img.brand-box-items::after {
+                display: block;
+                padding-bottom: 100%;
+            }
+        }
+        
         @media only screen and (max-width: 660px) {
             img.premiere-brand-image {
                 float: none;
