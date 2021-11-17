@@ -215,11 +215,16 @@
 
         .premiere-item-block {
             background-color: rgb(167, 17, 17); 
-            display: inline-block;
+            display: block;
             width: 100%;
             overflow: auto;
         }
-
+        /* @media screen and (max-width: 1067px) {
+            .premiere-item-block {
+                display: block;
+            }
+            
+        } */
         @media screen and (max-width: 681px) {
             .brand-boxes {
                 height: 150px; 
@@ -247,6 +252,7 @@
             width: 100%; 
             justify-content: space-between;
             margin: 40px 0px 40px 0px;
+            text-align: center;
         }
 
         /* .premiere-item-1 {
@@ -289,40 +295,62 @@
         }
 
         .triple-box-item-1 {
-            width: 400px; 
-            height: 400px; 
-            margin: 10px 7px 10px 7px;
+            width: 30%;
+            display: block;
+            margin: 1.66%;
             border-radius: 5%;
-            border: 1.5px solid white;
+            border: 1.5px solid black;
             background-color: white;
             background-image: url("static/images/newarrivals.png");
             background-size: 400px 400px;
         }
 
+        .triple-box-item-1::after {
+            content: "";
+            display: block;
+            padding-bottom: 80%;
+        }
+
         .triple-box-item-2 {
-            width: 400px; 
-            height: 400px; 
-            margin: 10px 7px 10px 7px;
+            width: 30%; 
+            margin: 1.66%;
             border-radius: 5%;
-            border: 1.5px solid white;
+            border: 1.5px solid black;
             background-color: white;
             background-image: url("static/images/shop-2.jpg");
             background-size: 400px 400px;
         }
+        
+        .triple-box-item-2::after {
+            content: "";
+            display: block;
+            padding-bottom: 100%;
+        }
 
         .triple-box-item-3 {
-            width: 400px; 
-            height: 400px; 
-            margin: 10px 7px 10px 7px;
+            content: "";
+            width: 30%; 
+            margin: 1.66%;
             border-radius: 5%;
-            border: 1.5px solid white;
+            border: 1.5px solid black;
             background-color: white;
             background-image: url("static/images/brands-2.jpg");
             background-size: 400px 400px;
         }
 
+        .triple-box-item-3::after {
+            display: block;
+            padding-bottom: 100%;
+        }
+
+        .content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
         img.triple-box-item-1:hover, 
-        img.triple-box-item-2:hover, 
+        img.trile-box-item-2:hover, 
         img.triple-box-item-3:hover {
             filter: grayscale(100%);
             transition: filter 0.5s ease-in-out;
@@ -358,7 +386,7 @@
             justify-content: center;
         }
 
-        @media screen and (max-width: 1002px) {
+        /* @media screen and (max-width: 1002px) {
             .triple-box-item-links {
                 display: inline-block;
                 width: 90%;
@@ -388,14 +416,14 @@
                 margin-right: 10%;
                 margin-left: 10%;
             }
-        }
+        } */
         
         .premiere-item {
             display: inline-block; 
             margin-top: 15px; 
             margin-left: 20px; 
             margin-right: 20px; 
-            padding-top: 10px;
+            padding-top: 10px 0px 10px 0px;
         }
 
         img.soc-med-pics {
@@ -404,7 +432,7 @@
             width: 270px;
             border-radius: 7%;
             border: 1px white solid;
-            padding: 10px;
+            padding: 30px;
         }
 
         .soc-med-pics-set {
@@ -424,6 +452,7 @@
             margin: 35px 60px 35px 60px; 
             text-align: center; 
             color: white;
+            /* background-color: rgb(167, 17, 17); */
         }
 
         /* @media screen and (max-width: 899px) {
@@ -490,11 +519,12 @@
 
         @media only screen and (max-width: 1067px) {
             img.premiere-item-3 {
-                margin: 10px;
+                margin: 20px;
             }
             
             .premiere-item-block {
                 text-align: center;
+                display: block;
             }
         }
 
@@ -507,19 +537,10 @@
 
             .premiere-item {
                 display: block;
-                margin-left: 25%;
-                margin-right: 25%;
-                width: 50%;
             }
 
-            .premiere-item-3 {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
             img.premiere-item-3 {
-                margin-left: auto;
-                margin-right: auto;
+                margin: 10px;
             }
         }
 
