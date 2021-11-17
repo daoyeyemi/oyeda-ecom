@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
     <div class="" style="background-color: red; height: 300px; width: 100%; margin-bottom: 40px; color: white; text-align: center;">
         <h1 style="padding-top: 120px;">S h o e s</h1>
@@ -17,12 +17,12 @@
       
         
     <!-- <div style="display: flex; justify-content: center; margin: 0px 3.125% 0px 3.125%"> -->
-    <div style="display: flex; flex-wrap: wrap;">
+    <div class='product-set-outline'>
         {% for shoe in shoes %}
-            <div style="display: inline-block; width: 25%; margin: 4.16%; text-align: center;">
-                <div class="product-image" style="display: block; background-color: black; height: 250px; width: 100%; margin: 4.16%;"></div>
-                <div style="width: 100%; text-align: center;">
-                    <a href='{{ shoe.get_absolute_url }}'><p style="color: red;">{{ shoe.name }}</p></a>
+            <div class="product-outline">
+                <img src="{% static 'images/nike-kyrie-7.png' %}" class='product-image' style="width: 100%;" />
+                <div style="width: 100%; text-align: center; margin-top: 10px;">
+                    <a href='{{ shoe.get_absolute_url }}'><p style="margin: 2px; color: red;">{{ shoe.name }}</p></a>
                     <p style="margin: 2px;">{{ shoe.brand }}</p>
                     <p style="margin: 2px;">${{ shoe.price|floatformat:2 }}</p>
                     {% if shoe.new_arrival %}
@@ -35,4 +35,5 @@
 {% endblock %}
 
 {% block footer %}
+
 {% endblock %}

@@ -349,12 +349,6 @@
                 background-color: navy !important;
             }
 
-            /* .premiere-brand {
-                width: 80%;
-                text-align: center;
-                margin-left: 10%;
-                margin-right: 10%;
-            } */
             .premiere-brand-image-container {
                 text-align: center;
                 width: 100%;
@@ -362,7 +356,6 @@
 
             img.premiere-brand-image {
                 float: none;
-                
             }
 
             .premiere-brand {
@@ -785,6 +778,41 @@
         color: blue;
         transition: color 0.5s ease-in-out;
     }
+
+    img.product-image {
+        content: "";
+        border-radius: 5%;
+    }
+
+    img.product-image::after {
+        display: block;
+        padding-bottom: 100%;
+    }
+
+    .product-set-outline {
+        display: flex; 
+        flex-wrap: wrap; 
+        text-align: center;
+    }
+
+    .product-outline {
+        display: inline-block; 
+        width: 25%; 
+        margin: 20px 4.16666666667% 20px 4.16666666667%; 
+        text-align: center;
+    }
+
+    @media only screen and (max-width: 618px) {
+        .product-outline {
+            display: block; 
+            width: 80%;
+            margin: 30px 10%;
+        }
+        .product-set-outline {
+            display: block;
+        }
+    }
+
     </style>
 </head>
     <body>
