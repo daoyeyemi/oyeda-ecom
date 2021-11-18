@@ -114,9 +114,19 @@
     </div>
     <div>
         <div class="triple-box-item-links">
-            <img src="{% static 'images/shop-2.jpg' %}" class="triple-box-item-1" />
-            <img src="{% static 'images/newarrivals.png' %}" class="triple-box-item-2" />
-            <img src="{% static 'images/brands-2.jpg' %}" class="triple-box-item-3" />
+            <div class="tripleboxitem1" style="position: relative;">
+                <img src="{% static 'images/shop-2.jpg' %}" class="triple-box-item-1" />
+                <div style="position: absolute; top: 30%; left: 2%; width: 100%; font-weight: 900; color: white; font-size: 30px;">Shop</div>
+            </div>
+            <div class="tripleboxitem2" style="position: relative; ">
+                <img src="{% static 'images/newarrivals.png' %}" class="triple-box-item-2"/>
+                <div style="position: absolute; top: 30%; left: 2%; width: 100%; font-weight: 900; color: white; font-size: 30px;">New Arrivals</div>
+            </div>
+            <div class="tripleboxitem3" style="position: relative;">
+                <img src="{% static 'images/brands-2.jpg' %}" class="triple-box-item-3" />
+                <div style="position: absolute; top: 30%; left: 2%; width: 100%; font-weight: 900; color: white; font-size: 30px;">Brands</div>
+            </div>
+            
         </div>
         <div class='website-tags'>
             <p style="background-color: black; color: white; font-weight: 900; width: 100%; font-size: 50px; padding: 30px; text-align: center;">@oyedaEcom #oyedaEcom</p>

@@ -5,16 +5,13 @@
         <h1 style="padding-top: 120px;">S h o e s</h1>
     </div>
 
-    <div class=>
-        <div style="width: 550px; margin: auto; text-align: center;">
-            {% for brand in brands %}
-                <!-- <div style='margin: 10px 25px 10px 25px; display: inline-block;'>     -->
-                    <a href='{{ brand.get_brand_url }}' class='btn btn-{{ brand.btn_type }}' style='padding: 10px; min-width: 200px; margin: 10px 15px 10px 15px;'>{{ brand.name }}</a>
-                <!-- </div> -->
-            {% endfor %}
-        </div>  
-    </div>
-      
+    <div style="width: 550px; margin: auto; text-align: center;">
+        {% for brand in brands %}
+            <!-- <div style='margin: 10px 25px 10px 25px; display: inline-block;'>     -->
+                <a href='{{ brand.get_brand_url }}' class='btn btn-{{ brand.btn_type }}' style='padding: 10px; min-width: 200px; margin: 10px 15px 10px 15px;'>{{ brand.name }}</a>
+            <!-- </div> -->
+        {% endfor %}
+    </div>  
         
     <!-- <div style="display: flex; justify-content: center; margin: 0px 3.125% 0px 3.125%"> -->
     <div class='product-set-outline'>

@@ -246,11 +246,42 @@
             }
         }
 
-        img.triple-box-item-1 {
+        .tripleboxitem1,
+        .tripleboxitem2,
+        .tripleboxitem3 {
             width: 30%;
             display: block;
             margin: 1.66%;
             border-radius: 5%;
+        }
+
+        img.triple-box-item-1 {
+            filter: brightness(0.7);
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        img.triple-box-item-2,
+        img.triple-box-item-3 {
+            filter: brightness(0.8);
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .triple-box-item-1:hover,
+        .triple-box-item-2:hover,
+        .triple-box-item-3:hover {
+            opacity: 0.7;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+
+        img.triple-box-item-1,
+        img.triple-box-item-2, 
+        img.triple-box-item-3 {
+            width: 100%;
+            border-radius: 5%;
+            /* filter: grayscale(100%); */
+            /* transition: filter 0.5s ease-in-out; */
         }
 
         img.triple-box-item-1::after {
@@ -258,24 +289,11 @@
             display: block;
             padding-bottom: 100%;
         }
-
-        img.triple-box-item-2 {
-            width: 30%; 
-            margin: 1.66%;
-            border-radius: 5%;
-        }
         
         img.triple-box-item-2::after {
             content: "";
             display: block;
             padding-bottom: 100%;
-        }
-
-        img.triple-box-item-3 {
-            content: "";
-            width: 30%; 
-            margin: 1.66%;
-            border-radius: 5%;
         }
 
         img.triple-box-item-3::after {
@@ -289,12 +307,12 @@
             height: 100%;
         }
 
-        img.triple-box-item-1:hover, 
-        img.trile-box-item-2:hover, 
+        /* img.triple-box-item-1:hover, 
+        img.triple-box-item-2:hover, 
         img.triple-box-item-3:hover {
             filter: grayscale(100%);
             transition: filter 0.5s ease-in-out;
-        }
+        } */
         
         .website-tags {
             display: flex;
@@ -315,6 +333,12 @@
             width: 20%;
             border-radius: 7%;
             border: 1px white solid;
+            filter: brightness(1);
+        }
+
+        img.soc-med-pics:hover {
+            filter: brightness(0.7);
+            transition: filter 0.3s ease-in-out;
         }
 
         img.soc-med-pics::after {
