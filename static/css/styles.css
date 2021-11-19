@@ -2,13 +2,13 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.slight-description {
+.slight--description {
     opacity: 0;
-    transform: translate(0, 300px);
+    transform: translate(0, -300px);
     transition: all 1s ease-in;
 }
 
-.active {
+.active1 {
     opacity: 1;
     transform: translate(0, 0);
 }
@@ -97,17 +97,6 @@
 }
 
 .premiere-brand-active {
-    opacity: 1;
-    transform: translate(0, 0);
-}
-
-.triple-box-item-links {
-    opacity: 0;
-    transform: translate(-300px, 500px);
-    transition: all 1s ease-in-out;
-}
-
-.triple-box-item-links-active {
     opacity: 1;
     transform: translate(0, 0);
 }
@@ -239,13 +228,9 @@
    */
   .StripeElement {
     box-sizing: border-box;
-  
     height: 40px;
-  
     padding: 10px 12px;
-  
     background-color: white;
-  
     box-shadow: 0 1px 3px 0 #e6ebf1;
     -webkit-transition: box-shadow 150ms ease;
     transition: box-shadow 150ms ease;

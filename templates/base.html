@@ -15,13 +15,13 @@
     <script src="https://kit.fontawesome.com/91ac43c8df.js" crossorigin="anonymous"></script>
     <script>
         window.addEventListener('scroll', () => {
-            let content = document.querySelector('.slight-description');
+            let content = document.querySelector('.slight--description');
             let contentPosition = content.getBoundingClientRect().top;
             let screenPosition = window.innerHeight;
             if (contentPosition < screenPosition) {
-                content.classList.add('active');
+                content.classList.add('active1');
             } else {
-                content.classList.remove('active')
+                content.classList.remove('active1')
             }
         })
 
@@ -114,13 +114,13 @@
         })
 
         window.addEventListener('scroll', () => {
-            let content = document.querySelector('.triple-box-item-links');
+            let content = document.querySelector('.triple-box-item-link');
             let contentPosition = content.getBoundingClientRect().top;
             let screenPosition = window.innerHeight;
             if (contentPosition < screenPosition) {
-                content.classList.add('triple-box-item-links-active');
+                content.classList.add('triple-box-item-link-active');
             } else {
-                content.classList.remove('triple-box-item-links-active');
+                content.classList.remove('triple-box-item-link-active');
             }
         })
 
@@ -137,6 +137,17 @@
 
         .testing {
             color: black;
+        }
+
+        .triple-box-item-link {
+            opacity: 0;
+            /* transform: translate(300px, 1000px); */
+            transition: all 1s ease-in-out;
+        }
+
+        .triple-box-item-link-active {
+            opacity: 1;
+            /* transform: translate(0, 0); */
         }
 
         img.new-shoes-collection {
@@ -219,11 +230,11 @@
             overflow: auto;
         }
 
-        .triple-box-item-links {
+        .triple-box-item-link {
             display: flex; 
             width: 100%; 
             justify-content: space-between;
-            margin: 40px 0px 40px 0px;
+            padding: 40px 0px;
             text-align: center;
         }
 
@@ -253,6 +264,17 @@
             display: block;
             margin: 1.66%;
             border-radius: 5%;
+        }
+
+        .socmedpics {
+            width: 20%;
+            /* filter: brightness(1); */
+            /* transition: filter 0.5s ease-in-out; */
+        }
+
+        .socmedpics:hover {
+            /* filter: brightness(0.5); */
+            /* transition: filter 0.5s ease-in-out; */
         }
 
         img.triple-box-item-1 {
@@ -329,16 +351,24 @@
         }
 
         img.soc-med-pics {
-            background-color: white;  
-            width: 20%;
+            background-size: contain;
+            width: 100%;
             border-radius: 7%;
             border: 1px white solid;
-            filter: brightness(1);
+            display: flex;
+            justify-content: center; 
+            align-items: center;
         }
 
-        img.soc-med-pics:hover {
-            filter: brightness(0.7);
-            transition: filter 0.3s ease-in-out;
+        img.soc-med-pics:hover + .overlay {
+            display: block;
+        }
+        
+        .overlay {
+            display: none;
+            opacity: 0.7;
+            background-color: black;
+            border-radius: 7%;
         }
 
         img.soc-med-pics::after {
@@ -351,7 +381,7 @@
             width: 100%; 
             display: flex; 
             justify-content: center; 
-            align-items: stretch;
+            align-items: center;
         }
 
         .single-product-description {
@@ -836,7 +866,6 @@
             display: block;
         }
     }
-
     </style>
 </head>
     <body>
