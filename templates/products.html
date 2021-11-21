@@ -1,23 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class="" style="background-color: red; height: 300px; width: 100%; margin-bottom: 40px; color: white; text-align: center;">
-        <h1 style="padding-top: 120px;">S h o e s</h1>
-    </div>
 
+<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative;">
+    <img class="" src="{% static 'images/hellashoes-2.jpeg' %}" style="width: 100%; height: 100%; filter: brightness(0.3);" />
+    <div style="position: absolute; top: -20px; height: 100%; color: white; font-size: 80px; display: flex; align-items: center; justify-content: center;">
+        S h o e s
+    </div>
+</div>
+
+<!-- 
     <div style="width: 550px; margin: auto; text-align: center;">
         {% for brand in brands %}
-            <!-- <div style='margin: 10px 25px 10px 25px; display: inline-block;'>     -->
+            <div style='margin: 10px 25px 10px 25px; display: inline-block;'>    
                 <a href='{{ brand.get_brand_url }}' class='btn btn-{{ brand.btn_type }}' style='padding: 10px; min-width: 200px; margin: 10px 15px 10px 15px;'>{{ brand.name }}</a>
-            <!-- </div> -->
+            </div>
         {% endfor %}
-    </div>  
+    </div>   -->
         
     <!-- <div style="display: flex; justify-content: center; margin: 0px 3.125% 0px 3.125%"> -->
     <div class='product-set-outline'>
         {% for shoe in shoes %}
             <div class="product-outline">
-                <a href="{% url 'oyeda:products' %}">
+                <a href="{% url 'oyeda:individual-product' shoe.slug %}">
                     <img src="{% static 'images/nike-kyrie-7.png' %}" class='product-image' style="width: 100%;" />
                 </a>
                 <div style="width: 100%; text-align: center; margin-top: 10px;">
