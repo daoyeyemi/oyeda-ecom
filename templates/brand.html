@@ -22,7 +22,7 @@
     <div class='product-set-outline'>
         {% for shoe in shoes %}
             <div class="product-outline">
-                <img src="{% static 'images/nike-kyrie-7.png' %}" class='product-image' style="width: 100%;" />
+                <img src="{{ shoe.image.url }}" class='product-image' style="width: 100%;" />                    
                 <div style="width: 100%; text-align: center; margin-top: 10px;">
                     <a href='{{ shoe.get_absolute_url }}'><p style="margin: 2px; color: red;">{{ shoe.name }}</p></a>
                     <p style="margin: 2px;">{{ shoe.brand }}</p>
