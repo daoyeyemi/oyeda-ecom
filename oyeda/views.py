@@ -1,7 +1,7 @@
 from oyeda.forms import CreateUser
 from django.shortcuts import render, redirect, get_object_or_404
 
-from oyedaecom.settings import STRIPE_PRIVATE_KEY
+from oyedaecom.settings import MEDIA_ROOT, STRIPE_PRIVATE_KEY
 from .models import Payment, Shoe, OrderList, OrderedItem
 from django.views.generic import DetailView, View
 from django.contrib.auth.forms import UserCreationForm
