@@ -27,7 +27,7 @@
                     <img src="{{ shoe.image.url }}" class='product-image' style="width: 100%;" />                    
                 </a>
                 <div style="width: 100%; text-align: center; margin-top: 10px;">
-                    <a href='{{ shoe.get_absolute_url }}'><p style="margin: 2px; color: red;">{{ shoe.name }}</p></a>
+                    <a href='{{ shoe.get_absolute_url }}'><p style="font-weight: 900; margin: 2px; color: rgb(199, 7, 7)">{{ shoe.name }}</p></a>
                     <p style="margin: 2px;">{{ shoe.brand }}</p>
                     <p style="margin: 2px;">${{ shoe.price|floatformat:2 }}</p>
                     {% if shoe.new_arrival %}

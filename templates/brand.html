@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-    <h1 style="margin: 30px auto 0px auto; text-align: center;">{{ object.name }}</h1>
+<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative;">
+    <img class="" src="{% static 'images/hellashoes-2.jpeg' %}" style="width: 100%; height: 100%; filter: brightness(0.3);" />
+    <div style="position: absolute; top: -20px; height: 100%; color: white; font-size: 80px; display: flex; align-items: center; justify-content: center;">
+        {{ object.name }}
+    </div>
+</div>
+    <!-- <h1 style="margin: 30px auto 0px auto; text-align: center;"></h1> -->
 
     <!-- <div class="row">
         {% for shoe in shoes %}
@@ -24,7 +29,7 @@
             <div class="product-outline">
                 <img src="{{ shoe.image.url }}" class='product-image' style="width: 100%;" />                    
                 <div style="width: 100%; text-align: center; margin-top: 10px;">
-                    <a href='{{ shoe.get_absolute_url }}'><p style="margin: 2px; color: red;">{{ shoe.name }}</p></a>
+                    <a href='{{ shoe.get_absolute_url }}'><p style="font-weight: 900; margin: 2px; color: rgb(199, 7, 7);">{{ shoe.name }}</p></a>
                     <p style="margin: 2px;">{{ shoe.brand }}</p>
                     <p style="margin: 2px;">${{ shoe.price|floatformat:2 }}</p>
                 </div>
