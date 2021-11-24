@@ -276,6 +276,8 @@ def products(request):
     }
     return render(request, 'products.html', context)
 
+def brand(request):
+    return render(request, 'which_brand.html')
 # @login_required basically requires user to be logged in to access page; decorator would disallow
 # me from using the following function or being on the home page if I wasn't logged in
 

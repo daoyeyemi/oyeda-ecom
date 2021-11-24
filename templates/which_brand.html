@@ -1,10 +1,30 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
+    <h1 style="text-align: center; margin: 40px;">Which of these brands are you interested in ?</h1>
+        <div class="br4nd">
+            <a href="{% url 'oyeda:brand-selection' slug='nike' %}" class="brand-box-items">
+                <img src="{% static 'images/nike-logo.jpeg' %}" class="brand-brands" alt="Nike" />
+            </a>
+            <a href="{% url 'oyeda:brand-selection' slug='adidas' %}" class="brand-box-items">
+                <img src="{% static 'images/adidas-logo.jpeg' %}" class="brand-brands" alt="Adidas" />
+            </a>
+            <a href="{% url 'oyeda:brand-selection' slug='new-balance' %}" class="brand-box-items">
+                <img src="{% static 'images/new-balance-logo.png' %}" class="brand-brands" alt="New Balance" />
+            </a>
+        </div>
+        <div class="br4nd">
+            <a href="{% url 'oyeda:brand-selection' slug='puma' %}" class="brand-box-items">
+                <img src="{% static 'images/puma-logo.jpeg' %}"  class="brand-brand5" alt="Puma" />
+            </a>
+            <a href="{% url 'oyeda:brand-selection' slug='vans' %}" class="brand-box-items">
+                <img src="{% static 'images/vans-logo.jpeg' %}" class="brand-brand5" alt="Vans" />
+            </a>
+            <a href="{% url 'oyeda:brand-selection' slug='converse' %}" class="brand-box-items">
+                <img src="{% static 'images/converse-logo.png' %}" class="brand-brand5" alt="Converse" />
+            </a>
+        </div>
 
-<h1>Which of these brands are you interested in ?</h1>
-
-<div style="display: flex; justify-content: space-between; align-items: center;">
-
-</div>
-{% endblock content %}
+    {% endblock content %}

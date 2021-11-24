@@ -5,7 +5,7 @@
     <h1 style="text-align: center; margin: 50px;">Search</h1>
     
     <h2 style="margin: 30px auto 30px auto; text-align: center;">Search product names below</h2>
-    <h4 style="text-align: center; margin: 50px;">For example, type in the letter 'e' to find products that contain the letter 'e'</h4>
+    <h4 style="text-align: center; margin: 50px;">For example, type in 'Nike' to find Nike products</h4>
 
     <div style="display: flex; justify-content: center;">
         <form method="POST">
@@ -29,7 +29,7 @@
             {% endfor %}
         {% else %}
                 <div style="display: flex; justify-content: center;">
-                    <p>No products found.</p>
+                    <p>No products found at the moment.</p>
                 </div>
         {% endif %}
     </div>
