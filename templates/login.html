@@ -8,21 +8,21 @@
             <div class="login-inputs" style="text-align: center; width: 450px;">
                 <div class="email-login-input" style="text-align: center;">
                     <label class="custom-field">
-                        <input style="width: 450px;" name='username' type="text">
-                        <span class="email-login">username</span>
+                        <input style="width: 450px;" name='login-username' type="text" required />
+                        <span class="placeholdr">username</span>
                     </label>
                 </div>
                 <div class="password-login-input" style="text-align: center;">
                     <label class="custom-field">
-                        <input style="width: 450px;" name='password' type="text">
-                        <span class="email-login">password</span>
+                        <input style="width: 450px;" name='login-password' type="password" required />
+                        <span class="placeholdr">password</span>
                     </label>
                 </div>
                 <div style="text-align: center;">
                     <input style="width: 450px; height: 68px; margin-top: 20px;" class="btn btn-danger" type="submit" value="login">
                 </div>
                 <div style="margin-top: 20px; height: 50px; width: 450px; text-align: center;">
-                    <p style="text-align: left;">don't have an account?<a style="color: black" href="{% url 'oyeda:signup' %}"> create account here</a></p>
+                    <p style="text-align: left;">don't have an account?<a style="color: red; font-weight: 900;" href="{% url 'oyeda:signup' %}"> create account here</a></p>
                 </div>
             </div>
         </form>

@@ -584,17 +584,6 @@
             }
         }
 
-        .email-login {
-            position: absolute;
-            left: 23px;
-            top: calc(50% + 10px);
-            transform: translateY(-50%);
-            color: #aaa;
-            transition:
-                top 0.3s ease,
-                font-size 0.3s ease,
-                color 0.3s ease;
-        }
         .placeholdr {
             position: absolute;
             left: 23px;
@@ -607,15 +596,16 @@
                 color 0.3s ease;
         }
 
-        .custom-field input:valid + .placeholdr,
-        .custom-field input:focus + .placeholdr {
+        .custom-field input:focus + .placeholdr,
+        .custom-field input:valid + .placeholdr 
+        {
             top: 10px;
             font-size: 10px;
             color: #222; 
         }
 
-        .custom-field input:valid,
-        .custom-field input:focus {
+        .custom-field input:focus,
+        .custom-field input:valid {
             border: 2px solid navy;
         } 
 
@@ -639,18 +629,6 @@
             outline: none;
             font-size: 25px;
         }
-
-        .custom-field input:valid + .email-login,
-        .custom-field input:focus + .email-login {
-            top: 10px;
-            font-size: 10px;
-            color: #222; 
-        }
-
-        .custom-field input:valid,
-        .custom-field input:focus {
-            border: 2px solid navy;
-        } 
 
         table {
             text-align: center;

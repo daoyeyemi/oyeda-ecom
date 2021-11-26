@@ -19,12 +19,12 @@
         </form>
     </div>
 
-    <div style="margin: 50px;">
+    <div style="margin: 50px; text-align: center;">
         {% if shoes %}
-            <p style="text-align: center;">Click on items to go to the product's individual view page.</p>
+            <p style="text-align: center;">Click on item button to go to the product's individual view page.</p>
             {% for shoe in shoes %}
-                <div style="display: flex; justify-content: center;">
-                    <a style="color: red;" href="{% url 'oyeda:individual-product' shoe.slug %}">{{ shoe.name }}</a>
+                <div style="display: flex; justify-content: center; ">
+                    <a class="btn btn-danger" style="font-weight: 900; margin: 7px auto 7px auto;" href="{% url 'oyeda:individual-product' shoe.slug %}">{{ shoe.name }}</a>
                 </div>
             {% endfor %}
         {% else %}

@@ -295,7 +295,7 @@ def signup(request):
             # take saved information from form and withdraw 
             user = form.cleaned_data.get('username')
             print(user)
-            messages.success(request, 'user profile for ' + user + ' was successfully created')
+            # messages.success(request, 'user profile for ' + user + ' was successfully created')
             return redirect('oyeda:login')
     
     context = {

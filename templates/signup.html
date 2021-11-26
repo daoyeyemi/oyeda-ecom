@@ -6,40 +6,40 @@
     <div class="login-inputs" style="text-align: center; width: 450px;">
         <form method='POST' action=''>
             {% csrf_token %}
-            <div class="email-login-input" style="text-align: center;">
-                <label class="custom-field">
-                    {{ form.first_name }}
-                    <span class="email-login">first name</span>
-                </label>
-            </div>
-            <div class="email-login-input" style="text-align: center;">
-                <label class="custom-field">
-                    {{ form.last_name }}
-                    <span class="email-login">last name</span>
-                </label>
-            </div>
-            <div class="email-login-input" style="text-align: center;">
+            <div class="" style="text-align: center;">
                 <label class="custom-field">
                     {{ form.username }}
-                    <span class="email-login">username</span>
+                    <span class="placeholdr">username</span>
                 </label>
             </div>
-            <div class="email-login-input" style="text-align: center;">
+            <div class="" style="text-align: center;">
+                <label class="custom-field">
+                    {{ form.first_name }}
+                    <span class="placeholdr">first name</span>
+                </label>
+            </div>
+            <div class="" style="text-align: center;">
+                <label class="custom-field">
+                    {{ form.last_name }}
+                    <span class="placeholdr">last name</span>
+                </label>
+            </div>
+            <div class="" style="text-align: center;">
                 <label class="custom-field">
                     {{ form.email }}
-                    <span class="email-login">email</span>
+                    <span class="placeholdr">email</span>
                 </label>
             </div>
             <div class="password-login-input" style="text-align: center;">
                 <label class="custom-field">
                     {{ form.password1 }}
-                    <span class="email-login">enter password</span>
+                    <span class="placeholdr">enter password</span>
                 </label>
             </div>
             <div class="password-login-input" style="text-align: center;">
                 <label class="custom-field">
                     {{ form.password2 }}
-                    <span class="email-login">verify password</span>
+                    <span class="placeholdr">verify password</span>
                 </label>
             </div>
             <div style="text-align: center;" class="mt-3 mb-3">

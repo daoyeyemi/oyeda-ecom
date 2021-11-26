@@ -14,6 +14,10 @@ class CreateUser(UserCreationForm):
         model = User
         fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'autofocus': False})
+
 class CheckoutForm(forms.Form):
     shipping_street_address = forms.CharField(required=True)
     shipping_street_address_2 = forms.CharField(required=False)
