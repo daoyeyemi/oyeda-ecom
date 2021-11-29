@@ -42,3 +42,7 @@ class PaymentForm(forms.Form):
 
 class SubscriberForm(forms.Form):
     subscriberEmail = forms.EmailField(max_length=300)
+    subscriberEmail.widget.attrs.update({
+        'class' : 'email-subscribe',
+        'placeholder' : 'Enter email here...'
+    })

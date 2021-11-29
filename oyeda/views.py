@@ -244,6 +244,8 @@ def home(request):
 
             email = form.cleaned_data.get('subscriberEmail')
             print(email)
+            SubscriberEmail.objects.create(email=email)
+            # messages.success("Your email was successfully added to our subscriber list.")
             return redirect('oyeda:home')
 
     # if request.method == 'POST':
@@ -294,58 +296,90 @@ def products(request):
     return render(request, 'products.html', context)
 
 def brand(request):
-    return render(request, 'which_brand.html')
+
+    form2 = SubscriberForm()
+
+    context = {
+        'form2' : form2
+    }
+
+    return render(request, 'which_brand.html', context)
 # @login_required basically requires user to be logged in to access page; decorator would disallow
 # me from using the following function or being on the home page if I wasn't logged in
 
 def signup(request):
     form = CreateUser()
+    form2 = SubscriberForm()
 
     if request.method == 'POST':
-        form = CreateUser(request.POST)
-        # forms are primarily used to validate data so the is.valid() function returns 
-        # boolean stating whether or not value is true
-        if form.is_valid(): 
-            # .save() creates and saves object to database; if object already exists, it
-            # updates it instead
-            form.save()
-            # take saved information from form and withdraw 
-            user = form.cleaned_data.get('username')
-            print(user)
-            # messages.success(request, 'user profile for ' + user + ' was successfully created')
-            return redirect('oyeda:login')
-    
+        if 'subscribe' in request.POST:
+            form2 = SubscriberForm(request.POST)
+            
+            if form2.is_valid():
+                email = form2.cleaned_data.get('subscriberEmail')
+                print(email)
+                SubscriberEmail.objects.create(email=email)
+                # messages.success(request, 'Email was successfully added to subscriber list.')
+                return redirect('oyeda:signup')
+        elif 'signup' in request.POST:
+            form = CreateUser(request.POST)
+            # forms are primarily used to validate data so the is.valid() function returns 
+            # boolean stating whether or not value is true
+            if form.is_valid(): 
+                # .save() creates and saves object to database; if object already exists, it
+                # updates it instead
+                form.save()
+                # take saved information from form and withdraw 
+                user = form.cleaned_data.get('username')
+                print(user)
+                # messages.success(request, 'User profile for ' + user + ' was successfully created')
+                return redirect('oyeda:signup')
+       
+
     context = {
-        'form' : form
+        'form' : form,
+        'form2' : form2
     }
     
     return render(request, 'signup.html', context)
 
 
 def login_page(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
-        # authenticate() check credentials it gets and returns 
-        # object that matches the credentials if credentials are valid
-        # if they're not valid, it should return None
-        user = authenticate(request, username=username, password=password)
-            
-        if user is not None:
-            # login takes in request and user object
-            # saves the user ID in the session, using django's
-            # session framework
-            login(request, user)
-            return redirect('oyeda:home')
+    form2 = SubscriberForm()
 
-        else:
-            # error added to object and displayed if called upon 
-            # in template 
-            messages.error(request, 'Wrong username or password entered.')
+    if request.method == 'POST':
+        if 'login' in request.POST:
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            
+            # authenticate() check credentials it gets and returns 
+            # object that matches the credentials if credentials are valid
+            # if they're not valid, it should return None
+            user = authenticate(request, username=username, password=password)
+                
+            if user is not None:
+                # login takes in request and user object
+                # saves the user ID in the session, using django's
+                # session framework
+                login(request, user)
+                return redirect('oyeda:home')
+
+            else:
+                # error added to object and displayed if called upon 
+                # in template 
+                messages.error(request, 'Wrong username or password entered.')
+        elif 'subscribe' in request.POST:
+            form2 = SubscriberForm(request.POST)
+            
+            if form2.is_valid():
+                email = form2.cleaned_data.get('subscriberEmail')
+                print(email)
+                SubscriberEmail.objects.create(email=email)
+                # messages.success(request, 'Email was successfully added to subscriber list.')
+                return redirect('oyeda:login')
 
     context = {
-
+        'form2' : form2
     }
 
     return render(request, 'login.html', context)

@@ -26,5 +26,17 @@
                 <img src="{% static 'images/converse-logo.png' %}" class="brand-brand5" alt="Converse" />
             </a>
         </div>
-
+        <div style="margin: 120px 20px 20px 20px; text-align: center;">
+            <h2>Join Us</h2>
+            <p style="margin: 25px 15px 20px 15px;">
+                We will let you know when we have new arrivals, events and promo's don't worry we send them infrequently, just a friendly hi now and again!
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                <label class="custom-field">
+                    {{ form2.subscriberEmail }}
+                    <button type="submit" style="height: 66px; margin-top: -8px;" class="btn btn-warning">Go!</button>
+                </label>
+            </form>
+        </div>
     {% endblock content %}
