@@ -207,21 +207,30 @@
             </a>
         </div>
     </div>
-{% endblock %}
-            <!-- </div> -->
-{% block footer %}
+    
     <div style="margin: 20px; text-align: center;">
         <h2>Join Us</h2>
         <p style="margin: 25px 15px 20px 15px;">
             We will let you know when we have new arrivals, events and promo's don't worry we send them infrequently, just a friendly hi now and again!
         </p>
-        <label class="custom-field">
-            <input type="text" req: white />
-            <span class="placeholdr">Enter email here</span>
-            <!-- <button type="submit" style="border-radius: 2px; height: 48px; width: 48px; position: absolute; top: 10; bottom: 0; right: 0;"> -->
-                <i style="color: navy; font-size: 17px; position: absolute; top: calc(50% + 2px); right: 15px;" class="fas fa-arrow-right"></i>
-            <!-- </button> -->
-        </label>
+        <!-- <form method="POST" action=''>
+            {% csrf_token %}
+            <label class="custom-field">
+                <input name="subscribe-email" type="text" required />
+                <span class="placeholdr">Enter email here</span>
+                <button type="submit" style="border-radius: 2px; height: 48px; width: 48px; position: absolute; top: 10; bottom: 0; right: 0;">
+                    <input type="submit" class="btn btn-danger" name="input-subscribe" value="Subscribe" />
+                        <i style="color: navy; font-size: 17px; position: absolute; top: calc(50% + 2px); right: 15px;" class="fas fa-arrow-right"></i>
+                    </a>
+                </button>
+            </label>
+        </form> -->
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.subscriberEmail }}
+            <button type="submit" class="btn btn-warning">Go!</button>
+        </form>
     </div>
     <div style="text-align: center; display: flex; justify-content: center;">
         <div>
@@ -247,6 +256,8 @@
         <p style="font-size: 12px; text-align: center; margin-top: 10px;">© 2021 oyedaEcom</p> 
     </div>
 {% endblock %}
+            <!-- </div> -->
+    
     
 
     <!-- Create a container with items

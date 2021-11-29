@@ -17,6 +17,10 @@ class CreateUser(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({'autofocus': False})
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+        self.fields['email'].required = True
+
 
 class CheckoutForm(forms.Form):
     shipping_street_address = forms.CharField(required=True)
@@ -35,3 +39,6 @@ class CheckoutForm(forms.Form):
 
 class PaymentForm(forms.Form):
     stripeToken = forms.CharField(required=True)
+
+class SubscriberForm(forms.Form):
+    subscriberEmail = forms.EmailField(max_length=300)

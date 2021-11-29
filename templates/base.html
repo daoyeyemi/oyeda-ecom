@@ -344,13 +344,6 @@
             width: 100%;
             height: 100%;
         }
-
-        /* img.triple-box-item-1:hover, 
-        img.triple-box-item-2:hover, 
-        img.triple-box-item-3:hover {
-            filter: grayscale(100%);
-            transition: filter 0.5s ease-in-out;
-        } */
         
         .website-tags {
             display: flex;
@@ -603,7 +596,7 @@
             font-size: 10px;
             color: #222; 
         }
-
+        
         .custom-field input:focus,
         .custom-field input:valid {
             border: 2px solid navy;
@@ -618,10 +611,10 @@
 
         .custom-field input {
             border: 2px solid #ddd;
-            -webkit-appearance: none;
+            /* -webkit-appearance: none;
             -ms-appearance: none;
             -moz-appearance: none;
-            appearance: none;
+            appearance: none; */
             background: white;
             padding: 12px;
             border-radius: 3px;
@@ -883,7 +876,7 @@
     }
     </style>
 </head>
-    <body>
+    
         <nav style='display: flex; justify-content: space-between; background-color: black; height: 50px;'>
             <div class="logo" style="font-weight: 800; font-size: x-large; margin-top: 6px;">
                 <a href="{% url 'oyeda:home' %}" class="logo" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">oyedaEcom</a>
@@ -923,12 +916,15 @@
             </div>
         </nav>
 
+        
+    <body>
+        
         {% block content %}
 
         {% endblock %}
-
+        
         {% for message in messages %}
-            <p>{{ message }}</p>
+            <div style="width: 450px; text-align: center; margin-left: auto; margin-right: auto;" class="alert alert-info">{{ message }}</div>
         {% endfor %}
 
         {% block more_scripts %}

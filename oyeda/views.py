@@ -2,10 +2,10 @@ from oyeda.forms import CreateUser
 from django.shortcuts import render, redirect, get_object_or_404
 
 from oyedaecom.settings import MEDIA_ROOT, STRIPE_PRIVATE_KEY
-from .models import Payment, Shoe, OrderList, OrderedItem
+from .models import Payment, Shoe, OrderList, OrderedItem, SubscriberEmail
 from django.views.generic import DetailView, View
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUser, CheckoutForm, PaymentForm
+from .forms import CreateUser, CheckoutForm, PaymentForm, SubscriberForm
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout, get_user_model 
@@ -225,6 +225,7 @@ class PaymentView(View):
 def home(request):    
     current_user = request.user
     print(current_user)
+    form = SubscriberForm()
     # username = current_user.first_name    
     # print(username)
     # User = get_user_model()
@@ -236,9 +237,25 @@ def home(request):
     yuhhh = yooooo.objects.all()
     # hmmmmm = yuhhh.get(username=current_user.username)
     # print(hmmmmm)
+    if request.method == 'POST':
+        form = SubscriberForm(request.POST)
+        if form.is_valid():
+            # form.save()
+
+            email = form.cleaned_data.get('subscriberEmail')
+            print(email)
+            return redirect('oyeda:home')
+
+    # if request.method == 'POST':
+    #     email = request.POST.get('subscribe-email')
+    #     new_email = SubscriberEmail(email=email)
+    #     new_email.save()
+    #     # new_email = SubscriberEmail.objects.create(email=email)
+    #     return redirect("oyeda:home")
 
     context = {
         'shoes' : Shoe.objects.all(),
+        'form' : form,
         # 'username' : username,
         # 'logout' : user_logout
     }

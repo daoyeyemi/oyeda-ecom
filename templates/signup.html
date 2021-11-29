@@ -8,12 +8,6 @@
             {% csrf_token %}
             <div class="" style="text-align: center;">
                 <label class="custom-field">
-                    {{ form.username }}
-                    <span class="placeholdr">username</span>
-                </label>
-            </div>
-            <div class="" style="text-align: center;">
-                <label class="custom-field">
                     {{ form.first_name }}
                     <span class="placeholdr">first name</span>
                 </label>
@@ -22,6 +16,12 @@
                 <label class="custom-field">
                     {{ form.last_name }}
                     <span class="placeholdr">last name</span>
+                </label>
+            </div>
+            <div class="" style="text-align: center;">
+                <label class="custom-field">
+                    {{ form.username }}
+                    <span class="placeholdr">username</span>
                 </label>
             </div>
             <div class="" style="text-align: center;">
@@ -46,9 +46,17 @@
                 <input style="width: 250px; height: 68px; margin-top: 5px;" class="btn btn-warning" type="submit" name="create-user" value="sign up">
             </div>
         </form>
-        {{ form.errors }}
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
         <div style="margin-top: 20px; height: 50px; width: 450px; text-align: center;">
-            <p style="text-align: left;">already have an account?<a href='{% url "oyeda:login" %}'> sign in here</a></p>
+            <p style="text-align: left;">already have an account?<a href='{% url "oyeda:login" %}' style="color: red; font-weight: 900;"> sign in here</a></p>
         </div>
     </div>
 </div>
@@ -60,13 +68,15 @@
         <p style="margin: 25px 15px 20px 15px">
             we will let you know when we have new arrivals, events and promo's don't worry we send them infrequently, just a friendly hi now and again!
         </p>
-        <label class="custom-field">
-            <input type="text" required />
-            <span class="placeholdr">enter email here</span>
-            <!-- <button type="submit" style="border-radius: 2px; height: 48px; width: 48px; position: absolute; top: 10; bottom: 0; right: 0;"> -->
-                <i style="color: navy; font-size: 17px; position: absolute; top: calc(50% + 2px); right: 15px;" class="fas fa-arrow-right"></i>
-            <!-- </button> -->
-        </label>
+        <form method="POST">
+            <label class="custom-field">
+                <input type="text" name="subscribe-email"  required />
+                <span class="placeholdr">Enter email here</span>
+                <!-- <button type="submit" style="border-radius: 2px; height: 48px; width: 48px; position: absolute; top: 10; bottom: 0; right: 0;"> -->
+                    <i style="color: navy; font-size: 17px; position: absolute; top: calc(50% + 2px); right: 15px;" class="fas fa-arrow-right"></i>
+                <!-- </button> -->
+            </label>
+        </form>
     </div>
     <div style="text-align: center; display: flex; justify-content: center;">
         <div>

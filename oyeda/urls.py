@@ -19,5 +19,6 @@ urlpatterns = [
     path('remove-from-cart/<slug>/', views.remove_from_cart, name="remove-from-cart"),
     path('remove-entire-item-from-cart/<slug>/', views.remove_entire_item_from_cart, name="remove-entire-item"),
     path('payment/', views.PaymentView.as_view(), name="payment"),
-    path('search/', views.SearchView.as_view(), name='search')
+    path('search/', views.SearchView.as_view(), name='search'),
+    # path('email-subscriber/', views.add_subscriber_email , name='subscriber-email')
 ]
