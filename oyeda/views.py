@@ -269,8 +269,24 @@ def user_logout(request):
     logout(request)
     print(request.user)
     print('Hell yeahhhhhhh')
+
+    form = SubscriberForm()
+
+    if request.method == 'POST':
+        form = SubscriberForm(request.POST)
+        if form.is_valid():
+            # form.save()
+
+            email = form.cleaned_data.get('subscriberEmail')
+            print(email)
+            SubscriberEmail.objects.create(email=email)
+            # messages.success("Your email was successfully added to our subscriber list.")
+            return redirect('oyeda:home')
+    context = {
+        'form': form
+    }
     # return redirect('oyeda:login')
-    return render(request, 'home.html')
+    return render(request, 'home.html', context)
 
 class SearchView(View):
     def get(self, request):
