@@ -521,3 +521,6 @@ def add_to_cart(request, slug):
     #     order = OrderList.objects.filter(user=request.user, ordered=False)
 
     #     return redirect('oyeda:order-summary')
+
+def logout_confirm(request):
+    return render(request, 'logout_confirm.html')

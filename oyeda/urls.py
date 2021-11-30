@@ -21,4 +21,5 @@ urlpatterns = [
     path('payment/', views.PaymentView.as_view(), name="payment"),
     path('search/', views.SearchView.as_view(), name='search'),
     # path('email-subscriber/', views.add_subscriber_email , name='subscriber-email')
+    path('logout-confirm/', views.logout_confirm, name='logout-confirm')
 ]
