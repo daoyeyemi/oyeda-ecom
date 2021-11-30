@@ -2,17 +2,6 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.slight--description {
-    opacity: 0;
-    transform: translate(0, -300px);
-    transition: all 1s ease-in;
-}
-
-.active1 {
-    opacity: 1;
-    transform: translate(0, 0);
-}
-
 .latest-additions-para {
     opacity: 0;
     transform: scale(0.1);

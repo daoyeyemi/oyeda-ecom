@@ -96,9 +96,6 @@ class CheckoutView(View):
                 if payment_method == 'S':
                     print('Stripe it is')
                     return redirect('oyeda:payment')
-                elif payment_method == 'P':
-                    print("PayPal it is my G")
-                    return redirect('oyeda:payment')
                 else:
                     print('Invalid payment option selected')
                     return redirect('oyeda:home')
