@@ -31,7 +31,8 @@
                     <p style="margin: 2px;">{{ shoe.brand }}</p>
                     <p style="margin: 2px;">${{ shoe.price|floatformat:2 }}</p>
                     {% if shoe.new_arrival %}
-                        <div style="color: navy">new</div>
+                        <h5><span class="badge bg-primary">new</span></h5>
+                        
                     {% endif %}
                 </div>
             </div>
