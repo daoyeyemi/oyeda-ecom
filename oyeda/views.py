@@ -19,7 +19,9 @@ from django.conf import settings
 # request.user.first_name
 stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
-class CheckoutView(View):
+class CheckoutView(LoginRequiredMixin, View):
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
     # gets data 
     def get(self, request):
         try:
@@ -96,6 +98,9 @@ class CheckoutView(View):
                 if payment_method == 'S':
                     print('Stripe it is')
                     return redirect('oyeda:payment')
+                elif payment_method == 'P':
+                    print("PayPal it is my G")
+                    return redirect('oyeda:payment')
                 else:
                     print('Invalid payment option selected')
                     return redirect('oyeda:home')
@@ -104,7 +109,9 @@ class CheckoutView(View):
         
         return render(request, 'checkout.html')
 
-class PaymentView(View):
+class PaymentView(LoginRequiredMixin, View):
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
     def get(self, request):
         order = OrderList.objects.get(user=request.user, ordered=False)
         
@@ -261,6 +268,7 @@ def home(request):
 
     return render(request, 'home.html', context)
 
+@login_required
 def user_logout(request):
     # when logout is called session data is deleted and 
     logout(request)
@@ -356,7 +364,6 @@ def signup(request):
     
     return render(request, 'signup.html', context)
 
-
 def login_page(request):
     form2 = SubscriberForm()
 
@@ -417,7 +424,10 @@ def new_arrivals(request):
 
     return render(request, 'new_arrivals.html', context)
 
-class ShoeDetailView(DetailView):
+class ShoeDetailView(LoginRequiredMixin, DetailView):
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
     model = Shoe
     template_name = 'individual-product.html'
 
@@ -453,6 +463,7 @@ class OrderSummary(LoginRequiredMixin, View):
             print("Nope...")
             return redirect('/')
 
+@login_required
 def remove_entire_item_from_cart(request, slug):
     item = Shoe.objects.get(slug=slug)
     order_list = OrderList.objects.get(user=request.user, ordered=False)
@@ -461,6 +472,7 @@ def remove_entire_item_from_cart(request, slug):
     order_item.delete()
     return redirect("oyeda:order-summary")
 
+@login_required
 def remove_from_cart(request, slug):
     try:
         item = Shoe.objects.get(slug=slug)
@@ -487,6 +499,7 @@ def remove_from_cart(request, slug):
 # get_or_create()
 # all we're really doing is changing the quantity of an item in the order
 
+@login_required
 def add_to_cart(request, slug):
     try:
         item = Shoe.objects.get(slug=slug)
