@@ -27,17 +27,19 @@
             </div>
         </form>
     </div>
+    
+{% endblock %}
+
     {% if form.errors %}
         {% for field in form %}
             {% for error in field.errors %}
-                <div class="alert alert-danger">
+                <div style="width: 100%;" class="alert alert-danger">
                     <strong>{{ error }}</strong>
                 </div>
             {% endfor %}
         {% endfor %}
     {% endif %}
-{% endblock %}
-
+    
 {% block footer %}
     <div style="margin: 120px 20px 20px 20px; text-align: center;">
         <h2>join us</h2>

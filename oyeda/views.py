@@ -123,7 +123,7 @@ class PaymentView(LoginRequiredMixin, View):
             print('get function works')
             return render(request, 'payment.html', context)
         else:
-            print('No billing address input yet')
+            messages.warning(request, 'No billing address input yet')
             return redirect('oyeda:checkout')        
 
     def post(self, request):
@@ -175,56 +175,56 @@ class PaymentView(LoginRequiredMixin, View):
                 order.ordered = True
                 order.save()
 
-                print('Order was successful')
+                messages.success(request, 'Order successfully processed.')
                 return redirect('oyeda:home')
             
             except stripe.error.CardError as e:
                     body = e.json_body
                     err = body.get('error', {})
                     print('error')
-                    # messages.warning(self.request, f"{err.get('message')}")
+                    messages.warning(request, f"{err.get('message')}")
                     return redirect("/")
 
             except stripe.error.RateLimitError as e:
                 # Too many requests made to the API too quickly
-                # messages.warning(self.request, "Rate limit error")
+                messages.warning(request, "Rate limit error")
                 print('error1')
                 return redirect("/")
 
             except stripe.error.InvalidRequestError as e:
                 # Invalid parameters were supplied to Stripe's API
                 print('error2')
-                # messages.warning(self.request, "Invalid parameters")
+                messages.warning(request, "Invalid parameters")
                 return redirect("/")
 
             except stripe.error.AuthenticationError as e:
                 # Authentication with Stripe's API failed
                 # (maybe you changed API keys recently)
-                # messages.warning(self.request, "Not authenticated")
+                messages.warning(request, "Not authenticated at the moment")
                 print('error3')
                 return redirect("oyeda:payment")
 
             except stripe.error.APIConnectionError as e:
                 # Network communication with Stripe failed
-                # messages.warning(self.request, "Network error")
+                messages.warning(request, "Network error currently being diagnosed")
                 print('error4')
                 return redirect("/")
 
             except stripe.error.StripeError as e:
                 # Display a very generic error to the user, and maybe send
                 # yourself an email
-                # messages.warning(self.request, "Something went wrong. You were not charged. Please try again.")
+                messages.warning(request, "Something went wrong. You were not charged. Please try again.")
                 print('error5')
                 return redirect("/")
 
             except Exception as e:
                 # send an email to ourselves
-                # messages.warning(self.request, "A serious error occurred. We have been notifed.")
+                messages.warning(request, "A serious error occurred. We have been notifed.")
                 print('error6')
                 return redirect("oyeda:payment")
 
         else:
-            print("That ain't it G")
+            messages.warning(request, "That ain't it G")
     
 def home(request):    
     current_user = request.user
@@ -273,7 +273,7 @@ def user_logout(request):
     # when logout is called session data is deleted and 
     logout(request)
     print(request.user)
-    print('Hell yeahhhhhhh')
+    messages.success(request, 'User successfully logged out.')
 
     form = SubscriberForm()
 
@@ -285,7 +285,7 @@ def user_logout(request):
             email = form.cleaned_data.get('subscriberEmail')
             print(email)
             SubscriberEmail.objects.create(email=email)
-            # messages.success("Your email was successfully added to our subscriber list.")
+            messages.success(request, "Your email was successfully added to our subscriber list.")
             return redirect('oyeda:home')
     context = {
         'form': form
@@ -340,7 +340,7 @@ def signup(request):
                 email = form2.cleaned_data.get('subscriberEmail')
                 print(email)
                 SubscriberEmail.objects.create(email=email)
-                # messages.success(request, 'Email was successfully added to subscriber list.')
+                messages.success(request, 'Email was successfully added to subscriber list.')
                 return redirect('oyeda:signup')
         elif 'signup' in request.POST:
             form = CreateUser(request.POST)
@@ -353,8 +353,8 @@ def signup(request):
                 # take saved information from form and withdraw 
                 user = form.cleaned_data.get('username')
                 print(user)
-                # messages.success(request, 'User profile for ' + user + ' was successfully created')
-                return redirect('oyeda:signup')
+                messages.success(request, 'Your user profile was successfully created. Log in using credentials used to mmake user profile.')
+                return redirect('oyeda:login')
        
 
     context = {
@@ -382,6 +382,7 @@ def login_page(request):
                 # saves the user ID in the session, using django's
                 # session framework
                 login(request, user)
+                messages.success(request, 'User successfully logged in.')
                 return redirect('oyeda:home')
 
             else:
@@ -395,7 +396,7 @@ def login_page(request):
                 email = form2.cleaned_data.get('subscriberEmail')
                 print(email)
                 SubscriberEmail.objects.create(email=email)
-                # messages.success(request, 'Email was successfully added to subscriber list.')
+                messages.success(request, 'Email was successfully added to subscriber list.')
                 return redirect('oyeda:login')
 
     context = {
@@ -459,7 +460,7 @@ class OrderSummary(LoginRequiredMixin, View):
         except ObjectDoesNotExist:
         # ObjectDoesNotExist for all exceptions to get(); used often w try 
         # and except
-            # messages.warning(request, 'No orders in the works at the moment.')
+            messages.warning(request, 'No orders in the works at the moment.')
             print("Nope...")
             return redirect('/')
 
@@ -470,6 +471,7 @@ def remove_entire_item_from_cart(request, slug):
     order_item = OrderedItem.objects.get(item=item)
     order_list.items.remove(order_item)
     order_item.delete()
+    messages.success(request, "Item successfully removed from cart.")
     return redirect("oyeda:order-summary")
 
 @login_required
@@ -484,16 +486,18 @@ def remove_from_cart(request, slug):
         if order_item.quantity <= 1:
             order_list.items.remove(order_item)
             order_item.delete()
+            messages.success(request, "Item quantity successfully decreased by 1.")
         else:
             order_item.quantity -= 1
             print(order_item.quantity)
             order_item.save()
+            messages.success(request, "Item quantity successfully decreased by 1.")
         return redirect("oyeda:order-summary")
     except OrderedItem.DoesNotExist:
-        print("Item hasn't even been ordered yet.")
+        messages.warning(request, "Item hasn't even been ordered yet.")
         return redirect("oyeda:order-summary")
     except OrderList.DoesNotExist:
-        print("No order list for you currently brother")
+        messages.warning(request, "No order list for you currently brother.")
         return redirect("oyeda:order-summary")
 # get_object_or_404()
 # get_or_create()
@@ -512,6 +516,7 @@ def add_to_cart(request, slug):
         order_item.quantity += 1
         print(order_item.quantity)
         order_item.save()
+        messages.success(request, "Item quantity successfully increased by 1.")
         return redirect("oyeda:order-summary")
     except OrderedItem.DoesNotExist:
         print("Item hasn't been ordered yet.")

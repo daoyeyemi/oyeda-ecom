@@ -947,14 +947,19 @@
 
         
     <body>
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <div style="width: 100%; text-align: center; margin-left: auto; margin-right: auto; margin-bottom: -7px;" class="alert alert-info">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
         
         {% block content %}
 
         {% endblock %}
         
-        {% for message in messages %}
-            <div style="width: 450px; text-align: center; margin-left: auto; margin-right: auto;" class="alert alert-info">{{ message }}</div>
-        {% endfor %}
+        
 
         {% block more_scripts %}
 

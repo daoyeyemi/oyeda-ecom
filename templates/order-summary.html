@@ -2,42 +2,42 @@
 
 {% block content %}
     <h1 style="text-align: center; padding: 15px; margin: 15px; font-size: 50px;">Order Summary</h1>
-    <div style="display: flex; justify-content: center; width: 100%">
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Shoe Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total Item Price</th>
-                </tr>
-            </thead>
-        <!-- {% if order.items %}
+    {% if order.items.all %}
+        <div style="display: flex; justify-content: center; width: 100%">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Shoe Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Item Price</th>
+                    </tr>
+                </thead>
+            <!-- {% if order.items %}
 
-        {% else %}
-            <div> There are currently no items in your cart </div>
-        {% endif %} -->
-        {% for order in order.items.all %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ order.item.name }}</td>
-                <td>${{ order.item.price|floatformat:2 }}</td>
-                <td>
-                    <div style="display: flex; justify-content: center;">
-                        <!-- slug argument must be passed to the url since the url path has slug variable -->
-                        <a href="{% url 'oyeda:remove-from-cart' order.item.slug %}" class="btn btn-secondary">-</a>
-                            <div style="width: 60px; padding: 10px 0px 10px 0px; text-align: center;">{{ order.quantity }}</div> 
-                        <a href="{% url 'oyeda:add-to-cart' order.item.slug %}" class="btn btn-danger">+</a>
-                    </div>
-                </td>
-                <td>${{ order.generate_total_price_for_item|floatformat:2 }}</td>
-                <td><a href="{% url 'oyeda:remove-entire-item' order.item.slug %}" style="margin-left: 10px;" class="btn btn-warning"><i class="fas fa-trash"></i></a></td>
-            </tr>    
-        {% endfor %}
-        </table>
-    </div>
-    
+            {% else %}
+                <div> There are currently no items in your cart </div>
+            {% endif %} -->
+            {% for order in order.items.all %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ order.item.name }}</td>
+                    <td>${{ order.item.price|floatformat:2 }}</td>
+                    <td>
+                        <div style="display: flex; justify-content: center;">
+                            <!-- slug argument must be passed to the url since the url path has slug variable -->
+                            <a href="{% url 'oyeda:remove-from-cart' order.item.slug %}" class="btn btn-secondary">-</a>
+                                <div style="width: 60px; padding: 10px 0px 10px 0px; text-align: center;">{{ order.quantity }}</div> 
+                            <a href="{% url 'oyeda:add-to-cart' order.item.slug %}" class="btn btn-danger">+</a>
+                        </div>
+                    </td>
+                    <td>${{ order.generate_total_price_for_item|floatformat:2 }}</td>
+                    <td><a href="{% url 'oyeda:remove-entire-item' order.item.slug %}" style="margin-left: 10px;" class="btn btn-warning"><i class="fas fa-trash"></i></a></td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
 
     <div style="font-size: 25px; font-weight: bolder; width: 80%; margin: 20px 10% 20px 10%; text-align: right;">
         Order Total : $ {{ order.get_total_price|floatformat:2 }}
@@ -46,6 +46,13 @@
         <a style="float: left;" class="btn btn-primary" href="{% url 'oyeda:products' %}">Continue shopping</a>
         <a style="float: right;" class="btn btn-danger" href="{% url 'oyeda:checkout' %}">Go to Checkout</a>
     </div>
+    {% else %}
+    <div style=" text-align: center; width: 90%; margin-left: 5%; margin-right: 5%;">
+        <h1 style="text-align: center; margin: 30px auto;">No items ordered at the moment.</h1>
+    <a href='{% url "oyeda:products" %}' class="btn btn-danger">Continue Shopping</a>
+    </div>
+    
+    {% endif %}
     
 {% endblock %}
 
