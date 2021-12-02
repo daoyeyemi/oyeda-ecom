@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-
-    <h1 style="text-align: center; margin: 50px;">Search</h1>
+    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative;">
+        <img class="" src="{% static 'images/hellashoes-2.jpeg' %}" style="width: 100%; height: 100%; filter: brightness(0.3);" />
+        <div style="position: absolute; top: -20px; height: 100%; color: white; font-size: 80px; display: flex; align-items: center; justify-content: center;">
+            S e a r c h
+        </div>
+    </div>
+    <!-- <h1 style="text-align: center; margin: 50px;">Search</h1> -->
     
     <h2 style="margin: 30px auto 30px auto; text-align: center;">Search product names below</h2>
     <h4 style="text-align: center; margin: 50px;">For example, type in 'Nike' to find Nike products</h4>

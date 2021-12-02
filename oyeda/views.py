@@ -113,23 +113,26 @@ class CheckoutView(View):
 
 class PaymentView(View):
     def get(self, request):
-        if request.user.is_anonymous:
-            messages.success(request, "User must be logged in to access this feature.")
-            return redirect('oyeda:home')
-        else:
-            order = OrderList.objects.get(user=request.user, ordered=False)
-            
-            if order.billing_address:
-                context = {
-                    'order' : order,
-                    'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
-                }        
-                print('get function works')
-                return render(request, 'payment.html', context)
+        try:
+            if request.user.is_anonymous:
+                messages.warning(request, "User must be logged in to access this feature.")
+                return redirect('oyeda:home')
             else:
-                messages.warning(request, 'No billing address input yet')
-                return redirect('oyeda:checkout')        
-
+                order = OrderList.objects.get(user=request.user, ordered=False)
+                
+                if order.billing_address:
+                    context = {
+                        'order' : order,
+                        'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
+                    }        
+                    print('get function works')
+                    return render(request, 'payment.html', context)
+                else:
+                    messages.warning(request, 'No billing address input yet')
+                    return redirect('oyeda:checkout')        
+        except ObjectDoesNotExist:
+            messages.warning(request, 'No orders have been placed on this account. Continue shopping to create order list.')
+            return redirect("oyeda:products")
     def post(self, request):
         order = OrderList.objects.get(user=request.user, ordered=False)
 
@@ -179,7 +182,7 @@ class PaymentView(View):
                 order.ordered = True
                 order.save()
 
-                messages.success(request, 'Order successfully processed.')
+                messages.success(request, 'Order successfully processed. We will get back to you as soon as possible.')
                 return redirect('oyeda:home')
             
             except stripe.error.CardError as e:
@@ -228,7 +231,7 @@ class PaymentView(View):
                 return redirect("oyeda:payment")
 
         else:
-            messages.warning(request, "That ain't it G")
+            messages.warning(request, "Something went seriously wrong. Please try again later.")
     
 def home(request):    
     current_user = request.user
@@ -276,7 +279,7 @@ def user_logout(request):
     # when logout is called session data is deleted and 
         logout(request)
         print(request.user)
-        messages.success(request, 'User successfully logged out.')
+        messages.warning(request, 'User successfully logged out.')
 
         form = SubscriberForm()
 
@@ -334,6 +337,9 @@ def signup(request):
     form = CreateUser()
     form2 = SubscriberForm()
 
+    if request.user.is_anonymous == False:
+        messages.warning(request, "Signup page cannot be accessed; user is currently logged in.")
+        return redirect("oyeda:home")
     if request.method == 'POST':
         if 'subscribe' in request.POST:
             form2 = SubscriberForm(request.POST)
@@ -368,7 +374,9 @@ def signup(request):
 
 def login_page(request):
     form2 = SubscriberForm()
-
+    if request.user.is_anonymous == False:
+        messages.warning(request, "Login page cannot be accessed; user is currently logged in.")
+        return redirect("oyeda:home")
     if request.method == 'POST':
         if 'login' in request.POST:
             username = request.POST.get('username')
@@ -435,7 +443,7 @@ class ShoeDetailView(DetailView):
 
     def get(self, *args, **kwargs):
         if self.request.user.is_anonymous:
-            messages.success(self.request, "User must be logged in to access this feature.")
+            messages.warning(self.request, "User must be logged in to access this feature.")
             return redirect('oyeda:products')
         return super().get(*args, **kwargs)
 
@@ -455,7 +463,7 @@ class OrderSummary(View):
         # clause is executed
         # cannot use get() when multiple objects match the criteria, must instead use filter
         if request.user.is_anonymous:
-            messages.success(request, "User must be logged in to access this feature.")
+            messages.warning(request, "User must be logged in to access this feature.")
             return redirect('oyeda:home')
         else:
             try:
@@ -475,7 +483,7 @@ class OrderSummary(View):
 
 def remove_entire_item_from_cart(request, slug):
     if request.user.is_anonymous:
-        messages.success(request, "User must be logged in to access this feature.")
+        messages.warning(request, "User must be logged in to access this feature.")
         return redirect('oyeda:order-summary')
     else:
         item = Shoe.objects.get(slug=slug)
@@ -488,7 +496,7 @@ def remove_entire_item_from_cart(request, slug):
 
 def remove_from_cart(request, slug):
     if request.user.is_anonymous:
-        messages.success(request, "User must be logged in to access this feature.")
+        messages.warning(request, "User must be logged in to access this feature.")
         return redirect('oyeda:order-summary')
     else:
         try:
@@ -509,18 +517,18 @@ def remove_from_cart(request, slug):
                 messages.success(request, "Item quantity successfully decreased by 1.")
             return redirect("oyeda:order-summary")
         except OrderedItem.DoesNotExist:
-            messages.warning(request, "Item hasn't even been ordered yet.")
-            return redirect("oyeda:order-summary")
+            messages.warning(request, "Item hasn't been ordered yet.")
+            return redirect("oyeda:products")
         except OrderList.DoesNotExist:
-            messages.warning(request, "No order list for you currently brother.")
-            return redirect("oyeda:order-summary")
+            messages.warning(request, "Unfortunately, no order placed for you currently. Click on an item to get started.")
+            return redirect("oyeda:products")
 # get_object_or_404()
 # get_or_create()
 # all we're really doing is changing the quantity of an item in the order
 
 def add_to_cart(request, slug):
     if request.user.is_anonymous:
-        messages.success(request, "User must be logged in to access this feature.")
+        messages.warning(request, "User must be logged in to access this feature.")
         return redirect('oyeda:order-summary')
     else:
         try:
@@ -574,6 +582,6 @@ def add_to_cart(request, slug):
 
 def logout_confirm(request):
     if request.user.is_anonymous:
-        messages.success(request, "User must be logged in to access this feature.")
+        messages.warning(request, "User must be logged in to access this feature.")
         return redirect('oyeda:home')
     return render(request, 'logout_confirm.html')
