@@ -950,7 +950,7 @@
         {% if messages %}
             <div>
                 {% for message in messages %}
-                    <div style="width: 100%; text-align: center; margin-left: auto; margin-right: auto; margin-bottom: -7px;" class="alert alert-info">{{ message }}</div>
+                    <div style="width: 100%; text-align: center; margin-left: auto; margin-right: auto; margin-bottom: 0px" class="alert alert-{{ message.tags }}">{{ message }}</div>
                 {% endfor %}
             </div>
         {% endif %}
