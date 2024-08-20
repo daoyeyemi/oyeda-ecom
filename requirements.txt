@@ -39,7 +39,6 @@ django-bootstrap4==3.0.1
 django-core==1.4.1
 django-countries==7.2.1
 django-credit-cards==0.4.1
-emo-rec-sys @ file:///Users/daoyeyemi/Desktop/wgu_capstone/emo_rec_sys
 entrypoints==0.3
 filelock==3.0.12
 Flask==2.0.1
