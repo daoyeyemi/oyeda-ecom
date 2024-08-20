@@ -1,0 +1,1 @@
+web: gunicorn oyedaecom.wsgi --log-file -
