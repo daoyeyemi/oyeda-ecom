@@ -29,8 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_countries',
     'oyeda',
-    'bootstrap4',
-    'stripe'
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [
